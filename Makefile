@@ -27,7 +27,7 @@ LIBFT_LIB 		= -Llibft -lft
 all: libmlx $(LIBFT) $(NAME)
 
 libmlx:
-	@if [ ! -d "libs/MLX42" ]; then \
+	@if [ ! -d "lib/MLX42" ]; then \
 		git clone https://github.com/codam-coding-college/MLX42.git lib/MLX42; \
 	fi
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
