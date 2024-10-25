@@ -23,6 +23,7 @@ HDRS 			= $(addprefix include/, )
 LIBFT 			= $(LIBFTDIR)/libft.a
 LIBFT_LIB 		= -Llibft -lft
 #LDFLAGS 		= -L/opt/homebrew/opt/glfw/lib #for glfw
+#DEBUG 			= 1
 
 all: libmlx $(LIBFT) $(NAME)
 
