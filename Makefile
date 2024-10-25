@@ -5,10 +5,10 @@ CC 				= 	cc
 CCFLAGS 		= 	-Wextra -Wall -Werror
 CFLAGS 			+= 	-Iinclude -Isrc -O3 -Wunreachable-code -Ofast
 
-OBJ_DIR			= 	objs/
-SRC_DIR			= 	srcs/
-LIBFTDIR 		= 	./libs/libft
-LIBMLX			= 	./libs/MLX42
+OBJ_DIR			= 	obj/
+SRC_DIR			= 	src/
+LIBFTDIR 		= 	./lib/libft
+LIBMLX			= 	./lib/MLX42
 
 LIBS			=  	$(LIBMLX)/build/libmlx42.a -ldl -L/opt/homebrew/lib -lglfw -pthread -lm #-L/opt/homebrew/lib for mac
 LIBS 			+= 	$(LIBFTDIR)/libft.a
@@ -28,7 +28,7 @@ all: libmlx $(LIBFT) $(NAME)
 
 libmlx:
 	@if [ ! -d "libs/MLX42" ]; then \
-		git clone https://github.com/codam-coding-college/MLX42.git libs/MLX42; \
+		git clone https://github.com/codam-coding-college/MLX42.git lib/MLX42; \
 	fi
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 

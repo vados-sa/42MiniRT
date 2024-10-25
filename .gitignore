@@ -55,4 +55,4 @@ dkms.conf
 minirt
 
 #MLX
-libs/MLX42
+lib/MLX42
