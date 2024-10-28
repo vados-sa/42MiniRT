@@ -23,6 +23,6 @@ typedef struct s_data
 	mlx_t	*mlx_ptr;
 }	t_data;
 
-typedef void (*mlx_keyfunc)(mlx_key_data_t keydata, void* param);
+void	ft_exit(int exit_code, t_data *data, char *message);
 
 #endif

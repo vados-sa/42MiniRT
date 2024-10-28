@@ -13,12 +13,12 @@ LIBMLX			= 	./lib/MLX42
 LIBS			=  	$(LIBMLX)/build/libmlx42.a -ldl -L/opt/homebrew/lib -lglfw -pthread -lm #-L/opt/homebrew/lib for mac
 LIBS 			+= 	$(LIBFTDIR)/libft.a
 
-INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR)
+INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 #INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
 SRCS 			= $(addprefix $(SRC_DIR), main.c)
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-HDRS 			= $(addprefix include/, )
+HDRS 			= $(addprefix incl/, )
 
 LIBFT 			= $(LIBFTDIR)/libft.a
 LIBFT_LIB 		= -Llibft -lft
