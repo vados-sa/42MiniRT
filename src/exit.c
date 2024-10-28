@@ -1,5 +1,5 @@
 
-#include "../incl/minirt.h"
+#include "minirt.h"
 
 void	ft_exit(int exit_code, t_data *data, char *message)
 {
