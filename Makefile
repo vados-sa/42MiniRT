@@ -16,9 +16,9 @@ LIBS 			+= 	$(LIBFTDIR)/libft.a
 INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 #INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
-SRCS 			= $(addprefix $(SRC_DIR), main.c)
+SRCS 			= $(addprefix $(SRC_DIR), main.c exit.c)
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-HDRS 			= $(addprefix incl/, )
+HDRS 			= $(addprefix incl/, minirt.h)
 
 LIBFT 			= $(LIBFTDIR)/libft.a
 LIBFT_LIB 		= -Llibft -lft

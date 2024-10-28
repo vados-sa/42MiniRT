@@ -1,5 +1,5 @@
 
-#include "minirt.h"
+#include "../incl/minirt.h"
 
 mlx_keyfunc	my_keyhook(mlx_key_data_t keydata, t_data *data)
 {
