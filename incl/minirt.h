@@ -20,7 +20,8 @@
 
 typedef struct s_data
 {
-	mlx_t	*mlx_ptr;
+	mlx_t		*mlx_ptr;
+	mlx_image_t	*image;
 }	t_data;
 
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
