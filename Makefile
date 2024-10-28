@@ -32,27 +32,31 @@ libmlx:
 		git clone https://github.com/codam-coding-college/MLX42.git lib/MLX42; \
 	fi
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+	@make --quiet -C $(LIBMLX)/build -j4
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFTDIR) all
+	@$(MAKE) --quiet -C $(LIBFTDIR) all
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(@D)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS) $(HDRS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
 #$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LDFLAGS) $(LIBS) -o $(NAME)
+	@echo "\033[32;1mminiRT is ready\033[5m ✓ ✓ ✓\033[0m"
 
 clean:
-	rm -f $(OBJS)
-	rm -rf $(OBJ_DIR)
-	$(MAKE) -C $(LIBFTDIR) clean
+	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
+	@$(MAKE) --no-print-directory -C $(LIBFTDIR) clean
+	@echo "\033[37;1mObject files removed.\033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
-	$(MAKE) -C $(LIBFTDIR) fclean
+	@$(MAKE) --no-print-directory -C $(LIBFTDIR) fclean
 	@# rm -rf $(LIBMLX)/build
+	@echo "\033[37;1mExecutable removed.\033[0m"
 
 re: fclean all
 

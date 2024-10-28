@@ -73,11 +73,9 @@ bonus: $(OFILES) $(BOFILES)
 
 clean:
 	@rm -f $(OFILES) $(BOFILES)
-	@echo "ran clean"
 
 fclean:
 	@rm -f $(NAME) $(OFILES) $(BOFILES)
-	@echo "ran fclean"
 
 re: fclean all
 

@@ -18,8 +18,9 @@
 # define WIDTH 1200
 # define HEIGHT 675
 
-typedef struct s_data {
-	mlx_t *mlx_ptr;
+typedef struct s_data
+{
+	mlx_t	*mlx_ptr;
 }	t_data;
 
 typedef void (*mlx_keyfunc)(mlx_key_data_t keydata, void* param);
