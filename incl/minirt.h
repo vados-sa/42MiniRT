@@ -18,10 +18,89 @@
 # define WIDTH 1200
 # define HEIGHT 675
 
+typedef struct	s_coordinate
+{
+	float	x;
+	float	y;
+	float	z;
+} t_coordinate;
+
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+} t_color;
+
+typedef struct s_A
+{
+	float	ratio;
+	t_color	color;
+} t_A;
+
+typedef struct s_C
+{
+	t_coordinate	view_point;
+	t_coordinate	normal;
+	float			fov;
+} t_C;
+
+typedef struct s_L
+{
+	t_coordinate	point;
+	float			brightness;
+	t_color			color;
+	t_L				*next; // check if necessary
+} t_L;
+
+typedef struct s_plane
+{
+	t_coordinate	point;
+	t_coordinate	normal;
+	t_color			color;
+} t_plane;
+
+typedef struct s_sphere
+{
+	t_coordinate	center;
+	float			diameter;
+	t_color			color;
+} t_sphere;
+
+typedef struct s_cylinder
+{
+	t_coordinate	center;
+	t_coordinate	normal;
+	float			diameter;
+	float			height;
+	t_color			color;
+} t_cylinder;
+
+typedef struct s_object
+{
+	t_plane		*pl;
+	t_sphere	*sp;
+	t_cylinder	*cy;
+	int			flag;
+	t_object	*next;
+} t_object;
+
+typedef struct s_scene
+{
+	t_A			A;
+	t_C			C;
+	t_L			*L;
+	t_object	*objects;
+} t_scene;
+
+
 typedef struct s_data
 {
 	mlx_t		*mlx_ptr;
 	mlx_image_t	*image;
+	t_scene		*scene;
+	int			height;
+	int			width;
 }	t_data;
 
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
