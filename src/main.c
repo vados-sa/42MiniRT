@@ -7,13 +7,16 @@ void	my_keyhook(mlx_key_data_t keydata, t_data *data)
 		ft_exit(0, data, NULL);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	if (argc != 2)
+		ft_exit(1, NULL, ARGV_ERR);
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		ft_exit(1, data, ALLOC_ERR);
+	parse(data, argv[1]);
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!data->mlx_ptr)
 		ft_exit(1, data, NULL);

@@ -13,6 +13,9 @@
 
 //error messages
 # define ALLOC_ERR "error on allocation"
+# define ARGV_ERR "usage: ./minirt *.rt file"
+# define OPEN_ERR "file does not exist or cannot be opened"
+# define EXTENSION_ERR "format *.rt required"
 
 //macros
 # define WIDTH 1200
@@ -30,42 +33,42 @@ typedef struct	s_color
 	int	r;
 	int	g;
 	int	b;
-} t_color;
+}	t_color;
 
 typedef struct s_A
 {
 	float	ratio;
 	t_color	color;
-} t_A;
+}	t_A;
 
 typedef struct s_C
 {
 	t_coordinate	view_point;
 	t_coordinate	normal;
 	float			fov;
-} t_C;
+}	t_C;
 
 typedef struct s_L
 {
 	t_coordinate	point;
 	float			brightness;
 	t_color			color;
-	t_L				*next; // check if necessary
-} t_L;
+	struct t_L				*next; // check if necessary
+}	t_L;
 
 typedef struct s_plane
 {
 	t_coordinate	point;
 	t_coordinate	normal;
 	t_color			color;
-} t_plane;
+}	t_plane;
 
 typedef struct s_sphere
 {
 	t_coordinate	center;
 	float			diameter;
 	t_color			color;
-} t_sphere;
+}	t_sphere;
 
 typedef struct s_cylinder
 {
@@ -74,7 +77,7 @@ typedef struct s_cylinder
 	float			diameter;
 	float			height;
 	t_color			color;
-} t_cylinder;
+}	t_cylinder;
 
 typedef struct s_object
 {
@@ -82,14 +85,14 @@ typedef struct s_object
 	t_sphere	*sp;
 	t_cylinder	*cy;
 	int			flag;
-	t_object	*next;
-} t_object;
+	struct t_object	*next;
+}	t_object;
 
 typedef struct s_scene
 {
-	t_A			A;
-	t_C			C;
-	t_L			*L;
+	t_A			a;
+	t_C			c;
+	t_L			*l;
 	t_object	*objects;
 } t_scene;
 
@@ -101,10 +104,13 @@ typedef struct s_data
 	t_scene		*scene;
 	int			height;
 	int			width;
+	char		**lines;
 }	t_data;
 
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 
 void	ft_exit(int exit_code, t_data *data, char *message);
+
+void	parse(t_data *data, char *filename);
 
 #endif
