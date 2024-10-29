@@ -4,7 +4,8 @@
 void	my_keyhook(mlx_key_data_t keydata, t_data *data)
 {
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		ft_exit(0, data, NULL);
+		mlx_close_window(data->mlx_ptr);
+		//ft_exit(0, data, NULL);
 }
 
 int	main(int argc, char **argv)
@@ -25,9 +26,11 @@ int	main(int argc, char **argv)
 	mlx_key_hook(data->mlx_ptr, (t_mlx_keyfunc)my_keyhook, data);
 	mlx_loop(data->mlx_ptr);
 
-	mlx_terminate(data->mlx_ptr);
-	free(data);
-
-	printf("hello world");
+	if (data && data->mlx_ptr)
+	{
+		mlx_terminate(data->mlx_ptr);
+		free_content(data);
+		free(data);
+	}
 	return (0);
 }
