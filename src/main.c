@@ -14,9 +14,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_exit(1, NULL, ARGV_ERR);
-	data = ft_calloc(1, sizeof(t_data));
-	if (!data)
-		ft_exit(1, data, ALLOC_ERR);
+	init(data);
 	parse(data, argv[1]);
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!data->mlx_ptr)

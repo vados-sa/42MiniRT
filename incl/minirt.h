@@ -103,8 +103,8 @@ typedef struct s_scene
 typedef struct s_data
 {
 	mlx_t		*mlx_ptr;
-	//mlx_image_t	*image;
-	//t_scene		*scene;
+	mlx_image_t	*image;
+	t_scene		*scene;
 	int			height;
 	int			width;
 	char		**lines;
@@ -112,10 +112,11 @@ typedef struct s_data
 
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 
+/*init*/
+void	init(t_data *data);
+
 /*error-handling*/
 void	ft_exit(int exit_code, t_data *data, char *message);
-int		ft_return_int(int exit_code, t_data *data, char *message);
-void	*ft_return_ptr(t_data *data, char *message);
 void	free_content(t_data *data);
 
 /*parsing*/

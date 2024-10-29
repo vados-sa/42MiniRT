@@ -7,6 +7,8 @@ void	render(t_data *data)
 	int	y;
 
 	data->image = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	if (!data->image)
+		ft_exit(1, data, ALLOC_ERR);
 	y = 0;
 	while (y < HEIGHT)
 	{

@@ -1,7 +1,7 @@
 
 #include "minirt.h"
 
-void	parse_lines(t_data *data)
+/* void	parse_lines(t_data *data)
 {
 	static int	qnt_a;
 	static int	qnt_c;
@@ -28,10 +28,10 @@ void	parse_lines(t_data *data)
 	}
 	if (qnt_a > 1 || qnt_c > 1 || qnt_l > 1)
 		ft_exit(1, data, QNT_ERR);
-}
+} */
 
 void	parse(t_data *data, char *filename)
 {
 	read_file(filename, data);
-	parse_lines(data);
+	//parse_lines(data);
 }
