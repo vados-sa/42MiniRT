@@ -3,8 +3,6 @@
 
 void	free_content(t_data *data)
 {
-	int	i;
-
 	if (data->image)
 		mlx_delete_image(data->mlx_ptr, data->image);
 	if (data->mlx_ptr)
@@ -14,12 +12,7 @@ void	free_content(t_data *data)
 		free(data->scene);
 	}
 	if (data->lines)
-	{
-		i = 0;
-		while (data->lines[i])
-			free(data->lines[i++]);
-		free(data->lines);
-	}
+		free_arr(data->lines, NULL);
 	free(data);
 	data = NULL;
 }
