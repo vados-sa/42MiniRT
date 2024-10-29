@@ -27,7 +27,7 @@ int	parse_a(t_data *data, char *line)
 		ft_exit(1, data, LEN_ERR);
 	}
 	if (check_identifier(info[0], data, "element")
-		|| check_ratio(info[1], data, 'A') || check_colors(info[2], data, 'A'))
+		|| check_ratio(info[1], data, 'A') || check_color(info[2], data, 'A'))
 	{
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
@@ -47,7 +47,7 @@ void	parse_lines(t_data *data)
 	{
 		if (data->lines[i][0] == 'A' && qnt_a < 1)
 			qnt_a += parse_a(data, data->lines[i]);
-		else if (data->lines[i][0] == 'C' && qnt_c < 1)
+		/* else if (data->lines[i][0] == 'C' && qnt_c < 1)
 			qnt_c += parse_c(data);
 		else if (data->lines[i][0] == 'L' && qnt_l < 1)
 			qnt_l += parse_l(data);
@@ -56,7 +56,7 @@ void	parse_lines(t_data *data)
 		else if (ft_strncmp(data->lines[i], "sp", 2) == 0)
 			parse_sp(data);
 		else if (ft_strncmp(data->lines[i], "cy", 2) == 0)
-			parse_cy(data);
+			parse_cy(data); */
 		else
 			ft_exit(1, data, TYPE_ID_ERR);
 	}

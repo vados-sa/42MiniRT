@@ -14,12 +14,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_exit(1, NULL, ARGV_ERR);
-	init(data);
+	init(&data);
 	parse(data, argv[1]);
 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!data->mlx_ptr)
 		ft_exit(1, data, NULL);
-
 	//mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_key_hook(data->mlx_ptr, (t_mlx_keyfunc)my_keyhook, data);
 	mlx_loop(data->mlx_ptr);

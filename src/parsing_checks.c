@@ -13,7 +13,7 @@ int	check_color(char *info, t_data *data, char type)
 	color = ft_split(info, ',');
 	if (ft_arr_len(color) != 3)
 		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
-	rgb = create_color(ft_atoi(info[0]), ft_atoi(info[1]), ft_atoi(info[2]));
+	rgb = create_color(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]));
 	if ((rgb.r < 0 || rgb.r > 255) || (rgb.g < 0 || rgb.g > 255)
 		|| (rgb.b < 0 || rgb.b > 255))
 		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
@@ -32,9 +32,9 @@ int	check_color(char *info, t_data *data, char type)
 
 int	check_identifier(char *info, t_data *data, char *type)
 {
-	if (!ft_strcmp(type, "element") && info [1])
+	if (!ft_strcmp(type, "element") && info[1])
 		return (ft_putendl_fd(TYPE_ID_ERR, 2), 1);
-	else if (!ft_strcmp(type, "object") && info [2])
+	else if (!ft_strcmp(type, "object") && info[2])
 		return (ft_putendl_fd(TYPE_ID_ERR, 2), 1);
 	return (0);
 }

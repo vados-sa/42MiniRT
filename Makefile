@@ -2,7 +2,7 @@ NAME 			= 	minirt
 
 CC 				= 	cc
 
-CCFLAGS 		= 	-Wextra -Wall -Werror
+CCFLAGS 		= 	-Wextra -Wall -Werror -g
 CFLAGS 			+= 	-Iinclude -Isrc -O3 -Wunreachable-code -Ofast
 
 OBJ_DIR			= 	obj/
@@ -16,7 +16,7 @@ LIBS 			+= 	$(LIBFTDIR)/libft.a
 INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 #INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
-SRCS 			= $(addprefix $(SRC_DIR), main.c init.c exit.c parsing.c parsing_read_file.c parsing_check.c light_list.c object_list.c)
+SRCS 			= $(addprefix $(SRC_DIR), main.c init.c exit.c parsing.c parsing_read_file.c parsing_checks.c light_list.c object_list.c)
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 HDRS 			= $(addprefix incl/, minirt.h)
 
