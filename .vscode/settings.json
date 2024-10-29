@@ -1,6 +1,7 @@
 {
 	"makefile.configureOnOpen": false,
 	"files.associations": {
-		"minirt.h": "c"
+		"minirt.h": "c",
+		"mlx42.h": "c"
 	}
 }

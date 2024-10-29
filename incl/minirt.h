@@ -17,6 +17,8 @@
 # define OPEN_ERR "file does not exist or cannot be opened"
 # define EXTENSION_ERR "format *.rt required"
 # define EMPTY_ERR "empty file"
+# define QNT_ERR "capital letter elements can only be declared once in the scene"
+# define INVALID_ERR "type identifier is not valid"
 
 //macros
 # define WIDTH 1200
