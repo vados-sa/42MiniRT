@@ -1,7 +1,7 @@
 
 #include "minirt.h"
 
-static ssize_t	ft_arr_len(char **arr)
+ssize_t	ft_arr_len(char **arr)
 {
 	ssize_t	i;
 
@@ -13,7 +13,7 @@ static ssize_t	ft_arr_len(char **arr)
 	return (i);
 }
 
-static char	**free_arr(char **arr1, char **arr2)
+char	**free_arr(char **arr1, char **arr2)
 {
 	int	i;
 

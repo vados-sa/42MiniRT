@@ -17,8 +17,10 @@
 # define OPEN_ERR "file does not exist or cannot be opened"
 # define EXTENSION_ERR "format *.rt required"
 # define EMPTY_ERR "empty file"
-# define QNT_ERR "capital letter elements can only be declared once in the scene"
-# define INVALID_ERR "type identifier is not valid"
+# define INVALID_ERR "type identifier is not valid or cannot \
+be declared more than once"
+# define SPACE_ERR "space at the end of the line"
+# define LEN_ERR "element doesn't contain the right amount of information"
 
 //macros
 # define WIDTH 1200
@@ -113,6 +115,7 @@ typedef struct s_data
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 
 /*init*/
+int		parse_a(t_data *data, char *line);
 void	init(t_data *data);
 
 /*error-handling*/
@@ -122,5 +125,7 @@ void	free_content(t_data *data);
 /*parsing*/
 void	parse(t_data *data, char *filename);
 void	read_file(char *filename, t_data *data);
+ssize_t	ft_arr_len(char **arr);
+char	**free_arr(char **arr1, char **arr2);
 
 #endif

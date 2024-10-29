@@ -1,7 +1,28 @@
 
 #include "minirt.h"
 
-/* void	parse_lines(t_data *data)
+int	parse_a(t_data *data, char *line)
+{
+	char	**info;
+	int		i;
+
+	if (line[ft_strlen(line)] == ' ')
+		ft_exit(1, data, SPACE_ERR);
+	info = ft_split(line, ' ');
+	if (!info)
+		ft_exit(1, data, ALLOC_ERR);
+	if (ft_arr_len(info) != 3)
+	{
+		free_arr(info, NULL);
+		ft_exit(1, data, LEN_ERR);
+	}
+	check_identifier(info[0], data);
+	check_ratio(info[1], data);
+	check_colors(info[2], data);
+
+}
+
+void	parse_lines(t_data *data)
 {
 	static int	qnt_a;
 	static int	qnt_c;
@@ -11,11 +32,11 @@
 	i = -1;
 	while (data->lines[++i])
 	{
-		if (data->lines[i][0] == 'A')
-			qnt_a += parse_a(data);
-		else if (data->lines[i][0] == 'C')
+		if (data->lines[i][0] == 'A' && qnt_a < 1)
+			qnt_a += parse_a(data, data->lines[i]);
+		else if (data->lines[i][0] == 'C' && qnt_c < 1)
 			qnt_c += parse_c(data);
-		else if (data->lines[i][0] == 'L')
+		else if (data->lines[i][0] == 'L' && qnt_l < 1)
 			qnt_l += parse_l(data);
 		else if (ft_strncmp(data->lines[i], "pl", 2) == 0)
 			parse_pl(data);
@@ -26,9 +47,7 @@
 		else
 			ft_exit(1, data, INVALID_ERR);
 	}
-	if (qnt_a > 1 || qnt_c > 1 || qnt_l > 1)
-		ft_exit(1, data, QNT_ERR);
-} */
+}
 
 void	parse(t_data *data, char *filename)
 {
