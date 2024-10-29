@@ -12,15 +12,18 @@
 # include "../lib/libft/libft.h"
 
 //error messages
-# define ALLOC_ERR "error on allocation"
-# define ARGV_ERR "usage: ./minirt *.rt"
-# define OPEN_ERR "file does not exist or cannot be opened"
-# define EXTENSION_ERR "format *.rt required"
-# define EMPTY_ERR "empty file"
-# define INVALID_ERR "type identifier is not valid or cannot \
+# define ALLOC_ERR "Error\nerror on allocation"
+# define ARGV_ERR "Error\nusage: ./minirt *.rt"
+# define OPEN_ERR "Error\nfile does not exist or cannot be opened"
+# define EXTENSION_ERR "Error\nformat *.rt required"
+# define EMPTY_ERR "Error\nempty file"
+# define TYPE_ID_ERR "Error\ntype identifier is not valid or cannot \
 be declared more than once"
-# define SPACE_ERR "space at the end of the line"
-# define LEN_ERR "element doesn't contain the right amount of information"
+# define SPACE_ERR "Error\nspace at the end of the line"
+# define LEN_ERR "Error\nelement doesn't contain the right amount of information"
+# define RATIO_ERR "Error\nlight ration invalid or out of bounds"
+# define GEN_INFO_ERR "Error\nWrong amount of information"
+# define COL_RANGE_ERR "Error\nrgb values are out of bounds"
 
 //macros
 # define WIDTH 1200
@@ -28,9 +31,9 @@ be declared more than once"
 
 typedef struct s_coordinate
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_coordinate;
 
 typedef struct s_color
@@ -42,7 +45,7 @@ typedef struct s_color
 
 typedef struct s_A
 {
-	float	ratio;
+	double	ratio;
 	t_color	color;
 }	t_A;
 
@@ -50,13 +53,13 @@ typedef struct s_C
 {
 	t_coordinate	view_point;
 	t_coordinate	normal;
-	float			fov;
+	double			fov;
 }	t_C;
 
 typedef struct s_L
 {
 	t_coordinate	point;
-	float			brightness;
+	double			brightness;
 	t_color			color;
 	struct t_L		*next; // check if necessary
 }	t_L;
@@ -71,7 +74,7 @@ typedef struct s_plane
 typedef struct s_sphere
 {
 	t_coordinate	center;
-	float			diameter;
+	double			diameter;
 	t_color			color;
 }	t_sphere;
 
@@ -79,8 +82,8 @@ typedef struct s_cylinder
 {
 	t_coordinate	center;
 	t_coordinate	normal;
-	float			diameter;
-	float			height;
+	double			diameter;
+	double			height;
 	t_color			color;
 }	t_cylinder;
 

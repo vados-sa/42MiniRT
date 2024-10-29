@@ -81,7 +81,7 @@ static char	**read_lines(int fd)
 		arr = append_arr(arr, line);
 		free (line);
 		if (!arr)
-			return (ft_putendl_fd("Error\n malloc error", 2), NULL);
+			return (ft_putendl_fd(ALLOC_ERR, 2), NULL);
 	}
 	return (arr);
 }

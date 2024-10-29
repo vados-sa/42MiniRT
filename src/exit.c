@@ -20,10 +20,7 @@ void	free_content(t_data *data)
 void	ft_exit(int exit_code, t_data *data, char *message)
 {
 	if (message)
-	{
-		ft_putendl_fd("Error", 2);
 		ft_putendl_fd(message, 2);
-	}
 	if (data)
 		free_content(data);
 	exit(exit_code);
