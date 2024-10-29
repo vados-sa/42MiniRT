@@ -121,6 +121,15 @@ typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 int		parse_a(t_data *data, char *line);
 void	init(t_data *data);
 
+/*lists*/
+t_object	*new_object_node(void);
+void		add_object_node(t_object **light, t_object	*new);
+t_object	*object_last_node(t_object *head);
+t_L			*new_light_node(void);
+t_L			*light_last_node(t_L *light);
+void		add_light_node(t_L **light, t_L	*new);
+
+
 /*error-handling*/
 void	ft_exit(int exit_code, t_data *data, char *message);
 void	free_content(t_data *data);
@@ -130,5 +139,11 @@ void	parse(t_data *data, char *filename);
 void	read_file(char *filename, t_data *data);
 ssize_t	ft_arr_len(char **arr);
 char	**free_arr(char **arr1, char **arr2);
+int		check_color(char *info, t_data *data, char type);
+int		check_identifier(char *info, t_data *data, char *type);
+int		float_check(char *info);
+int		check_ratio(char *info, t_data *data, char type);
+int		comma_count(char *info);
+t_color	create_color(int r, int g, int b);
 
 #endif
