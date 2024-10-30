@@ -145,7 +145,6 @@ int		check_identifier(char *info, t_data *data, char *type);
 int		float_check(char *info);
 int		int_check(char *info);
 int		check_ratio(char *info, t_data *data, char type);
-int		comma_count(char *info);
 t_color	create_color(int r, int g, int b);
 char	**split_three(char *info);
 t_coordinate	create_coordinates(int x, int y, int z);
