@@ -22,6 +22,7 @@ type identifier is not valid or is declared more than once"
 # define SPACE_ERR "Error\nspace at the end of the line"
 # define LEN_ERR "Error\nelement doesn't contain the right amount of information"
 # define RATIO_ERR "Error\nlight ratio invalid or out of bounds"
+# define FOV_ERR "Error\nfov invalid or out of bounds"
 # define GEN_INFO_ERR "Error\nwrong amount of information"
 # define COL_RANGE_ERR "Error\nrgb values are out of bounds"
 # define NORMAL_RANGE_ERR "Error\nnormal values are out of bounds"
@@ -153,5 +154,6 @@ t_coordinate	create_coordinates(int x, int y, int z);
 int		check_coordinates(char *info, t_data *data, char type);
 int		check_normal(char *info, t_data *data, char type);
 int		parse_l(t_data *data, char *line);
+int		check_fov(char *info, t_data *data);
 
 #endif
