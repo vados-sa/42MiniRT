@@ -13,10 +13,13 @@ int	check_color(char *info, t_data *data, char type)
 	color = ft_split(info, ',');
 	if (ft_arr_len(color) != 3)
 		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
+	if (int_check(color[0]) || int_check(color[1]) || int_check(color[2]))
+		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	rgb = create_color(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]));
 	if ((rgb.r < 0 || rgb.r > 255) || (rgb.g < 0 || rgb.g > 255)
 		|| (rgb.b < 0 || rgb.b > 255))
-		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
+		return (ft_putendl_fd(COL_RANGE_ERR, 2), 1);
+	//ft_assign(type, data, rgb);
 	if (type == 'A')
 		data->scene->a.color = rgb;
 	if (type == 'L')
@@ -39,31 +42,12 @@ int	check_identifier(char *info, t_data *data, char *type)
 	return (0);
 }
 
-int	float_check(char *info)
-{
-	int	i;
-	int	dot_count;
-
-	if (!ft_isdigit(info[0]))
-		return (1);
-	i = 0;
-	dot_count = 0;
-	while (info[++i])
-	{
-		if (info[i] == '.')
-			dot_count++;
-		if ((info[i] != '.' && !ft_isdigit(info[i])) || dot_count > 1)
-			return (1);
-	}
-	return (0);
-}
-
 int	check_ratio(char *info, t_data *data, char type)
 {
 	double	ratio;
 
 	if (float_check(info))
-		return (ft_putendl_fd(RATIO_ERR, 2), 1);
+		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	ratio = ft_atof(info);
 	if (ratio < 0.0 || ratio > 1.0)
 		return (ft_putendl_fd(RATIO_ERR, 2), 1);
@@ -83,8 +67,6 @@ int	comma_count(char *info)
 	comma_count = 0;
 	while (info[++i])
 	{
-		if (!ft_isdigit(info[i]) && info[i] != ',')
-			return (1);
 		if (info[i] == ',')
 			comma_count++;
 	}

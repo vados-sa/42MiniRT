@@ -17,13 +17,14 @@
 # define OPEN_ERR "Error\nfile does not exist or cannot be opened"
 # define EXTENSION_ERR "Error\nformat *.rt required"
 # define EMPTY_ERR "Error\nempty file"
-# define TYPE_ID_ERR "Error\ntype identifier is not valid or cannot \
-be declared more than once"
+# define TYPE_ID_ERR "Error\nspace at the beginning of the line or \
+type identifier is not valid or is declared more than once"
 # define SPACE_ERR "Error\nspace at the end of the line"
 # define LEN_ERR "Error\nelement doesn't contain the right amount of information"
 # define RATIO_ERR "Error\nlight ratio invalid or out of bounds"
-# define GEN_INFO_ERR "Error\nWrong amount of information"
+# define GEN_INFO_ERR "Error\nwrong amount of information"
 # define COL_RANGE_ERR "Error\nrgb values are out of bounds"
+# define NUM_ERR "Error\nnumber contains invalid characters"
 
 //macros
 # define WIDTH 1200
@@ -142,6 +143,7 @@ char	**free_arr(char **arr1, char **arr2);
 int		check_color(char *info, t_data *data, char type);
 int		check_identifier(char *info, t_data *data, char *type);
 int		float_check(char *info);
+int		int_check(char *info);
 int		check_ratio(char *info, t_data *data, char type);
 int		comma_count(char *info);
 t_color	create_color(int r, int g, int b);
