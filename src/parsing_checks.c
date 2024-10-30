@@ -87,7 +87,7 @@ t_coordinate	create_coordinates(int x, int y, int z)
 	return (xyz);
 }
 
-int	check_coordinates(char *info, t_data *data, char type)
+int	check_normal(char *info, t_data *data, char type)
 {
 	char			**coordinates;
 	int				i;
@@ -104,7 +104,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 			ft_atof(coordinates[2]));
 	if ((xyz.x < -1 || xyz.x > 1) || (xyz.y < -1 || xyz.y > 1)
 		|| (xyz.z < -1 || xyz.z > 1))
-		return (ft_putendl_fd(COL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
+		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
 	//ft_assign(type, data, rgb);
 	if (type == 'C')
 		data->scene->c.normal = xyz;
@@ -115,7 +115,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 	return (0);
 }
 
-int	check_normal(char *info, t_data *data, char type)
+int	check_coordinates(char *info, t_data *data, char type)
 {
 	char			**coordinates;
 	int				i;

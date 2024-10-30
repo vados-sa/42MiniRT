@@ -24,6 +24,7 @@ type identifier is not valid or is declared more than once"
 # define RATIO_ERR "Error\nlight ratio invalid or out of bounds"
 # define GEN_INFO_ERR "Error\nwrong amount of information"
 # define COL_RANGE_ERR "Error\nrgb values are out of bounds"
+# define NORMAL_RANGE_ERR "Error\nnormal values are out of bounds"
 # define NUM_ERR "Error\nnumber contains invalid characters"
 
 //macros
