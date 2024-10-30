@@ -12,17 +12,17 @@ t_object	*new_object_node(void)
 	return (new);
 }
 
-void	add_object_node(t_object **light, t_object	*new)
+void	add_object_node(t_object **object, t_object	*new)
 {
 	t_object	*tmp;
 
-	if (light)
+	if (object)
 	{
-		if (!*light)
-			*light = new;
+		if (!*object)
+			*object = new;
 		else
 		{
-			tmp = object_last_node(*light);
+			tmp = object_last_node(*object);
 			tmp->next = new;
 		}
 	}
