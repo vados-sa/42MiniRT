@@ -1,5 +1,5 @@
 
-#include "minirt"
+#include "minirt.h"
 
 int	float_check(char *str)
 {
