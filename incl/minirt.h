@@ -33,6 +33,12 @@ type identifier is not valid or is declared more than once"
 # define WIDTH 1200
 # define HEIGHT 675
 
+typedef enum e_dimension {
+	CY_DIAM,
+	CY_HEIGHT,
+	SP_DIAM,
+}	t_dimension;
+
 typedef struct s_coordinate
 {
 	double	x;
@@ -161,7 +167,7 @@ int		check_identifier(char *info, t_data *data, char *type);
 int		check_ratio(char *info, t_data *data, char type);
 int		check_coordinates(char *info, t_data *data, char type);
 int		check_normal(char *info, t_data *data, char type);
-int		check_dimension(char *line);
+int		check_dimension(char *line, t_dimension type, t_data *data);
 int		check_fov(char *info, t_data *data);
 
 #endif

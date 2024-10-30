@@ -18,10 +18,10 @@ int	parse_cy(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, LEN_ERR);
 	}
-	if (check_identifier(info[0], data, "object") || 
-		check_coordinates(info[1], data, 'c') || 
-		check_normal(info[2], data, 'c') || check_dimension(info[3]) 
-		|| check_dimension(info[4]) || check_color(info[5], data, 'c'))
+	if (check_identifier(info[0], data, "object") ||
+		check_coordinates(info[1], data, 'c') ||
+		check_normal(info[2], data, 'c') || check_dimension(info[3], CY_DIAM, data)
+		|| check_dimension(info[4], CY_HEIGHT, data) || check_color(info[5], data, 'c'))
 	{
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);

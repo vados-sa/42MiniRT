@@ -144,11 +144,20 @@ int	check_coordinates(char *info, t_data *data, char type)
 	return (0);
 }
 
-int	check_dimension(char *line)
+int	check_dimension(char *line, t_dimension type, t_data *data)
 {
+	double dimension;
+
 	if (float_check(line))
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
-	if (ft_atof(line) <= 0.0)
+	dimension = ft_atof(line);
+	if (dimension <= 0.0)
 		return (ft_putendl_fd(DIMENSION_ERR, 2), 1);
+	if (type == CY_DIAM)
+		object_last_node(data->scene->objects)->cy.diameter = dimension;
+	if (type == CY_HEIGHT)
+		object_last_node(data->scene->objects)->cy.height = dimension;
+	if (type == SP_DIAM)
+		object_last_node(data->scene->objects)->sp.diameter = dimension;
 	return (0);
 }

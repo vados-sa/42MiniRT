@@ -18,8 +18,8 @@ int	parse_sp(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, LEN_ERR);
 	}
-	if (check_identifier(info[0], data, "object") || 
-		check_coordinates(info[1], data, 's') || check_dimension(info[2]) ||
+	if (check_identifier(info[0], data, "object") ||
+		check_coordinates(info[1], data, 's') || check_dimension(info[2], SP_DIAM, data) ||
 		check_color(info[3], data, 's'))
 	{
 		free_arr(info, NULL);
