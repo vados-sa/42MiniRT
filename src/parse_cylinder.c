@@ -5,7 +5,6 @@ int	parse_cy(t_data *data, char *line)
 {
 	t_object	*cy_node;
 	char		**info;
-	int			i;
 
 	cy_node = new_object_node();
 	if (!cy_node)
@@ -27,5 +26,6 @@ int	parse_cy(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
 	}
+	cy_node->type = 'c';
 	return (0);
 }

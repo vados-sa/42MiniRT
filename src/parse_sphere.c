@@ -5,7 +5,6 @@ int	parse_sp(t_data *data, char *line)
 {
 	t_object	*sp_node;
 	char		**info;
-	int			i;
 
 	sp_node = new_object_node();
 	if (!sp_node)

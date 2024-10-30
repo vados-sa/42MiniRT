@@ -5,7 +5,6 @@ int	parse_pl(t_data *data, char *line)
 {
 	t_object	*pl_node;
 	char		**info;
-	int			i;
 
 	pl_node = new_object_node();
 	if (!pl_node)

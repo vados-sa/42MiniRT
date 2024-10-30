@@ -17,7 +17,6 @@ int	check_fov(char *info, t_data *data)
 int	parse_c(t_data *data, char *line)
 {
 	char	**info;
-	int		i;
 
 	info = ft_split(line, ' ');
 	if (!info)

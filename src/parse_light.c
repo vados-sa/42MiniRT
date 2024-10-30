@@ -4,7 +4,6 @@
 int	parse_l(t_data *data, char *line)
 {
 	char	**info;
-	int		i;
 	t_L		*node;
 
 	node = new_light_node();
