@@ -25,5 +25,6 @@ int	parse_pl(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
 	}
+	pl_node->type = 'p';
 	return (0);
 }
