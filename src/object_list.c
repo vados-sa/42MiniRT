@@ -39,3 +39,20 @@ t_object	*object_last_node(t_object *head)
 		trav = trav->next;
 	return (trav);
 }
+
+void	delete_object_list(t_object **objects)
+{
+	t_object	*post;
+	t_object	*current;
+
+	if (objects == NULL)
+		return ;
+	current = *objects;
+	while (current != NULL)
+	{
+		post = current->next;
+		free(current);
+		current = post;
+	}
+	*objects = NULL;
+}
