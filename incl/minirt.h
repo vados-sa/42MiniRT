@@ -90,9 +90,10 @@ typedef struct s_cylinder
 
 typedef struct s_object
 {
-	t_plane			*pl;
-	t_sphere		*sp;
-	t_cylinder		*cy;
+	char			type;
+	t_plane			pl;
+	t_sphere		sp;
+	t_cylinder		cy;
 	int				flag;
 	struct t_object	*next;
 }	t_object;
