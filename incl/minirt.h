@@ -125,7 +125,7 @@ void	init(t_data **data);
 
 /*lists*/
 t_object	*new_object_node(void);
-void		add_object_node(t_object **light, t_object	*new);
+void		add_object_node(t_object **object, t_object	*new);
 t_object	*object_last_node(t_object *head);
 t_L			*new_light_node(void);
 t_L			*light_last_node(t_L *light);
