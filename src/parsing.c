@@ -45,6 +45,8 @@ void	parse_lines(t_data *data)
 	i = -1;
 	while (data->lines[++i])
 	{
+		if (data->lines[i][0] == '#')
+			continue ;
 		if (data->lines[i][0] == 'A' && qnt_a < 1)
 			qnt_a += parse_a(data, data->lines[i]);
 		else if (data->lines[i][0] == 'C' && qnt_c < 1)
