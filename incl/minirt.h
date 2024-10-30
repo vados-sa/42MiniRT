@@ -27,6 +27,7 @@ type identifier is not valid or is declared more than once"
 # define COL_RANGE_ERR "Error\nrgb values are out of bounds"
 # define NORMAL_RANGE_ERR "Error\nnormal values are out of bounds"
 # define NUM_ERR "Error\nnumber contains invalid characters"
+# define DIMENSION_ERR "Error\nobject dimensions have to be positive values"
 
 //macros
 # define WIDTH 1200
@@ -64,7 +65,7 @@ typedef struct s_L
 	t_coordinate	point;
 	double			brightness;
 	t_color			color;
-	struct t_L		*next; // check if necessary
+	struct s_L		*next; // check if necessary
 }	t_L;
 
 typedef struct s_plane
@@ -97,7 +98,7 @@ typedef struct s_object
 	t_sphere		sp;
 	t_cylinder		cy;
 	int				flag;
-	struct t_object	*next;
+	struct s_object	*next;
 }	t_object;
 
 typedef struct s_scene
@@ -150,10 +151,14 @@ int		int_check(char *info);
 int		check_ratio(char *info, t_data *data, char type);
 t_color	create_color(int r, int g, int b);
 char	**split_three(char *info);
-t_coordinate	create_coordinates(int x, int y, int z);
+t_coordinate	create_coordinates(double x, double y, double z);
 int		check_coordinates(char *info, t_data *data, char type);
 int		check_normal(char *info, t_data *data, char type);
+int		check_dimension(char *line);
 int		parse_l(t_data *data, char *line);
 int		check_fov(char *info, t_data *data);
+int		parse_cy(t_data *data, char *line);
+int		parse_pl(t_data *data, char *line);
+int		parse_sp(t_data *data, char *line);
 
 #endif

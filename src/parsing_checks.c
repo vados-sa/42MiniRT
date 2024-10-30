@@ -77,7 +77,7 @@ int	check_ratio(char *info, t_data *data, char type)
 	return (0);
 }
 
-t_coordinate	create_coordinates(int x, int y, int z)
+t_coordinate	create_coordinates(double x, double y, double z)
 {
 	t_coordinate	xyz;
 
@@ -102,8 +102,8 @@ int	check_normal(char *info, t_data *data, char type)
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	xyz = create_coordinates(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
-	if ((xyz.x < -1 || xyz.x > 1) || (xyz.y < -1 || xyz.y > 1)
-		|| (xyz.z < -1 || xyz.z > 1))
+	if ((xyz.x < -1.0 || xyz.x > 1.0) || (xyz.y < -1.0 || xyz.y > 1.0)
+		|| (xyz.z < -1.0 || xyz.z > 1.0))
 		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
 	//ft_assign(type, data, rgb);
 	if (type == 'C')
@@ -144,3 +144,11 @@ int	check_coordinates(char *info, t_data *data, char type)
 	return (0);
 }
 
+int	check_dimension(char *line)
+{
+	if (float_check(line))
+		return (ft_putendl_fd(NUM_ERR, 2), 1);
+	if (ft_atof(line) <= 0.0)
+		return (ft_putendl_fd(DIMENSION_ERR, 2), 1);
+	return (0);
+}
