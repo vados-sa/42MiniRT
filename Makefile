@@ -7,6 +7,7 @@ CFLAGS 			+= 	-Iinclude -Isrc -O3 -Wunreachable-code -Ofast
 
 OBJ_DIR			= 	obj/
 SRC_DIR			= 	src/
+PARSE_DIR 		= 	$(SRC_DIR)/parsing/
 LIBFTDIR 		= 	./lib/libft
 LIBMLX			= 	./lib/MLX42
 
@@ -16,9 +17,11 @@ LIBS 			+= 	$(LIBFTDIR)/libft.a
 INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 #INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
-SRCS 			= $(addprefix $(SRC_DIR), main.c init.c exit.c parsing.c parsing_read_file.c parsing_checks.c \
-					 number_checks.c light_list.c object_list.c parse_amb_light.c parse_light.c parse_camera.c \
-					 parse_plane.c parse_cylinder.c parse_sphere.c)
+SRCS 			=  $(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/exit.c $(SRC_DIR)/light_list.c \
+					 $(SRC_DIR)/object_list.c $(PARSE_DIR)/parsing.c $(PARSE_DIR)/parsing_read_file.c \
+					 $(PARSE_DIR)/parsing_checks.c $(PARSE_DIR)/number_checks.c \
+					 $(PARSE_DIR)/parse_amb_light.c $(PARSE_DIR)/parse_light.c $(PARSE_DIR)/parse_camera.c \
+					 $(PARSE_DIR)/parse_plane.c $(PARSE_DIR)/parse_cylinder.c $(PARSE_DIR)/parse_sphere.c
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 HDRS 			= $(addprefix incl/, minirt.h)
 

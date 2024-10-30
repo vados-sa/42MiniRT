@@ -2,6 +2,7 @@
 	"makefile.configureOnOpen": false,
 	"files.associations": {
 		"minirt.h": "c",
-		"mlx42.h": "c"
+		"mlx42.h": "c",
+		"libft.h": "c"
 	}
 }
