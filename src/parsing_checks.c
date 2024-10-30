@@ -44,11 +44,11 @@ int	check_color(char *info, t_data *data, char type)
 	if (type == 'L')
 		(light_last_node(data->scene->l))->color = rgb;
 	if (type == 's')
-		object_last_node(data->scene->objects)->sp->color = rgb; //check later
+		object_last_node(data->scene->objects)->sp.color = rgb; //check later
 	if (type == 'p')
-		object_last_node(data->scene->objects)->pl->color = rgb;
+		object_last_node(data->scene->objects)->pl.color = rgb;
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy->color = rgb;
+		object_last_node(data->scene->objects)->cy.color = rgb;
 	return (0);
 }
 
@@ -109,9 +109,9 @@ int	check_coordinates(char *info, t_data *data, char type)
 	if (type == 'C')
 		data->scene->c.normal = xyz;
 	if (type == 'p')
-		object_last_node(data->scene->objects)->pl->normal = xyz;
+		object_last_node(data->scene->objects)->pl.normal = xyz;
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy->normal = xyz;
+		object_last_node(data->scene->objects)->cy.normal = xyz;
 	return (0);
 }
 
@@ -136,11 +136,11 @@ int	check_normal(char *info, t_data *data, char type)
 	if (type == 'L')
 		(light_last_node(data->scene->l))->point = xyz;
 	if (type == 's')
-		object_last_node(data->scene->objects)->sp->center = xyz; //check later
+		object_last_node(data->scene->objects)->sp.center = xyz; //check later
 	if (type == 'p')
-		object_last_node(data->scene->objects)->pl->point = xyz;
+		object_last_node(data->scene->objects)->pl.point = xyz;
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy->center = xyz;
+		object_last_node(data->scene->objects)->cy.center = xyz;
 	return (0);
 }
 

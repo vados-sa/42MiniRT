@@ -151,5 +151,6 @@ char	**split_three(char *info);
 t_coordinate	create_coordinates(int x, int y, int z);
 int		check_coordinates(char *info, t_data *data, char type);
 int		check_normal(char *info, t_data *data, char type);
+int		parse_l(t_data *data, char *line);
 
 #endif
