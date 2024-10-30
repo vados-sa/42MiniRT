@@ -45,18 +45,18 @@ void	parse_lines(t_data *data)
 	i = -1;
 	while (data->lines[++i])
 	{
-		/* if (data->lines[i][0] == 'A' && qnt_a < 1)
+		if (data->lines[i][0] == 'A' && qnt_a < 1)
 			qnt_a += parse_a(data, data->lines[i]);
 		else if (data->lines[i][0] == 'C' && qnt_c < 1)
 			qnt_c += parse_c(data, data->lines[i]);
 		else if (data->lines[i][0] == 'L' && qnt_l < 1)
 			qnt_l += parse_l(data, data->lines[i]);
-		if (ft_strncmp(data->lines[i], "pl", 2) == 0)
-			parse_pl(data, data->lines[i]); */
-		if (ft_strncmp(data->lines[i], "sp", 2) == 0)
+		else if (ft_strncmp(data->lines[i], "pl", 2) == 0)
+			parse_pl(data, data->lines[i]);
+		else if (ft_strncmp(data->lines[i], "sp", 2) == 0)
 			parse_sp(data, data->lines[i]);
-		/* else if (ft_strncmp(data->lines[i], "cy", 2) == 0)
-			parse_cy(data, data->lines[i]); */
+		else if (ft_strncmp(data->lines[i], "cy", 2) == 0)
+			parse_cy(data, data->lines[i]);
 		else
 			ft_exit(1, data, TYPE_ID_ERR);
 	}

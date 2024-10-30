@@ -1,22 +1,8 @@
-# Ambient lighting: Ratio, Color
-A                   0.2    255,255,255
-# Light: Coordinates, Brightness, Color
-L        -5,2,-3      1           255,255,255
-# Cylinder: Coordinates, Normal of axis, Diameter, Height, color
-cy          0,0,0        0,1,0           1         2       100,0,200
+A         0.2                              255,255,255
+L        -5,2,-3       1                   255,255,255
+C        -6,0,0       1,0,0      70
 
-#== 1 ==#
-# Camera: Coordinates, Direction, FOV
-C         -6,0,0       1,0,0      70
+cy        0,0,0        0,1,0     1    2    100,0,200
+pl        0,0,0       0,1.0,0              255,0,255
+sp        0,0,20                 20        255,0,0
 
-#== 2 ==#
-# Camera: Coordinates, Direction, FOV
-#C         0,-6,0       0,1,0      70
-
-#== 3 ==#
-# Camera: Coordinates, Direction, FOV
-#C         0,0,-6       0,0,1      70
-
-#== 4 ==#
-# Camera: Coordinates, Direction, FOV
-#C         -4,-4,-4       1,1,1      70

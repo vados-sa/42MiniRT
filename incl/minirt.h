@@ -123,7 +123,6 @@ typedef struct s_data
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 
 /*init*/
-int		parse_a(t_data *data, char *line);
 void	init(t_data **data);
 
 /*lists*/
@@ -139,26 +138,30 @@ void		add_light_node(t_L **light, t_L	*new);
 void	ft_exit(int exit_code, t_data *data, char *message);
 void	free_content(t_data *data);
 
+/*utils*/
+ssize_t			ft_arr_len(char **arr);
+char			**free_arr(char **arr1, char **arr2);
+char			**split_three(char *info);
+int				float_check(char *info);
+int				int_check(char *info);
+t_color			create_color(int r, int g, int b);
+t_coordinate	create_coordinates(double x, double y, double z);
+
 /*parsing*/
 void	parse(t_data *data, char *filename);
 void	read_file(char *filename, t_data *data);
-ssize_t	ft_arr_len(char **arr);
-char	**free_arr(char **arr1, char **arr2);
-int		check_color(char *info, t_data *data, char type);
-int		check_identifier(char *info, t_data *data, char *type);
-int		float_check(char *info);
-int		int_check(char *info);
-int		check_ratio(char *info, t_data *data, char type);
-t_color	create_color(int r, int g, int b);
-char	**split_three(char *info);
-t_coordinate	create_coordinates(double x, double y, double z);
-int		check_coordinates(char *info, t_data *data, char type);
-int		check_normal(char *info, t_data *data, char type);
-int		check_dimension(char *line);
+int		parse_a(t_data *data, char *line);
 int		parse_l(t_data *data, char *line);
-int		check_fov(char *info, t_data *data);
+int		parse_c(t_data *data, char *line);
 int		parse_cy(t_data *data, char *line);
 int		parse_pl(t_data *data, char *line);
 int		parse_sp(t_data *data, char *line);
+int		check_color(char *info, t_data *data, char type);
+int		check_identifier(char *info, t_data *data, char *type);
+int		check_ratio(char *info, t_data *data, char type);
+int		check_coordinates(char *info, t_data *data, char type);
+int		check_normal(char *info, t_data *data, char type);
+int		check_dimension(char *line);
+int		check_fov(char *info, t_data *data);
 
 #endif

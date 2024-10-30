@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 		ft_exit(1, NULL, ARGV_ERR);
 	init(&data);
 	parse(data, argv[1]);
-	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, "miniRT", true);
+/* 	data->mlx_ptr = mlx_init(WIDTH, HEIGHT, "miniRT", true);
 	if (!data->mlx_ptr)
 		ft_exit(1, data, NULL);
 	//mlx_loop_hook(data->mlx_ptr, &render, data);
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 		mlx_terminate(data->mlx_ptr);
 		free_content(data);
 		free(data);
-	}
+	} */
+	if (data)
+		free_content(data);
 	return (0);
 }
