@@ -30,8 +30,10 @@ type identifier is not valid or is declared more than once"
 # define DIMENSION_ERR "Error\nobject dimensions have to be positive values"
 
 //macros
-# define WIDTH 1200
-# define HEIGHT 675
+# define IMAGE_WIDTH 1200
+# define ASPECT_RATIO 1.77777777778
+# define PI 3.14159265359
+# define FOCAL_LENGTH
 
 typedef enum e_dimension {
 	CY_DIAM,

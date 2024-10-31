@@ -16,3 +16,11 @@ void	init(t_data **data)
 	if (!(*data)->scene->objects)
 		ft_exit(1, *data, ALLOC_ERR); */
 }
+
+void	viewport(t_data *data, t_C camera)
+{
+	//calculate tetha
+	double radians;
+
+	radians = camera.fov * PI / 180.0;
+}
