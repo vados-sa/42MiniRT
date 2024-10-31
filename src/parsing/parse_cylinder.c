@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/30 18:48:04 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:46:17 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	parse_cy(t_data *data, char *line)
 		ft_exit(1, data, ALLOC_ERR);
 	add_object_node(&data->scene->objects, cy_node);
 	info = split_check(line, data);
-	if (check_identifier(info[0], data, "object") 
-		|| check_coordinates(info[1], data, 'c') 
-		|| check_normal(info[2], data, 'c') 
+	if (check_identifier(info[0], data, "object")
+		|| check_coordinates(info[1], data, 'c')
+		|| check_normal(info[2], data, 'c')
 		|| check_dimension(info[3], CY_DIAM, data)
 		|| check_dimension(info[4], CY_HEIGHT, data)
 		|| check_color(info[5], data, 'c'))
@@ -47,6 +47,7 @@ int	parse_cy(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
 	}
+	free_arr(info, NULL);
 	cy_node->type = 'c';
 	return (0);
 }

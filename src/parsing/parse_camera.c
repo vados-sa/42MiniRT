@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/30 18:42:33 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:46:26 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int	parse_c(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
 	}
+	free_arr(info, NULL);
 	return (1);
 }

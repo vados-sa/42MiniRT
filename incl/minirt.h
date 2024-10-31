@@ -135,14 +135,16 @@ void	init(t_data **data);
 t_object	*new_object_node(void);
 void		add_object_node(t_object **object, t_object	*new);
 t_object	*object_last_node(t_object *head);
+void		delete_object_list(t_object **objects);
 t_L			*new_light_node(void);
 t_L			*light_last_node(t_L *light);
 void		add_light_node(t_L **light, t_L	*new);
+void		delete_light_list(t_L **lights);
 
 
 /*error-handling*/
 void	ft_exit(int exit_code, t_data *data, char *message);
-void	free_content(t_data *data);
+void	free_data(t_data *data);
 
 /*utils*/
 ssize_t			ft_arr_len(char **arr);

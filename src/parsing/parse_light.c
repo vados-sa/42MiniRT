@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:21 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/30 18:48:22 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:45:39 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	parse_l(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
 	}
+	free_arr(info, NULL);
 	return (1);
 }

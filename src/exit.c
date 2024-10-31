@@ -1,27 +1,33 @@
 
 #include "minirt.h"
 
-void	free_content(t_data *data)
+void	free_data(t_data *data)
 {
-	if (data->image)
-		mlx_delete_image(data->mlx_ptr, data->image);
-	if (data->mlx_ptr)
-		mlx_terminate(data->mlx_ptr);
-	if (data->scene)
+	if (data)
 	{
-		free(data->scene);
+		if (data->image)
+			mlx_delete_image(data->mlx_ptr, data->image);
+		if (data->mlx_ptr)
+			mlx_terminate(data->mlx_ptr);
+		if (data->scene)
+		{
+			if (data->scene->l)
+				delete_light_list(&data->scene->l);
+			if (data->scene->objects)
+				delete_object_list(&data->scene->objects);
+			free(data->scene);
+		}
+		if (data->lines)
+			free_arr(data->lines, NULL);
+		free(data);
+		data = NULL;
 	}
-	if (data->lines)
-		free_arr(data->lines, NULL);
-	free(data);
-	data = NULL;
 }
 
 void	ft_exit(int exit_code, t_data *data, char *message)
 {
 	if (message)
 		ft_putendl_fd(message, 2);
-	if (data)
-		free_content(data);
+	free_data(data);
 	exit(exit_code);
 }

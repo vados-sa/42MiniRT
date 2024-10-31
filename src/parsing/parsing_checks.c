@@ -33,8 +33,12 @@ int	check_color(char *info, t_data *data, char type)
 	if (!color)
 		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
 	if (int_check(color[0]) || int_check(color[1]) || int_check(color[2]))
+	{
+		free_arr(color, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
+	}
 	rgb = create_color(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]));
+	free_arr(color, NULL);
 	if ((rgb.r < 0 || rgb.r > 255) || (rgb.g < 0 || rgb.g > 255)
 		|| (rgb.b < 0 || rgb.b > 255))
 		return (ft_putendl_fd(COL_RANGE_ERR, 2), 1);
@@ -99,9 +103,13 @@ int	check_normal(char *info, t_data *data, char type)
 		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
 	if (float_check(coordinates[0]) || float_check(coordinates[1])
 		|| float_check(coordinates[2]))
+	{
+		free_arr(coordinates, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
+	}
 	xyz = create_coordinates(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
+	free_arr(coordinates, NULL);
 	if ((xyz.x < -1.0 || xyz.x > 1.0) || (xyz.y < -1.0 || xyz.y > 1.0)
 		|| (xyz.z < -1.0 || xyz.z > 1.0))
 		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
@@ -127,9 +135,13 @@ int	check_coordinates(char *info, t_data *data, char type)
 		return (ft_putendl_fd(GEN_INFO_ERR, 2), 1);
 	if (float_check(coordinates[0]) || float_check(coordinates[1])
 		|| float_check(coordinates[2]))
+	{
+		free_arr(coordinates, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
+	}
 	xyz = create_coordinates(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
+	free_arr(coordinates, NULL);
 	//ft_assign(type, data, rgb);
 	if (type == 'C')
 		data->scene->c.view_point = xyz;

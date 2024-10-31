@@ -132,11 +132,11 @@ int	main(int argc, char **argv)
 	if (data && data->mlx_ptr)
 	{
 		mlx_terminate(data->mlx_ptr);
-		free_content(data);
+		free_data(data);
 		free(data);
 	} */
 	print_data(data);
 	if (data)
-		free_content(data);
+		free_data(data);
 	return (0);
 }

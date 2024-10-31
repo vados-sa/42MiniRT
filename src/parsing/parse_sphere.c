@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:37 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/30 18:49:12 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:46:42 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	parse_sp(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, LEN_ERR);
 	}
-	if (check_identifier(info[0], data, "object") 
-		|| check_coordinates(info[1], data, 's') 
-		|| check_dimension(info[2], SP_DIAM, data) 
+	if (check_identifier(info[0], data, "object")
+		|| check_coordinates(info[1], data, 's')
+		|| check_dimension(info[2], SP_DIAM, data)
 		|| check_color(info[3], data, 's'))
 	{
 		free_arr(info, NULL);
 		ft_exit(1, data, NULL);
 	}
+	free_arr(info, NULL);
 	sp_node->type = 's';
 	return (0);
 }
