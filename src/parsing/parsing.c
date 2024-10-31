@@ -1,7 +1,7 @@
 
 #include "minirt.h"
 
-t_color	create_color(int r, int g, int b)
+t_color	col(int r, int g, int b)
 {
 	t_color	rgb;
 

@@ -37,7 +37,7 @@ int	check_color(char *info, t_data *data, char type)
 		free_arr(color, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	}
-	rgb = create_color(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]));
+	rgb = col(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]));
 	free_arr(color, NULL);
 	if ((rgb.r < 0 || rgb.r > 255) || (rgb.g < 0 || rgb.g > 255)
 		|| (rgb.b < 0 || rgb.b > 255))
@@ -81,9 +81,9 @@ int	check_ratio(char *info, t_data *data, char type)
 	return (0);
 }
 
-t_coordinate	create_coordinates(double x, double y, double z)
+t_coord	coord(double x, double y, double z)
 {
-	t_coordinate	xyz;
+	t_coord	xyz;
 
 	xyz.x = x;
 	xyz.y = y;
@@ -96,7 +96,7 @@ int	check_normal(char *info, t_data *data, char type)
 	char			**coordinates;
 	int				i;
 	int				j;
-	t_coordinate	xyz;
+	t_coord	xyz;
 
 	coordinates = split_three(info);
 	if (!coordinates)
@@ -107,7 +107,7 @@ int	check_normal(char *info, t_data *data, char type)
 		free_arr(coordinates, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	}
-	xyz = create_coordinates(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
+	xyz = coord(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
 	free_arr(coordinates, NULL);
 	if ((xyz.x < -1.0 || xyz.x > 1.0) || (xyz.y < -1.0 || xyz.y > 1.0)
@@ -115,7 +115,7 @@ int	check_normal(char *info, t_data *data, char type)
 		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
 	//ft_assign(type, data, rgb);
 	if (type == 'C')
-		data->scene->c.normal = xyz;
+		data->scene->c.orientation = xyz;
 	if (type == 'p')
 		object_last_node(data->scene->objects)->pl.normal = xyz;
 	if (type == 'c')
@@ -128,7 +128,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 	char			**coordinates;
 	int				i;
 	int				j;
-	t_coordinate	xyz;
+	t_coord	xyz;
 
 	coordinates = split_three(info);
 	if (!coordinates)
@@ -139,12 +139,12 @@ int	check_coordinates(char *info, t_data *data, char type)
 		free_arr(coordinates, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	}
-	xyz = create_coordinates(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
+	xyz = coord(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
 	free_arr(coordinates, NULL);
 	//ft_assign(type, data, rgb);
 	if (type == 'C')
-		data->scene->c.view_point = xyz;
+		data->scene->c.center = xyz;
 	if (type == 'L')
 		(light_last_node(data->scene->l))->point = xyz;
 	if (type == 's')

@@ -33,7 +33,7 @@ type identifier is not valid or is declared more than once"
 # define IMAGE_WIDTH 1200
 # define ASPECT_RATIO 1.77777777778
 # define PI 3.14159265359
-# define FOCAL_LENGTH
+# define FOCAL_LENGTH 1.0
 
 typedef enum e_dimension {
 	CY_DIAM,
@@ -41,12 +41,12 @@ typedef enum e_dimension {
 	SP_DIAM,
 }	t_dimension;
 
-typedef struct s_coordinate
+typedef struct s_coord
 {
 	double	x;
 	double	y;
 	double	z;
-}	t_coordinate;
+}	t_coord;
 
 typedef struct s_color
 {
@@ -63,14 +63,14 @@ typedef struct s_A
 
 typedef struct s_C
 {
-	t_coordinate	view_point;
-	t_coordinate	normal;
+	t_coord	center;
+	t_coord	orientation;
 	double			fov;
 }	t_C;
 
 typedef struct s_L
 {
-	t_coordinate	point;
+	t_coord	point;
 	double			brightness;
 	t_color			color;
 	struct s_L		*next; // check if necessary
@@ -78,22 +78,22 @@ typedef struct s_L
 
 typedef struct s_plane
 {
-	t_coordinate	point;
-	t_coordinate	normal;
+	t_coord	point;
+	t_coord	normal;
 	t_color			color;
 }	t_plane;
 
 typedef struct s_sphere
 {
-	t_coordinate	center;
+	t_coord	center;
 	double			diameter;
 	t_color			color;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_coordinate	center;
-	t_coordinate	normal;
+	t_coord	center;
+	t_coord	normal;
 	double			diameter;
 	double			height;
 	t_color			color;
@@ -123,8 +123,10 @@ typedef struct s_data
 	mlx_t		*mlx_ptr;
 	mlx_image_t	*image;
 	t_scene		*scene;
-	int			height;
-	int			width;
+	int			image_height;
+	int			image_width;
+	double		vp_width;
+	double		vp_height;
 	char		**lines;
 }	t_data;
 
@@ -154,8 +156,8 @@ char			**free_arr(char **arr1, char **arr2);
 char			**split_three(char *info);
 int				float_check(char *info);
 int				int_check(char *info);
-t_color			create_color(int r, int g, int b);
-t_coordinate	create_coordinates(double x, double y, double z);
+t_color			col(int r, int g, int b);
+t_coord			coord(double x, double y, double z);
 
 /*parsing*/
 void	parse(t_data *data, char *filename);

@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-// Helper function to print t_coordinate
-void print_coordinate(t_coordinate coord) {
+// Helper function to print t_coord
+void print_coordinate(t_coord coord) {
     printf("Coordinate (x, y, z): (%lf, %lf, %lf)\n", coord.x, coord.y, coord.z);
 }
 
@@ -19,9 +19,9 @@ void print_A(t_A a) {
 // Print function for t_C
 void print_C(t_C c) {
     printf("Camera View Point:\n");
-    print_coordinate(c.view_point);
+    print_coordinate(c.center);
     printf("Camera Normal:\n");
-    print_coordinate(c.normal);
+    print_coordinate(c.orientation);
     printf("Camera Field of View: %lf\n", c.fov);
 }
 
