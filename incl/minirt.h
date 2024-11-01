@@ -31,6 +31,7 @@ type identifier is not valid or is declared more than once"
 
 //macros
 # define IMAGE_WIDTH 1200
+# define IMAGE_HEIGHT 675
 # define ASPECT_RATIO 1.77777777778
 # define PI 3.14159265359
 # define FOCAL_LENGTH 1.0
