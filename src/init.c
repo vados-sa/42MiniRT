@@ -17,7 +17,7 @@ void	init(t_data **data)
 	if (!(*data)->scene->objects)
 		ft_exit(1, *data, ALLOC_ERR); */
 }
-
+/*
 void	viewport(t_data *data, t_C camera)
 {
 	//calculate tetha
@@ -88,3 +88,4 @@ auto pixel_delta_v = -(viewport_height / image_height) * camera_up;
 // Upper-left pixel (0,0) location
 auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 
+ */
