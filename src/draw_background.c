@@ -1,12 +1,12 @@
 
 #include "minirt.h"
 
-void our_draw_pixel(uint8_t* pixel, uint32_t color)
+void	our_draw_pixel(uint8_t* pixel, uint32_t color)
 {
-	*(pixel++) = (uint8_t)((color >> 24) & 0xFF);
-	*(pixel++) = (uint8_t)((color >> 16) & 0xFF); // Red
-	*(pixel++) = (uint8_t)((color >> 8) & 0xFF);  // Green
-	*(pixel++) = (uint8_t)(color & 0xFF);         // Blue
+	*(pixel++) = (uint8_t)((color >> 24));
+	*(pixel++) = (uint8_t)((color >> 16));
+	*(pixel++) = (uint8_t)((color >> 8));
+	*(pixel++) = (uint8_t)(color & 0xFF);
 }
 
 //= Public =//
@@ -24,17 +24,12 @@ void	our_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color)
 	our_draw_pixel(pixelstart, color);
 }
 
-void	draw_background(void *param)
+void	draw_background(t_data *data)
 {
 	uint32_t	x;
 	uint32_t	y;
 	uint32_t	color;
-	t_data		*data;
 
-	data = (t_data *)param;
-	data->image = mlx_new_image(data->mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT);
-	if (!data->image)
-		ft_exit(1, NULL, NULL);
 	y = 0;
 	while (y < IMAGE_HEIGHT)
 	{
