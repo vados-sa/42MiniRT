@@ -63,40 +63,40 @@ typedef struct s_A
 
 typedef struct s_C
 {
-	t_coord	center;
-	t_coord	orientation;
-	double			fov;
+	t_coord		center;
+	t_coord		orientation;
+	double		fov;
 }	t_C;
 
 typedef struct s_L
 {
-	t_coord	point;
-	double			brightness;
-	t_color			color;
-	struct s_L		*next; // check if necessary
+	t_coord		point;
+	double		brightness;
+	t_color		color;
+	struct s_L	*next; // check if necessary
 }	t_L;
 
 typedef struct s_plane
 {
-	t_coord	point;
-	t_coord	normal;
-	t_color			color;
+	t_coord		point;
+	t_coord		normal;
+	t_color		color;
 }	t_plane;
 
 typedef struct s_sphere
 {
-	t_coord	center;
-	double			diameter;
-	t_color			color;
+	t_coord		center;
+	double		diameter;
+	t_color		color;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_coord	center;
-	t_coord	normal;
-	double			diameter;
-	double			height;
-	t_color			color;
+	t_coord		center;
+	t_coord		normal;
+	double		diameter;
+	double		height;
+	t_color		color;
 }	t_cylinder;
 
 typedef struct s_object
@@ -117,7 +117,6 @@ typedef struct s_scene
 	t_object	*objects;
 }	t_scene;
 
-
 typedef struct s_data
 {
 	mlx_t		*mlx_ptr;
@@ -133,12 +132,12 @@ typedef struct s_data
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);
 
 /*init*/
-void	init(t_data **data);
+void		init(t_data **data);
 
 /*lists*/
 t_object	*new_object_node(void);
-void		add_object_node(t_object **object, t_object	*new);
 t_object	*object_last_node(t_object *head);
+void		add_object_node(t_object **object, t_object	*new);
 void		delete_object_list(t_object **objects);
 t_L			*new_light_node(void);
 t_L			*light_last_node(t_L *light);
@@ -147,33 +146,42 @@ void		delete_light_list(t_L **lights);
 
 
 /*error-handling*/
-void	ft_exit(int exit_code, t_data *data, char *message);
-void	free_data(t_data *data);
+void		ft_exit(int exit_code, t_data *data, char *message);
+void		free_data(t_data *data);
 
 /*utils*/
-ssize_t			ft_arr_len(char **arr);
-char			**free_arr(char **arr1, char **arr2);
-char			**split_three(char *info);
-int				float_check(char *info);
-int				int_check(char *info);
-t_color			col(int r, int g, int b);
-t_coord			coord(double x, double y, double z);
+ssize_t		ft_arr_len(char **arr);
+char		**free_arr(char **arr1, char **arr2);
+char		**split_three(char *info);
+int			float_check(char *info);
+int			int_check(char *info);
+t_color		col(int r, int g, int b);
+t_coord		coord(double x, double y, double z);
 
 /*parsing*/
-void	parse(t_data *data, char *filename);
-void	read_file(char *filename, t_data *data);
-int		parse_a(t_data *data, char *line);
-int		parse_l(t_data *data, char *line);
-int		parse_c(t_data *data, char *line);
-int		parse_cy(t_data *data, char *line);
-int		parse_pl(t_data *data, char *line);
-int		parse_sp(t_data *data, char *line);
-int		check_color(char *info, t_data *data, char type);
-int		check_identifier(char *info, t_data *data, char *type);
-int		check_ratio(char *info, t_data *data, char type);
-int		check_coordinates(char *info, t_data *data, char type);
-int		check_normal(char *info, t_data *data, char type);
-int		check_dimension(char *line, t_dimension type, t_data *data);
-int		check_fov(char *info, t_data *data);
+void		parse(t_data *data, char *filename);
+void		read_file(char *filename, t_data *data);
+int			parse_a(t_data *data, char *line);
+int			parse_l(t_data *data, char *line);
+int			parse_c(t_data *data, char *line);
+int			parse_cy(t_data *data, char *line);
+int			parse_pl(t_data *data, char *line);
+int			parse_sp(t_data *data, char *line);
+int			check_color(char *info, t_data *data, char type);
+int			check_identifier(char *info, t_data *data, char *type);
+int			check_ratio(char *info, t_data *data, char type);
+int			check_coordinates(char *info, t_data *data, char type);
+int			check_normal(char *info, t_data *data, char type);
+int			check_dimension(char *line, t_dimension type, t_data *data);
+int			check_fov(char *info, t_data *data);
+
+/*vector operations*/
+double		vec_dot(t_coord v1, t_coord v2);
+double		vec_len(t_coord v);
+t_coord		vec_cross(t_coord v1, t_coord v2);
+t_coord		vec_add(t_coord v1, t_coord v2);
+t_coord		vec_sub(t_coord v1, t_coord v2);
+t_coord		vec_mult(t_coord v1, double scalar);
+t_coord		vec_unit(t_coord v);
 
 #endif
