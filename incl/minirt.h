@@ -56,6 +56,12 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
+typedef struct s_ray
+{
+	t_coord	origin;
+	t_coord	direction;
+}	t_ray;
+
 typedef struct s_A
 {
 	double	ratio;
