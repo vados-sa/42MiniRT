@@ -185,4 +185,6 @@ t_coord		vec_sub(t_coord v1, t_coord v2);
 t_coord		vec_mult(t_coord v1, double scalar);
 t_coord		vec_unit(t_coord v);
 
+void		draw_background(t_data *data);
+
 #endif

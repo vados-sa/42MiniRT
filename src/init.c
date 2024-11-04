@@ -10,6 +10,12 @@ void	init(t_data **data)
 	if (!(*data)->scene)
 		ft_exit(1, *data, ALLOC_ERR);
 	(*data)->image_width = IMAGE_WIDTH;
+	(*data)->mlx_ptr = mlx_init(IMAGE_WIDTH, IMAGE_HEIGHT, "miniRT", true);
+	if (!(*data)->mlx_ptr)
+		ft_exit(1, *data, NULL);
+	(*data)->image = mlx_new_image((*data)->mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT);
+	if (!(*data)->image || mlx_image_to_window((*data)->mlx_ptr, (*data)->image, 0, 0))
+		ft_exit(1, *data, NULL);
 	/* (*data)->scene->l = ft_calloc(1, sizeof(t_L));
 	if (!(*data)->scene->l)
 		ft_exit(1, *data, ALLOC_ERR);
@@ -125,3 +131,4 @@ auto pixel_delta_v = -(viewport_height / image_height) * camera_up;
 // Upper-left pixel (0,0) location
 auto pixel00_loc = viewport_upper_left + 0.5 * (pixel_delta_u + pixel_delta_v);
 
+ */
