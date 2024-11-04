@@ -30,8 +30,8 @@ type identifier is not valid or is declared more than once"
 # define DIMENSION_ERR "Error\nobject dimensions have to be positive values"
 
 //macros
-# define IMAGE_WIDTH 1200
-# define IMAGE_HEIGHT 675
+# define IMAGE_WIDTH 1200.0
+# define IMAGE_HEIGHT 675.0
 # define ASPECT_RATIO 1.77777777778
 # define PI 3.14159265359
 # define FOCAL_LENGTH 1.0
@@ -134,8 +134,8 @@ typedef struct s_data
 	mlx_t		*mlx_ptr;
 	mlx_image_t	*image;
 	t_scene		*scene;
-	int			image_height;
-	int			image_width;
+	double			image_height;
+	double			image_width;
 	char		**lines;
 	t_vp		vp;
 }	t_data;
