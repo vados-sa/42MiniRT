@@ -118,6 +118,17 @@ typedef struct s_scene
 	t_object	*objects;
 }	t_scene;
 
+typedef struct s_vp
+{
+	double		width;
+	double		height;
+	t_coord		center;
+	t_coord		up_left;
+	t_coord		pixel_x;
+	t_coord		pixel_y;
+	t_coord		pixel00;
+}	t_vp;
+
 typedef struct s_data
 {
 	mlx_t		*mlx_ptr;
@@ -125,9 +136,8 @@ typedef struct s_data
 	t_scene		*scene;
 	int			image_height;
 	int			image_width;
-	double		vp_width;
-	double		vp_height;
 	char		**lines;
+	t_vp		vp;
 }	t_data;
 
 typedef void	(*t_mlx_keyfunc)(mlx_key_data_t keydata, void* param);

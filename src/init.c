@@ -24,73 +24,7 @@ void	init(t_data **data)
 		ft_exit(1, *data, ALLOC_ERR); */
 }
 
-/*given the aspect ratio, the focal length and the image width*/
-void	init_viewport_version_one(t_data *data, t_C camera)
-{
-	double	radians;
-	t_coord	world_up; //should not be parallel to the camera_orientation: either (0.0, 1.0, 0.0) or (0.0, 0.0, 1.0)
-	t_coord	camera_right;
-	t_coord	camera_up;
-	t_coord	vp_center;
-	t_coord	vp_upper_left;
-	t_coord pixel_delta_x;
-	t_coord	pixel_delta_y;
-
-	world_up = coord(0.0, 1.0, 0.0);
-	if (camera.orientation.y == 1.0 || camera.orientation.y == -1) //check if world_up is not parallel to camera_orientation
-		world_up = coord(0.0, 0.0, 1.0);
-	radians = camera.fov * PI / 180.0;
-	data->image_height = (int)(IMAGE_WIDTH / ASPECT_RATIO); //check if it rounds correctly
-	data->vp_width = 2.0 * FOCAL_LENGTH * tan(radians / 2.0);
-	data->vp_height = data->vp_width / ASPECT_RATIO;
-
-	camera_right = vec_unit(vec_cross(world_up, camera.orientation));
-	camera_up = vec_unit(vec_cross(camera.orientation, camera_right));
-
-	vp_center = vec_add(camera.center, vec_mult(camera.orientation, FOCAL_LENGTH));
-	vp_upper_left = vec_add(vec_sub(vp_center, vec_mult(camera_right, (data->vp_width / 2))), vec_mult(camera_up, (data->vp_height / 2)));
-
-	pixel_delta_x = vec_mult(camera_right, (data->vp_width / data->image_width));
-	pixel_delta_y = vec_mult(camera_up, -(data->vp_height / data->image_height));
-
-	pixel00_loc = vec_add(vp_upper_left, vec_mult((vec_add(pixel_delta_x, pixel_delta_y)), 0.5));
-}
-
-/*given the image width and the image height*/
-void	init_viewport_version_two(t_data *data, t_C camera)
-{
-	double	radians;
-	double	aspect_ratio;
-	t_coord	world_up; //should not be parallel to the camera_orientation: either (0.0, 1.0, 0.0) or (0.0, 0.0, 1.0)
-	t_coord	camera_right;
-	t_coord	camera_up;
-	t_coord	vp_center;
-	t_coord	vp_upper_left;
-	t_coord pixel_delta_x;
-	t_coord	pixel_delta_y;
-
-	world_up = coord(0.0, 1.0, 0.0);
-	if (camera.orientation.y == 1.0 || camera.orientation.y == -1) //check if world_up is not parallel to camera_orientation
-		world_up = coord(0.0, 0.0, 1.0);
-	radians = camera.fov * PI / 180.0;
-	data->image_height = IMAGE_HEIGHT; //check if it rounds correctly
-	aspect_ratio = IMAGE_WIDTH / IMAGE_HEIGHT;
-	data->vp_width = 2.0 * FOCAL_LENGTH * tan(radians / 2.0);
-	data->vp_height = data->vp_width / aspect_ratio;
-
-	camera_right = vec_unit(vec_cross(world_up, camera.orientation));
-	camera_up = vec_unit(vec_cross(camera.orientation, camera_right));
-
-	vp_center = vec_add(camera.center, vec_mult(camera.orientation, FOCAL_LENGTH));
-	vp_upper_left = vec_add(vec_sub(vp_center, vec_mult(camera_right, (data->vp_width / 2))), vec_mult(camera_up, (data->vp_height / 2)));
-
-	pixel_delta_x = vec_mult(camera_right, (data->vp_width / data->image_width));
-	pixel_delta_y = vec_mult(camera_up, -(data->vp_height / data->image_height));
-
-	pixel00_loc = vec_add(vp_upper_left, vec_mult((vec_add(pixel_delta_x, pixel_delta_y)), 0.5));
-}
-
-//GPT-code in cpp
+/* //GPT-code in cpp
 // Image
 auto aspect_ratio = 16.0 / 9.0;
 int image_width = 400;
