@@ -6,14 +6,14 @@ uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-t_color	gradient(t_ray r)
+t_color	gradient(t_ray r, t_coord camera_up)
 {
 	t_coord	unit_direction;
 	double	a;
 	t_color	color;
 
 	unit_direction = vec_unit(r.direction);
-	a = 0.5 * (unit_direction.y + 1.0);
+	a = 0.5 * (vec_dot(unit_direction, camera_up) + 1.0);
 	color.r = ((1.0 - a) * 255 + a * 255);
 	color.g = ((1.0 - a) * 255 + a * 182);
 	color.b = ((1.0 - a) * 255 + a * 193);
@@ -51,7 +51,7 @@ void	draw_background(t_data *data)
 		while (x < IMAGE_WIDTH)
 		{
 			ray = create_ray(x, y, data->scene->c.center, data);
-			rgb = gradient(ray);
+			rgb = gradient(ray, data->scene->c.up);
 			color = create_color(rgb.r, rgb.g, rgb.b, 255);
 			//color = create_color(3, 4, 94, 255);
 			mlx_put_pixel(data->image, x, y, color);

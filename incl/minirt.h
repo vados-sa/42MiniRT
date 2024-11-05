@@ -72,6 +72,8 @@ typedef struct s_C
 {
 	t_coord		center;
 	t_coord		orientation;
+	t_coord		up;
+	t_coord		right;
 	double		fov;
 }	t_C;
 
