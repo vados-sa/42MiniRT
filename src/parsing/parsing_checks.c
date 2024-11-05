@@ -166,10 +166,10 @@ int	check_dimension(char *line, t_dimension type, t_data *data)
 	if (dimension <= 0.0)
 		return (ft_putendl_fd(DIMENSION_ERR, 2), 1);
 	if (type == CY_DIAM)
-		object_last_node(data->scene->objects)->cy.diameter = dimension;
+		object_last_node(data->scene->objects)->cy.radius = dimension / 2;
 	if (type == CY_HEIGHT)
 		object_last_node(data->scene->objects)->cy.height = dimension;
 	if (type == SP_DIAM)
-		object_last_node(data->scene->objects)->sp.diameter = dimension;
+		object_last_node(data->scene->objects)->sp.radius = dimension / 2;
 	return (0);
 }

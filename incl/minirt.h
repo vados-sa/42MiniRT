@@ -32,7 +32,6 @@ type identifier is not valid or is declared more than once"
 //macros
 # define IMAGE_WIDTH 1200.0
 # define IMAGE_HEIGHT 675.0
-# define ASPECT_RATIO 1.77777777778
 # define PI 3.14159265359
 # define FOCAL_LENGTH 1.0
 
@@ -95,7 +94,7 @@ typedef struct s_plane
 typedef struct s_sphere
 {
 	t_coord		center;
-	double		diameter;
+	double		radius;
 	t_color		color;
 }	t_sphere;
 
@@ -103,7 +102,7 @@ typedef struct s_cylinder
 {
 	t_coord		center;
 	t_coord		normal;
-	double		diameter;
+	double		radius;
 	double		height;
 	t_color		color;
 }	t_cylinder;

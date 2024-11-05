@@ -56,8 +56,8 @@ int	main(int argc, char **argv)
 	init(&data);
 	parse(data, argv[1]);
 	setup_viewport(data, data->scene->c);
-	draw_background(data);
-	//mlx_loop_hook(data->mlx_ptr, &draw_background, data);
+	//draw_background(data);
+	mlx_loop_hook(data->mlx_ptr, &draw_background, data);
 	//mlx_loop_hook(data->mlx_ptr, &render, data);
 	mlx_key_hook(data->mlx_ptr, (t_mlx_keyfunc)my_keyhook, data);
 	mlx_loop(data->mlx_ptr);
