@@ -35,6 +35,8 @@ type identifier is not valid or is declared more than once"
 # define PI 3.14159265359
 # define FOCAL_LENGTH 1.0
 
+typedef double	t_float;
+
 typedef enum e_dimension {
 	CY_DIAM,
 	CY_HEIGHT,
@@ -43,9 +45,9 @@ typedef enum e_dimension {
 
 typedef struct s_coord
 {
-	double	x;
-	double	y;
-	double	z;
+	t_float	x;
+	t_float	y;
+	t_float	z;
 }	t_coord;
 
 typedef struct s_color
@@ -64,7 +66,7 @@ typedef struct s_ray
 
 typedef struct s_A
 {
-	double	ratio;
+	t_float	ratio;
 	t_color	color;
 }	t_A;
 
@@ -74,13 +76,13 @@ typedef struct s_C
 	t_coord		orientation;
 	t_coord		up;
 	t_coord		right;
-	double		fov;
+	t_float		fov;
 }	t_C;
 
 typedef struct s_L
 {
 	t_coord		point;
-	double		brightness;
+	t_float		brightness;
 	t_color		color;
 	struct s_L	*next;
 }	t_L;
@@ -95,7 +97,7 @@ typedef struct s_plane
 typedef struct s_sphere
 {
 	t_coord		center;
-	double		radius;
+	t_float		radius;
 	t_color		color;
 }	t_sphere;
 
@@ -103,8 +105,8 @@ typedef struct s_cylinder
 {
 	t_coord		center;
 	t_coord		normal;
-	double		radius;
-	double		height;
+	t_float		radius;
+	t_float		height;
 	t_color		color;
 }	t_cylinder;
 
@@ -128,8 +130,8 @@ typedef struct s_scene
 
 typedef struct s_vp
 {
-	double		width;
-	double		height;
+	t_float		width;
+	t_float		height;
 	t_coord		center;
 	t_coord		up_left;
 	t_coord		pixel_x;
@@ -142,8 +144,8 @@ typedef struct s_data
 	mlx_t		*mlx_ptr;
 	mlx_image_t	*image;
 	t_scene		*scene;
-	double		image_height;
-	double		image_width;
+	t_float		image_height;
+	t_float		image_width;
 	char		**lines;
 	t_vp		vp;
 }	t_data;
@@ -174,7 +176,7 @@ char		**split_three(char *info);
 int			float_check(char *info);
 int			int_check(char *info);
 t_color		col(int r, int g, int b, int a);
-t_coord		coord(double x, double y, double z);
+t_coord		coord(t_float x, t_float y, t_float z);
 
 /*parsing*/
 void		parse(t_data *data, char *filename);
@@ -194,12 +196,12 @@ int			check_dimension(char *line, t_dimension type, t_data *data);
 int			check_fov(char *info, t_data *data);
 
 /*vector operations*/
-double		vec_dot(t_coord v1, t_coord v2);
-double		vec_len(t_coord v);
+t_float		vec_dot(t_coord v1, t_coord v2);
+t_float		vec_len(t_coord v);
 t_coord		vec_cross(t_coord v1, t_coord v2);
 t_coord		vec_add(t_coord v1, t_coord v2);
 t_coord		vec_sub(t_coord v1, t_coord v2);
-t_coord		vec_mult(t_coord v1, double scalar);
+t_coord		vec_mult(t_coord v1, t_float scalar);
 t_coord		vec_unit(t_coord v);
 
 void		draw_background(t_data *data);

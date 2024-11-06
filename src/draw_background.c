@@ -9,7 +9,7 @@ uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 t_color	gradient(t_ray r, t_coord camera_up)
 {
 	t_coord	unit_direction;
-	double	a;
+	t_float	a;
 	t_color	color;
 
 	unit_direction = vec_unit(r.direction);
@@ -39,13 +39,13 @@ t_ray	create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data)
 
 int	sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 {
-	double	discriminant;
-	double	a;
-	double	b;
-	double	c;
+	t_float	discriminant;
+	t_float	a;
+	t_float	b;
+	t_float	c;
 	t_coord	oc;
-	double	t_min;
-	double	t_max;
+	t_float	t_min;
+	t_float	t_max;
 
 	oc = vec_sub(obj->sp.center, ray.origin);
 	a = vec_dot(ray.direction, ray.direction);

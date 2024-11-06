@@ -67,7 +67,7 @@ int	check_identifier(char *info, t_data *data, char *type)
 
 int	check_ratio(char *info, t_data *data, char type)
 {
-	double	ratio;
+	t_float	ratio;
 
 	if (float_check(info))
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
@@ -81,7 +81,7 @@ int	check_ratio(char *info, t_data *data, char type)
 	return (0);
 }
 
-t_coord	coord(double x, double y, double z)
+t_coord	coord(t_float x, t_float y, t_float z)
 {
 	t_coord	xyz;
 
@@ -158,7 +158,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 
 int	check_dimension(char *line, t_dimension type, t_data *data)
 {
-	double dimension;
+	t_float dimension;
 
 	if (float_check(line))
 		return (ft_putendl_fd(NUM_ERR, 2), 1);

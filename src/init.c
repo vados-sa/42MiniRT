@@ -9,8 +9,8 @@ void	init(t_data **data)
 	(*data)->scene = ft_calloc(1, sizeof(t_scene));
 	if (!(*data)->scene)
 		ft_exit(1, *data, ALLOC_ERR);
-	(*data)->image_width = (double)IMAGE_WIDTH;
-	(*data)->image_height = (double)IMAGE_HEIGHT;
+	(*data)->image_width = (t_float)IMAGE_WIDTH;
+	(*data)->image_height = (t_float)IMAGE_HEIGHT;
 	(*data)->mlx_ptr = mlx_init(IMAGE_WIDTH, IMAGE_HEIGHT, "miniRT", true);
 	if (!(*data)->mlx_ptr)
 		ft_exit(1, *data, NULL);
@@ -40,8 +40,8 @@ auto camera_forward = vec3(0.3, 1.0, 0.2).unit_vector(); // Normalize the forwar
 auto world_up = vec3(0.0, 0.0, 1.0);
 
 // Convert FOV from degrees to radians
-double FOV_degrees = 70.0;
-double FOV_radians = FOV_degrees * M_PI / 180.0;
+t_float FOV_degrees = 70.0;
+t_float FOV_radians = FOV_degrees * M_PI / 180.0;
 
 // Calculate viewport width based on FOV and focal length
 auto viewport_width = 2.0 * focal_length * tan(FOV_radians / 2.0);

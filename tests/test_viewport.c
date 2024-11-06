@@ -22,7 +22,7 @@ void setup_viewport(t_data *data, t_C camera)
     data->vp.width = 2.0 * tan((camera.fov * PI / 180.0) / 2.0);
     printf("Viewport Width after tan: %.15lf\n", data->vp.width);
 
-    data->vp.height = data->vp.width / ((double)IMAGE_WIDTH / (double)IMAGE_HEIGHT);
+    data->vp.height = data->vp.width / ((t_float)IMAGE_WIDTH / (t_float)IMAGE_HEIGHT);
     printf("Viewport Height: %.15lf\n", data->vp.height);
 
     camera_right = vec_unit(vec_cross(world_up, camera.orientation));

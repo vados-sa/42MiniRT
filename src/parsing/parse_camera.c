@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/31 14:46:26 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/11/06 13:14:44 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_fov(char *info, t_data *data)
 {
-	double	fov;
+	t_float	fov;
 
 	if (float_check(info))
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
