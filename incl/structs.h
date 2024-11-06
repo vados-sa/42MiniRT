@@ -96,6 +96,7 @@ typedef struct s_object
 	t_sphere		sp;
 	t_cylinder		cy;
 	int				flag;
+	t_intersec		temp;
 	struct s_object	*next;
 }	t_object;
 

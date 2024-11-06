@@ -65,6 +65,9 @@ t_coord		vec_sub(t_coord v1, t_coord v2);
 t_coord		vec_mult(t_coord v1, t_float scalar);
 t_coord		vec_unit(t_coord v);
 
+/*intersections*/
 void		render(t_data *data);
+t_coord		ray_at(t_ray r, t_float t);
+t_intersec	*plane_intersect(t_ray ray, t_object *obj);
 
 #endif
