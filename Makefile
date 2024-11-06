@@ -24,7 +24,7 @@ SRCS 			=  $(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/exit.c $(SRC_DIR)/ligh
 					 $(PARSE_DIR)/parse_amb_light.c $(PARSE_DIR)/parse_light.c $(PARSE_DIR)/parse_camera.c \
 					 $(PARSE_DIR)/parse_plane.c $(PARSE_DIR)/parse_cylinder.c $(PARSE_DIR)/parse_sphere.c
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
-HDRS 			= $(addprefix incl/, minirt.h)
+HDRS 			= $(addprefix incl/, minirt.h macros.h structs.h)
 
 LIBFT 			= $(LIBFTDIR)/libft.a
 LIBFT_LIB 		= -Llibft -lft
@@ -43,7 +43,7 @@ libmlx:
 $(LIBFT):
 	@$(MAKE) --quiet -C $(LIBFTDIR) all
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HDRS)
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
