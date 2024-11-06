@@ -14,6 +14,7 @@
 
 /*init*/
 void		init(t_data **data);
+void		setup_viewport(t_data *data, t_C camera);
 
 /*lists*/
 t_object	*new_object_node(void);
