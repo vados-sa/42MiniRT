@@ -98,7 +98,7 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 	return (0);
 }
 
-void	draw_background(t_data *data)
+void	render(t_data *data)
 {
 	uint32_t	x;
 	uint32_t	y;
