@@ -81,6 +81,14 @@ typedef struct s_cylinder
 	t_color		color;
 }	t_cylinder;
 
+typedef struct s_intersec
+{
+	t_float		t;
+	t_coord		point;
+	t_coord		normal;
+	t_color		color;
+}	t_intersec;
+
 typedef struct s_object
 {
 	char			type;

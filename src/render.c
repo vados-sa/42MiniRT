@@ -105,9 +105,9 @@ void	render(t_data *data)
 {
 	uint32_t	x;
 	uint32_t	y;
+	t_ray		ray;
 	uint32_t	color;
 	t_color		rgba;
-	t_ray		ray;
 
 	y = -1;
 	while (++y < IMAGE_HEIGHT)
