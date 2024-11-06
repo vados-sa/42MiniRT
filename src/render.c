@@ -79,6 +79,7 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 	t_object	*object;
 	t_object	*closest;
 
+	//save in a hit_rec struct the point, the normal and the t value
 	object = data->scene->objects;
 	closest = NULL;
 	while (object)
@@ -95,6 +96,8 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 	}
 	if (closest)
 		return (put_color(closest->sp.color, x, y, data), 1);
+		//calculate the color based on the lights and the object
+		//return the color
 	return (0);
 }
 
