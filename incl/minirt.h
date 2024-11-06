@@ -24,7 +24,7 @@ type identifier is not valid or is declared more than once"
 # define RATIO_ERR "Error\nlight ratio invalid or out of bounds"
 # define FOV_ERR "Error\nfov invalid or out of bounds"
 # define GEN_INFO_ERR "Error\nwrong amount of information"
-# define COL_RANGE_ERR "Error\nrgb values are out of bounds"
+# define COL_RANGE_ERR "Error\nrgba values are out of bounds"
 # define NORMAL_RANGE_ERR "Error\nnormal values are out of bounds"
 # define NUM_ERR "Error\nnumber contains invalid characters"
 # define DIMENSION_ERR "Error\nobject dimensions have to be positive values"
@@ -53,6 +53,7 @@ typedef struct s_color
 	int	r;
 	int	g;
 	int	b;
+	int	a;
 }	t_color;
 
 typedef struct s_ray
@@ -81,7 +82,7 @@ typedef struct s_L
 	t_coord		point;
 	double		brightness;
 	t_color		color;
-	struct s_L	*next; // check if necessary
+	struct s_L	*next;
 }	t_L;
 
 typedef struct s_plane
@@ -141,8 +142,8 @@ typedef struct s_data
 	mlx_t		*mlx_ptr;
 	mlx_image_t	*image;
 	t_scene		*scene;
-	double			image_height;
-	double			image_width;
+	double		image_height;
+	double		image_width;
 	char		**lines;
 	t_vp		vp;
 }	t_data;
@@ -162,7 +163,6 @@ t_L			*light_last_node(t_L *light);
 void		add_light_node(t_L **light, t_L	*new);
 void		delete_light_list(t_L **lights);
 
-
 /*error-handling*/
 void		ft_exit(int exit_code, t_data *data, char *message);
 void		free_data(t_data *data);
@@ -173,7 +173,7 @@ char		**free_arr(char **arr1, char **arr2);
 char		**split_three(char *info);
 int			float_check(char *info);
 int			int_check(char *info);
-t_color		col(int r, int g, int b);
+t_color		col(int r, int g, int b, int a);
 t_coord		coord(double x, double y, double z);
 
 /*parsing*/

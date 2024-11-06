@@ -17,6 +17,7 @@ t_color	gradient(t_ray r, t_coord camera_up)
 	color.r = ((1.0 - a) * 255 + a * 255);
 	color.g = ((1.0 - a) * 255 + a * 182);
 	color.b = ((1.0 - a) * 255 + a * 193);
+	color.a = 255;
 	return (color);
 }
 
@@ -65,11 +66,11 @@ int	sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 		return (0);
 }
 
-void	put_color(t_color rgb, uint32_t x, uint32_t y, t_data *data)
+void	put_color(t_color rgba, uint32_t x, uint32_t y, t_data *data)
 {
 	uint32_t	color;
 
-	color = create_color(rgb.r, rgb.g, rgb.b, 255);
+	color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
 	mlx_put_pixel(data->image, x, y, color);
 }
 
@@ -102,7 +103,7 @@ void	draw_background(t_data *data)
 	uint32_t	x;
 	uint32_t	y;
 	uint32_t	color;
-	t_color		rgb;
+	t_color		rgba;
 	t_ray		ray;
 
 	y = -1;
@@ -116,8 +117,8 @@ void	draw_background(t_data *data)
 				continue ;
 			else
 			{
-				rgb = gradient(ray, data->scene->c.up);
-				color = create_color(rgb.r, rgb.g, rgb.b, 255);
+				rgba = gradient(ray, data->scene->c.up);
+				color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
 				//color = create_color(3, 4, 94, 255);
 				mlx_put_pixel(data->image, x, y, color);
 			}

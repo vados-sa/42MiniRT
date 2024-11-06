@@ -1,14 +1,15 @@
 
 #include "minirt.h"
 
-t_color	col(int r, int g, int b)
+t_color	col(int r, int g, int b, int a)
 {
-	t_color	rgb;
+	t_color	rgba;
 
-	rgb.r = r;
-	rgb.g = g;
-	rgb.b = b;
-	return (rgb);
+	rgba.r = r;
+	rgba.g = g;
+	rgba.b = b;
+	rgba.a = a;
+	return (rgba);
 }
 
 void	parse_lines(t_data *data)

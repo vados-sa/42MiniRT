@@ -27,7 +27,7 @@ int	check_color(char *info, t_data *data, char type)
 	char	**color;
 	int		i;
 	int		j;
-	t_color	rgb;
+	t_color	rgba;
 
 	color = split_three(info);
 	if (!color)
@@ -37,22 +37,22 @@ int	check_color(char *info, t_data *data, char type)
 		free_arr(color, NULL);
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
 	}
-	rgb = col(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]));
+	rgba = col(ft_atoi(color[0]), ft_atoi(color[1]), ft_atoi(color[2]), 255);
 	free_arr(color, NULL);
-	if ((rgb.r < 0 || rgb.r > 255) || (rgb.g < 0 || rgb.g > 255)
-		|| (rgb.b < 0 || rgb.b > 255))
+	if ((rgba.r < 0 || rgba.r > 255) || (rgba.g < 0 || rgba.g > 255)
+		|| (rgba.b < 0 || rgba.b > 255))
 		return (ft_putendl_fd(COL_RANGE_ERR, 2), 1);
-	//ft_assign(type, data, rgb);
+	//ft_assign(type, data, rgba);
 	if (type == 'A')
-		data->scene->a.color = rgb;
+		data->scene->a.color = rgba;
 	if (type == 'L')
-		(light_last_node(data->scene->l))->color = rgb;
+		(light_last_node(data->scene->l))->color = rgba;
 	if (type == 's')
-		object_last_node(data->scene->objects)->sp.color = rgb; //check later
+		object_last_node(data->scene->objects)->sp.color = rgba; //check later
 	if (type == 'p')
-		object_last_node(data->scene->objects)->pl.color = rgb;
+		object_last_node(data->scene->objects)->pl.color = rgba;
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy.color = rgb;
+		object_last_node(data->scene->objects)->cy.color = rgba;
 	return (0);
 }
 
@@ -113,7 +113,7 @@ int	check_normal(char *info, t_data *data, char type)
 	if ((xyz.x < -1.0 || xyz.x > 1.0) || (xyz.y < -1.0 || xyz.y > 1.0)
 		|| (xyz.z < -1.0 || xyz.z > 1.0))
 		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
-	//ft_assign(type, data, rgb);
+	//ft_assign(type, data, rgba);
 	if (type == 'C')
 		data->scene->c.orientation = xyz;
 	if (type == 'p')
@@ -142,7 +142,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 	xyz = coord(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
 	free_arr(coordinates, NULL);
-	//ft_assign(type, data, rgb);
+	//ft_assign(type, data, rgba);
 	if (type == 'C')
 		data->scene->c.center = xyz;
 	if (type == 'L')
