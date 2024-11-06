@@ -1,6 +1,14 @@
 
 #include "minirt.h"
 
+void	put_color(t_color rgba, uint32_t x, uint32_t y, t_data *data)
+{
+	uint32_t	color;
+
+	color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
+	mlx_put_pixel(data->image, x, y, color);
+}
+
 t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 								t_coord origin)
 {
@@ -69,9 +77,9 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 		if (object->type == 's')
 			temp = sphere_intersect(data, ray, object);
 		else if (object->type == 'p')
-			temp = plane_intersect();
-		else if (object->type == 'c')
-			temp = cylinder_intersect();
+			temp = plane_intersect(ray, object);
+		//else if (object->type == 'c')
+		//	temp = cylinder_intersect();
 		closest = compare_distance(temp, closest, ray.origin);
 		object = object->next;
 	}
@@ -82,3 +90,60 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 		//free(closest);
 	return (0);
 }
+
+
+/* int	sphere_intersect(t_data *data, t_ray ray, t_object *obj)
+{
+	t_float	discriminant;
+	t_float	a;
+	t_float	b;
+	t_float	c;
+	t_coord	oc;
+	t_float	t_min;
+	t_float	t_max;
+
+	oc = vec_sub(obj->sp.center, ray.origin);
+	a = vec_dot(ray.direction, ray.direction);
+	b = -2.0 * vec_dot(ray.direction, oc);
+	c = vec_dot(oc, oc) - (obj->sp.radius * obj->sp.radius);
+	discriminant = (b * b) - (4 * a * c);
+	if (discriminant >= 0)
+	{
+		return (1);
+		t_min = (-b - (sqrt(discriminant)) / 2 * a);
+		t_max = (-b + (sqrt(discriminant)) / 2 * a);
+		if (t_min >= 0)
+			return (t_min); // sphere in front of the camera
+		else if (t_max >= 0)
+			return(t_max); // camera inside sphere
+	}
+	else
+		return (0);
+}
+
+int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
+{
+	t_object	*object;
+	t_object	*closest;
+
+	//save in a hit_rec struct the point, the normal and the t value
+	object = data->scene->objects;
+	closest = NULL;
+	while (object)
+	{
+		if (object->type == 's')
+			if (sphere_intersect(data, ray, object))
+				closest = object; // object.sphere ?
+		 else if (object->type == 'p')
+			plane_intersect();
+		else if (object->type == 'c')
+			cylinder_intersect();
+		closest = compare_objects(object, closest);
+		object = object->next;
+	}
+	if (closest)
+		return (put_color(closest->sp.color, x, y, data), 1);
+		//calculate the color based on the lights and the object
+		//return the color
+	return (0);
+} */
