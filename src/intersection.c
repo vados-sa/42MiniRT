@@ -17,6 +17,8 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 
 	if (!obj_2)
 		return(obj_1);
+	if (!obj_1)
+		return (obj_2);
 	d1 = sqrt(pow((obj_1->point.x - origin.x), 2) +
 				pow((obj_1->point.y - origin.y), 2) +
 				pow((obj_1->point.z - origin.z), 2));
