@@ -36,8 +36,8 @@ void	setup_viewport(t_data *data, t_C camera)
 		world_up = coord(0.0, 0.0, 1.0);
 	data->vp.width = 2.0 * FOCAL_LENGTH * tan((camera.fov * PI / 180.0) / 2.0);
 	data->vp.height = data->vp.width / (data->image_width / data->image_height);
-	camera_right = vec_unit(vec_cross(camera.orientation, world_up));
-	camera_up = vec_unit(vec_cross(camera_right, camera.orientation));
+	camera_right = vec_unit(vec_cross(world_up, camera.orientation));
+	camera_up = vec_unit(vec_cross(camera.orientation, camera_right));
 	data->vp.center = vec_add(camera.center, vec_mult(camera.orientation, \
 						FOCAL_LENGTH));
 	data->vp.up_left = vec_add(vec_sub(data->vp.center, \
@@ -52,7 +52,7 @@ void	setup_viewport(t_data *data, t_C camera)
 	data->scene->c.up = camera_up;
 	data->scene->c.right = camera_right;
 
-	/* printf("world_up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
+	printf("world_up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
 	printf("camera_right: (%f, %f, %f)\n", camera_right.x, camera_right.y, camera_right.z);
 	printf("camera_up: (%f, %f, %f)\n", camera_up.x, camera_up.y, camera_up.z);
 	printf("vp.width: %f\n", data->vp.width);
@@ -61,6 +61,6 @@ void	setup_viewport(t_data *data, t_C camera)
 	printf("vp.up_left: (%f, %f, %f)\n", data->vp.up_left.x, data->vp.up_left.y, data->vp.up_left.z);
 	printf("vp.pixel_x: (%f, %f, %f)\n", data->vp.pixel_x.x, data->vp.pixel_x.y, data->vp.pixel_x.z);
 	printf("vp.pixel_y: (%f, %f, %f)\n", data->vp.pixel_y.x, data->vp.pixel_y.y, data->vp.pixel_y.z);
-	printf("vp.pixel00: (%f, %f, %f)\n", data->vp.pixel00.x, data->vp.pixel00.y, data->vp.pixel00.z); */
+	printf("vp.pixel00: (%f, %f, %f)\n", data->vp.pixel00.x, data->vp.pixel00.y, data->vp.pixel00.z);
 
 }
