@@ -52,15 +52,15 @@ void	setup_viewport(t_data *data, t_C camera)
 	data->scene->c.up = camera_up;
 	data->scene->c.right = camera_right;
 
-	printf("world_up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
-	printf("camera_right: (%f, %f, %f)\n", camera_right.x, camera_right.y, camera_right.z);
-	printf("camera_up: (%f, %f, %f)\n", camera_up.x, camera_up.y, camera_up.z);
-	printf("vp.width: %f\n", data->vp.width);
-	printf("vp.height: %f\n", data->vp.height);
-	printf("vp.center: (%f, %f, %f)\n", data->vp.center.x, data->vp.center.y, data->vp.center.z);
-	printf("vp.up_left: (%f, %f, %f)\n", data->vp.up_left.x, data->vp.up_left.y, data->vp.up_left.z);
-	printf("vp.pixel_x: (%f, %f, %f)\n", data->vp.pixel_x.x, data->vp.pixel_x.y, data->vp.pixel_x.z);
-	printf("vp.pixel_y: (%f, %f, %f)\n", data->vp.pixel_y.x, data->vp.pixel_y.y, data->vp.pixel_y.z);
-	printf("vp.pixel00: (%f, %f, %f)\n", data->vp.pixel00.x, data->vp.pixel00.y, data->vp.pixel00.z);
+	//printf("world_up: (%f, %f, %f)\n", world_up.x, world_up.y, world_up.z);
+	//printf("camera_right: (%f, %f, %f)\n", camera_right.x, camera_right.y, camera_right.z);
+	//printf("camera_up: (%f, %f, %f)\n", camera_up.x, camera_up.y, camera_up.z);
+	//printf("vp.width: %f\n", data->vp.width);
+	//printf("vp.height: %f\n", data->vp.height);
+	//printf("vp.center: (%f, %f, %f)\n", data->vp.center.x, data->vp.center.y, data->vp.center.z);
+	//printf("vp.up_left: (%f, %f, %f)\n", data->vp.up_left.x, data->vp.up_left.y, data->vp.up_left.z);
+	//printf("vp.pixel_x: (%f, %f, %f)\n", data->vp.pixel_x.x, data->vp.pixel_x.y, data->vp.pixel_x.z);
+	//printf("vp.pixel_y: (%f, %f, %f)\n", data->vp.pixel_y.x, data->vp.pixel_y.y, data->vp.pixel_y.z);
+	//printf("vp.pixel00: (%f, %f, %f)\n", data->vp.pixel00.x, data->vp.pixel00.y, data->vp.pixel00.z);
 
 }

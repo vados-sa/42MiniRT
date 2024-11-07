@@ -1,11 +1,6 @@
 
 #include "minirt.h"
 
-t_coord	ray_at(t_ray r, t_float t)
-{
-	return (vec_add(r.origin, vec_mult(r.direction, t)));
-}
-
 /*If the plane and ray are parallel (i.e., when approaches 0),
 they either perfectly coincide, offering an infinite number of solutions,
 or they do not intersect at all. In practical C++ implementations,
