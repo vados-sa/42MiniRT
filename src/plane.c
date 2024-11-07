@@ -15,12 +15,12 @@ t_intersec	*plane_intersect(t_ray ray, t_object *obj)
 {
 	t_float		numerator;
 	t_float		denominator;
+	t_float		D;
 
-	numerator = vec_dot(vec_sub(obj->pl.point, ray.origin), obj->pl.normal);
+	D = vec_dot(obj->pl.normal, obj->pl.point);
+	numerator = D - vec_dot(obj->pl.normal, ray.origin);
 	denominator = vec_dot(obj->pl.normal, ray.direction);
-	if (numerator == 0 && denominator == 0) //no intersection, parallel plane
-		return (NULL);
-	else if (denominator < 1e-6) //infinite intersections, ray inside plane
+	if (numerator == 0 || fabs(denominator) < 1e-6) //parallel plane: 1. no intersection 2. infinite intersections, ray inside plane
 		return (NULL);
 	else
 	{

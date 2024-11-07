@@ -32,12 +32,12 @@ void	setup_viewport(t_data *data, t_C camera)
 	t_coord	camera_up;
 
 	world_up = coord(0.0, 1.0, 0.0);
-	if (camera.orientation.y == 1.0 || camera.orientation.y == -1) //check if world_up is not parallel to camera_orientation
+	if (fabs(camera.orientation.y) == 1.0) //check if world_up is not parallel to camera_orientation
 		world_up = coord(0.0, 0.0, 1.0);
 	data->vp.width = 2.0 * FOCAL_LENGTH * tan((camera.fov * PI / 180.0) / 2.0);
-	data->vp.height = data->vp.width / (data->image_width / data->image_height);
-	camera_right = vec_unit(vec_cross(world_up, camera.orientation));
-	camera_up = vec_unit(vec_cross(camera.orientation, camera_right));
+	data->vp.height = data->vp.width / ((t_float)data->image_width / (t_float)data->image_height);
+	camera_right = vec_unit(vec_cross(camera.orientation, world_up));
+	camera_up = vec_unit(vec_cross(camera_right, camera.orientation));
 	data->vp.center = vec_add(camera.center, vec_mult(camera.orientation, \
 						FOCAL_LENGTH));
 	data->vp.up_left = vec_add(vec_sub(data->vp.center, \
