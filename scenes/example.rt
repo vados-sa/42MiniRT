@@ -1,25 +1,25 @@
 # Ambient lighting: Ratio, Color
-A      0.3                                    255,255,255
+#A      0.3                                    255,255,255
 
 # Camera: Coordinates, Normal, FOV
-C      0,0,0       0,0,1        75
+#C      0,0,0       0,0,-1        75
 #C      0,0,0      0,0,-1       75
-#C      0,0,0      0,1,0        75
+C      0,0,0      0,-1,0        75
 #C      0,0,0      0,-1,0       75
-#C      0,0,0      1,0,1        75
-#C      0,0,0      -1,0,1       75
+#C      0,0,0      1,0,0        75
+#C      0,0,0      -1,0,0       75
 
 # Light: Coordinates, Brightness, Color
-L      5,10,-5                    1        255,255,200
+#L      5,10,-5                    1        255,255,200
 
-# Sphere: Coordinates, Diameter, Color
-sp     0,0,3                  0.8      0,150,255
-sp     0,0,6                  1.2      200,100,50
-sp     0,0,8                  1.5      255,50,100
-sp     0,0,10                 1.8     255,50,30
+# Sphere: Coordinates, Diameter, Color (blue, brown, red,pink)
+sp    -1,-6,0               0.8      0,150,255
+sp     0,-6,0              0.8      200,100,50
+sp     1,-6,0               0.8     255,50,30
+sp     2,-6,0               0.8      255,50,100
 
 # Plane: Coordinates, Normal, Color
-#pl    0,-1,0       0,1,0                    200,200,200
+#pl    0,-1,0       0,0.7,0.3                    200,200,200
 
 # Cylinder: Coordinates, Normal of axis, Diameter, Height, Color
 #cy     0,-1,12   0,1,0.5         2   6     50,50,150
