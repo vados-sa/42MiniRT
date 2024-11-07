@@ -21,22 +21,6 @@ t_color	gradient(t_ray r, t_coord camera_up)
 	return (color);
 }
 
-t_ray	create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data)
-{
-	t_ray	ray;
-	t_coord	x_scaled;
-	t_coord	y_scaled;
-	t_coord	pixel_center;
-
-	//ray.direction = (data->vp.pixel00 + (x * data->vp.pixel_x) + (y * data->vp.pixel_y));
-	x_scaled = vec_mult(data->vp.pixel_x, x);
-	y_scaled = vec_mult(data->vp.pixel_y, y);
-	pixel_center = vec_add(vec_add(data->vp.pixel00, x_scaled), y_scaled);
-	ray.direction = vec_sub(pixel_center, origin);
-	ray.origin = origin;
-	return (ray);
-}
-
 void	render(t_data *data)
 {
 	uint32_t	x;

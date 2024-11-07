@@ -65,11 +65,14 @@ t_coord		vec_sub(t_coord v1, t_coord v2);
 t_coord		vec_mult(t_coord v1, t_float scalar);
 t_coord		vec_unit(t_coord v);
 
-/*intersections*/
+/*rendering*/
 void		render(t_data *data);
 t_coord		ray_at(t_ray r, t_float t);
+t_ray		create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data);
+
+/*intersections*/
 t_intersec	*plane_intersect(t_ray ray, t_object *obj);
-int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y);
+int			intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y);
 uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
 #endif

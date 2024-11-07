@@ -1,11 +1,6 @@
 
 #include "minirt.h"
 
-t_coord	ray_at(t_ray r, t_float t)
-{
-	return (vec_add(r.origin, vec_mult(r.direction, t)));
-}
-
 /**
  * @var oc: vector from the ray origin to a point on the plane
  * @var numerator: numerator of the function to calculate t
