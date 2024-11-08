@@ -30,8 +30,8 @@ t_intersec	*plane_intersect(t_ray ray, t_object *obj)
 	obj->temp.color = obj->pl.color;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	if (denominator < 0)
-		obj->temp.normal = vec_mult(obj->pl.normal, -1.0);
+		obj->temp.normal = vec_unit(vec_mult(obj->pl.normal, -1.0));
 	else
-		obj->temp.normal = obj->pl.normal;
+		obj->temp.normal = vec_unit(obj->pl.normal);
 	return (&obj->temp);
 }

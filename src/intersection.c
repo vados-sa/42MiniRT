@@ -1,13 +1,16 @@
 
 #include "minirt.h"
 
-void	put_color(t_color rgba, uint32_t x, uint32_t y, t_data *data)
+void	put_color(t_intersec *hit_rec, uint32_t x, uint32_t y, t_data *data)
 {
-	uint32_t	color;
+	uint32_t	col_int;
+	t_color		col_rgb;
 
-	ambient_light(data->scene->a, &rgba);
-	color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
-	mlx_put_pixel(data->image, x, y, color);
+	ambient_light(data->scene->a, &(hit_rec->color));
+	light(data->scene->l, hit_rec);
+	col_rgb = hit_rec->color;
+	col_int = create_color(col_rgb.r, col_rgb.g, col_rgb.b, col_rgb.a);
+	mlx_put_pixel(data->image, x, y, col_int);
 }
 
 t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
@@ -89,6 +92,7 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 		obj->temp.t = t;
 		obj->temp.point = ray_at(ray, obj->temp.t);
 		obj->temp.color = obj->sp.color;
+		obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->sp.center));
 		return (&obj->temp);
 	}
 	else
@@ -150,7 +154,7 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 		object = object->next;
 	}
 	if (closest)
-		return (put_color(closest->color, x, y, data), 1);
+		return (put_color(closest, x, y, data), 1);
 		//calculate the color based on the lights and the object
 		//return the color
 		//free(closest);
