@@ -128,11 +128,6 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 		return (NULL);
 } */
 
-t_coord	ray_at(t_ray r, t_float t)
-{
-	return (vec_add(r.origin, vec_mult(r.direction, t)));
-}
-
 int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 {
 	t_object	*object;
