@@ -5,6 +5,7 @@ void	put_color(t_color rgba, uint32_t x, uint32_t y, t_data *data)
 {
 	uint32_t	color;
 
+	ambient_light(data->scene->a, &rgba);
 	color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
 	mlx_put_pixel(data->image, x, y, color);
 }
