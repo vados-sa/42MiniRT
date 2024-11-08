@@ -7,7 +7,7 @@ void	put_color(t_intersec *hit_rec, uint32_t x, uint32_t y, t_data *data)
 	t_color		col_rgb;
 
 	ambient_light(data->scene->a, &(hit_rec->color));
-	light(data->scene->l, hit_rec);
+	diffuse_light(data->scene->l, hit_rec);
 	col_rgb = hit_rec->color;
 	col_int = create_color(col_rgb.r, col_rgb.g, col_rgb.b, col_rgb.a);
 	mlx_put_pixel(data->image, x, y, col_int);

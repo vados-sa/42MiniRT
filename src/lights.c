@@ -37,7 +37,7 @@ void    ambient_light(t_A ambient, t_color *color)
  * @param l: a linked list of light sources
  * @param hit_rec: a t_intersection struct that contains the surface normal and the point where the object was hit
  */
-void    light(t_L *l, t_intersec *hit_rec)
+void    diffuse_light(t_L *l, t_intersec *hit_rec)
 {
     t_coord     light_dir;
     t_float     dot_product;
@@ -58,4 +58,9 @@ void    light(t_L *l, t_intersec *hit_rec)
         }
         l = l->next;
     }
+}
+
+t_color calculate_light()
+{
+    
 }
