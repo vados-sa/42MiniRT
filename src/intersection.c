@@ -108,11 +108,11 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 	a = vec_dot(ray.direction, ray.direction);
 	b = -2.0 * vec_dot(ray.direction, oc);
 	c = vec_dot(oc, oc) - (obj->sp.radius * obj->sp.radius);
-	discriminant = (b * b) - (4 * a * c);
+	discriminant = (b * b) - (4.0 * a * c);
 	if (discriminant >= 0)
 	{
-		t_min = (-b - (sqrt(discriminant)) / 2 * a);
-		t_max = (-b + (sqrt(discriminant)) / 2 * a);
+		t_min = (-b - (sqrt(discriminant)) / 2.0 * a);
+		t_max = (-b + (sqrt(discriminant)) / 2.0 * a);
 		if (t_min >= 0)
 			obj->temp.t = t_min; // sphere in front of the camera
 		else if (t_max >= 0)

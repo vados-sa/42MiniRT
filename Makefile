@@ -20,6 +20,7 @@ INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 SRCS 			=  $(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/exit.c $(SRC_DIR)/light_list.c \
 					 $(SRC_DIR)/object_list.c $(SRC_DIR)/render.c $(SRC_DIR)/vec3_ops.c $(SRC_DIR)/vec3_products.c \
 					 $(SRC_DIR)/plane.c $(SRC_DIR)/cylinder.c $(SRC_DIR)/intersection.c \
+					 $(SRC_DIR)/ray.c\
 					 $(PARSE_DIR)/parsing.c $(PARSE_DIR)/parsing_read_file.c \
 					 $(PARSE_DIR)/parsing_checks.c $(PARSE_DIR)/number_checks.c \
 					 $(PARSE_DIR)/parse_amb_light.c $(PARSE_DIR)/parse_light.c $(PARSE_DIR)/parse_camera.c \

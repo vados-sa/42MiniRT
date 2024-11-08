@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:28:47 by pbencze           #+#    #+#             */
-/*   Updated: 2024/10/29 16:58:21 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:36:11 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <ctype.h>
-# include <bsd/string.h>
+//# include <bsd/string.h>
 # include <fcntl.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
