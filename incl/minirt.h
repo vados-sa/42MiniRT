@@ -71,10 +71,11 @@ t_coord		ray_at(t_ray r, t_float t);
 t_ray		create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data);
 
 /*intersections*/
+t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj);
 t_intersec	*plane_intersect(t_ray ray, t_object *obj);
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj);
 int					intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y);
-t_float		find_t(t_ray ray, t_object *obj, char type);
+//t_float		find_t(t_ray ray, t_object *obj, char type);
 uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
 #endif
