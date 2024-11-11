@@ -19,10 +19,6 @@ t_color	ambient_light(t_A ambient)
 
 	light = col_mult(ambient.color, ambient.ratio);
 	return (light);
- /* color->r *= ((t_float)light.r / 255.0);
-    color->g *= ((t_float)light.g / 255.0);
-    color->b *= ((t_float)light.b / 255.0);
-    color->a = color->a; */
 }
 
 /**
@@ -50,17 +46,10 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec)
 		//figure out how to combine multiple lights
         hit_rec->normal = vec_unit(hit_rec->normal); //maybe not needed if normalized before?
         light_dir = vec_unit(vec_sub(hit_rec->point, l->point));
-		//printf("light dir: %f, %f, %f", light_dir.x, light_dir.y, light_dir.z);
-		//printf("normal: %f, %f, %f", hit_rec->normal.x, hit_rec->normal.y, hit_rec->normal.z);
-        dot_product = fmax(vec_dot(hit_rec->normal, light_dir), 0.0); //if angle is bigger than 90%, no light
-        //printf("dot_product: %f", dot_product);
+        dot_product = fmax(vec_dot(hit_rec->normal, light_dir), 0.0); //if angle is bigger than 90deg, no light
 		if (dot_product > 0.0)
         {
             diffuse = col_mult(col_mult(l->color, dot_product), l->brightness);
-           /*  hit_rec->color.r *= ((t_float)diffuse.r / 255.0);
-            hit_rec->color.g *= ((t_float)diffuse.g / 255.0);
-            hit_rec->color.b *= ((t_float)diffuse.b / 255.0);
-            hit_rec->color.a = hit_rec->color.a; */
         }
         l = l->next;
     }
@@ -75,12 +64,9 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 
 	ambient = ambient_light(data->scene->a);
 	diffuse = diffuse_light(data->scene->l, hit_rec);
-	result.r = ((t_float)(ambient.r + diffuse.r) / 510.0) * color.r;
-	result.g = ((t_float)(ambient.g + diffuse.g) / 510.0) * color.g;
-	result.b = ((t_float)(ambient.b + diffuse.b) / 510.0) * color.b;
+	result.r = ((t_float)(ambient.r + diffuse.r) / 255.0) * color.r;
+	result.g = ((t_float)(ambient.g + diffuse.g) / 255.0) * color.g;
+	result.b = ((t_float)(ambient.b + diffuse.b) / 255.0) * color.b;
 	result.a = 255;
-	/* printf("%i", diffuse.r);
-	printf("%i", diffuse.g);
-	printf("%i", diffuse.b); */
 	return (result);
 }

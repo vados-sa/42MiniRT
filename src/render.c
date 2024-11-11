@@ -18,7 +18,7 @@ t_color	gradient(t_ray r, t_coord camera_up, t_data *data)
 	color.g = ((1.0 - a) * 255 + a * 182);
 	color.b = ((1.0 - a) * 255 + a * 193);
 	color.a = 255;
-	color = calculate_light(data, NULL, color);
+	//color = calculate_light(data, NULL, color);
 	return (color);
 }
 

@@ -30,7 +30,9 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 				pow((obj_2->point.y - origin.y), 2) +
 				pow((obj_2->point.z - origin.z), 2));
 	if (d1 <= d2)
+	{
 		return (obj_1);
+	}
 	else
 		return (obj_2);
 }
@@ -144,6 +146,7 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 	closest = NULL;
 	while (object)
 	{
+		temp = NULL;
 		if (object->type == 's')
 			temp = sphere_intersect(data, ray, object);
 		else if (object->type == 'p')
