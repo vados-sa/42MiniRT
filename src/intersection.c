@@ -31,7 +31,7 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 		return (obj_2);
 }
 
-t_float	find_discriminant(t_coord oc, t_float a, t_float b, t_float radius)
+/* t_float	find_discriminant(t_coord oc, t_float a, t_float b, t_float radius)
 {
 	t_float	c;
 	t_float	discriminant;
@@ -92,7 +92,7 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 	}
 	else
 		return (NULL);
-}
+} */
 
 /* t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 {

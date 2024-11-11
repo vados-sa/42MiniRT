@@ -14,8 +14,8 @@ LIBMLX			= 	./lib/MLX42
 LIBS			=  	$(LIBMLX)/build/libmlx42.a -ldl -L/opt/homebrew/lib -lglfw -pthread -lm #-L/opt/homebrew/lib for mac
 LIBS 			+= 	$(LIBFTDIR)/libft.a
 
-#INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
-INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
+INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
+#INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
 SRCS 			=  $(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/exit.c $(SRC_DIR)/light_list.c \
 					 $(SRC_DIR)/object_list.c $(SRC_DIR)/render.c $(SRC_DIR)/vec3_ops.c $(SRC_DIR)/vec3_products.c \

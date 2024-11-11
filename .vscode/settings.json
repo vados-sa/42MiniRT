@@ -3,7 +3,8 @@
 	"files.associations": {
 		"minirt.h": "c",
 		"mlx42.h": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"random": "c"
 	},
 	"github.copilot.editor.enableAutoCompletions": false
 }
