@@ -6,7 +6,7 @@ uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
-t_color	gradient(t_ray r, t_coord camera_up, t_A ambient)
+t_color	gradient(t_ray r, t_coord camera_up, t_data *data)
 {
 	t_coord	unit_direction;
 	t_float	a;
@@ -18,7 +18,7 @@ t_color	gradient(t_ray r, t_coord camera_up, t_A ambient)
 	color.g = ((1.0 - a) * 255 + a * 182);
 	color.b = ((1.0 - a) * 255 + a * 193);
 	color.a = 255;
-	ambient_light(ambient, &color);
+	color = calculate_light(data, NULL, color);
 	return (color);
 }
 
@@ -41,7 +41,7 @@ void	render(t_data *data)
 				continue ;
 			else
 			{
-				rgba = gradient(ray, data->scene->c.up, data->scene->a);
+				rgba = gradient(ray, data->scene->c.up, data);
 				color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
 				//color = create_color(3, 4, 94, 255);
 				mlx_put_pixel(data->image, x, y, color);

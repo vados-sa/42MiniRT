@@ -6,9 +6,9 @@ void	put_color(t_intersec *hit_rec, uint32_t x, uint32_t y, t_data *data)
 	uint32_t	col_int;
 	t_color		col_rgb;
 
-	ambient_light(data->scene->a, &(hit_rec->color));
+	ambient_light(data->scene->a);
 	diffuse_light(data->scene->l, hit_rec);
-	col_rgb = hit_rec->color;
+	col_rgb = calculate_light(data, hit_rec, hit_rec->color);
 	col_int = create_color(col_rgb.r, col_rgb.g, col_rgb.b, col_rgb.a);
 	mlx_put_pixel(data->image, x, y, col_int);
 }
@@ -49,7 +49,7 @@ t_float	t_max_or_min(t_float a, t_float b, t_float discriminant)
 {
 	t_float	t_min;
 	t_float	t_max;
-	
+
 	t_min = (-b - (sqrt(discriminant)) / 2 * a);
 	t_max = (-b + (sqrt(discriminant)) / 2 * a);
 	if (t_min >= 0)

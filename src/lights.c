@@ -15,9 +15,9 @@ t_color	col_mult(t_color c, t_float scalar)
  */
 t_color	ambient_light(t_A ambient)
 {
-    t_color light;
+	t_color	light;
 
-    light = col_mult(ambient.color, ambient.ratio);
+	light = col_mult(ambient.color, ambient.ratio);
 	return (light);
  /* color->r *= ((t_float)light.r / 255.0);
     color->g *= ((t_float)light.g / 255.0);
@@ -45,12 +45,16 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec)
     t_color     diffuse;
 
 	diffuse = col(0, 0, 0, 0);
-    while (l)
-    {//figure out how to combine multiple lights
+    while (l && hit_rec)
+    {
+		//figure out how to combine multiple lights
         hit_rec->normal = vec_unit(hit_rec->normal); //maybe not needed if normalized before?
-        light_dir = vec_unit(vec_sub(l->point, hit_rec->point));
+        light_dir = vec_unit(vec_sub(hit_rec->point, l->point));
+		//printf("light dir: %f, %f, %f", light_dir.x, light_dir.y, light_dir.z);
+		//printf("normal: %f, %f, %f", hit_rec->normal.x, hit_rec->normal.y, hit_rec->normal.z);
         dot_product = fmax(vec_dot(hit_rec->normal, light_dir), 0.0); //if angle is bigger than 90%, no light
-        if (dot_product > 0.0)
+        //printf("dot_product: %f", dot_product);
+		if (dot_product > 0.0)
         {
             diffuse = col_mult(col_mult(l->color, dot_product), l->brightness);
            /*  hit_rec->color.r *= ((t_float)diffuse.r / 255.0);
@@ -63,7 +67,7 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec)
 	return (diffuse);
 }
 
-t_color	calculate_light(t_color obj_color, t_data *data, t_intersec *hit_rec)
+t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 {
 	t_color	result;
 	t_color	ambient;
@@ -71,9 +75,12 @@ t_color	calculate_light(t_color obj_color, t_data *data, t_intersec *hit_rec)
 
 	ambient = ambient_light(data->scene->a);
 	diffuse = diffuse_light(data->scene->l, hit_rec);
-	result.r =
-	result.g =
-	result.b =
-	result.a =
+	result.r = ((t_float)(ambient.r + diffuse.r) / 510.0) * color.r;
+	result.g = ((t_float)(ambient.g + diffuse.g) / 510.0) * color.g;
+	result.b = ((t_float)(ambient.b + diffuse.b) / 510.0) * color.b;
+	result.a = 255;
+	/* printf("%i", diffuse.r);
+	printf("%i", diffuse.g);
+	printf("%i", diffuse.b); */
 	return (result);
 }
