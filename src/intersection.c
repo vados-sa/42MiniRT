@@ -9,6 +9,7 @@ void	put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
 
 	hit_rec = intersection(data, ray);
 	if (hit_rec)
+		//col_rgb = hit_rec->color;
 		col_rgb = calculate_light(data, hit_rec, hit_rec->color);
 	else
 		col_rgb = gradient(ray, data->scene->c.up, data);
@@ -26,9 +27,9 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 		return (obj_1);
 	if (!obj_1)
 		return (obj_2);
-	d1 = sqrt((obj_1->point.x - origin.x) * (obj_1->point.x - origin.x)) + \
+	d1 = sqrt(((obj_1->point.x - origin.x) * (obj_1->point.x - origin.x)) + \
 			((obj_1->point.y - origin.y) * obj_1->point.y - origin.y) + \
-			((obj_1->point.z - origin.z) * (obj_1->point.z - origin.z));
+			((obj_1->point.z - origin.z) * (obj_1->point.z - origin.z)));
 	d2 = sqrt(((obj_2->point.x - origin.x) * (obj_2->point.x - origin.x)) + \
 			((obj_2->point.y - origin.y) * (obj_2->point.y - origin.y)) + \
 			((obj_2->point.z - origin.z) * (obj_2->point.z - origin.z)));

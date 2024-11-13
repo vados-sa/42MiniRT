@@ -26,7 +26,7 @@ t_intersec	*plane_intersect(t_ray ray, t_object *obj)
 	if (fabs(denominator) < 1e-6) //ray is parallel to plane
 		return (NULL);
 	obj->temp.t = numerator / denominator;
-	if (obj->temp.t <= 0) //plane is behind ray
+	if (obj->temp.t <= 1e-6) //plane is behind ray
 		return (NULL);
 	obj->temp.color = obj->pl.color;
 	obj->temp.point = ray_at(ray, obj->temp.t);
