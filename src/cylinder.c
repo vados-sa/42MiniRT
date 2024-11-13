@@ -1,6 +1,5 @@
 
 #include "../incl/minirt.h"
-/* https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm */
 
 /* t_coord local_normal_at(t_coord point, t_object *obj, t_float m)
 {
@@ -36,11 +35,11 @@ static t_float find_t(t_ray ray, t_object *obj)
     discriminant = find_discriminant(ray, obj, a, b);
     if (discriminant < 0)
         return (-1);
-    t_min = (-b - sqrt(discriminant)) / (2.0 * a);
-    t_max = (-b + sqrt(discriminant)) / (2.0 * a);
+    t_min = ((-b - sqrt(discriminant))) / (2.0 * a);
+    t_max = ((-b + sqrt(discriminant))) / (2.0 * a);
     if (t_min > t_max && t_min > 0)
         return (t_max);
-    else if (t_min >= 0) // maybe t_min > 0, not sure yet. t = 0 means that the intersection happens in the origin. Should something be redered or not?
+    else if (t_min >= 0) // maybe t_min > 0, not sure yet. t = 0 means that the intersection happens on the origin. Should something be redered or not?
         return (t_min);
     else if (t_max >= 0)
         return (t_max);
