@@ -12,9 +12,9 @@ static t_float find_discriminant(t_ray ray, t_object *obj, t_float a, t_float b)
 {
     t_float c;
 
-    c = vec_dot(vec_sub(ray.origin, obj->cy.center), vec_sub(ray.origin, \
-        obj->cy.center)) - vec_dot(vec_sub(ray.origin, obj->cy.center), \
-        obj->cy.normal) * vec_dot(vec_sub(ray.origin, obj->cy.center),\
+    c = vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), vec_sub(ray.origin, \
+        obj->cy.top_end_cap)) - vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), \
+        obj->cy.normal) * vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap),\
         obj->cy.normal) - obj->cy.radius * obj->cy.radius;
     return (b * b - 4 * a * c);
 }
@@ -29,9 +29,9 @@ static t_float find_t_cy(t_ray ray, t_object *obj)
 
     a = vec_dot(ray.direction, ray.direction) - vec_dot(ray.direction, \
         obj->cy.normal) * vec_dot(ray.direction, obj->cy.normal);
-    b = 2 * (vec_dot(ray.direction, vec_sub(ray.origin, obj->cy.center)) - \
+    b = 2 * (vec_dot(ray.direction, vec_sub(ray.origin, obj->cy.top_end_cap)) - \
         vec_dot(ray.direction, obj->cy.normal) * vec_dot(vec_sub(ray.origin, \
-        obj->cy.center), obj->cy.normal));
+        obj->cy.top_end_cap), obj->cy.normal));
     discriminant = find_discriminant(ray, obj, a, b);
     if (discriminant < 0)
         return (-1);
@@ -56,7 +56,7 @@ t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
     if (t == -1)
         return (NULL);
     m = vec_dot(ray.direction, obj->cy.normal) * t + \
-        vec_dot(vec_sub(ray.origin, obj->cy.center), obj->cy.normal);
+        vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
     if (m < 0 || m > obj->cy.height)
         return (NULL);
     obj->temp.t = t;
@@ -71,7 +71,7 @@ t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
     t_float a, b, c, discriminant, t1, t2, t;
     t_coord point;
     t_intersec intersec;
-    t_coord X = vec_sub(ray.origin, obj->cy.center);
+    t_coord X = vec_sub(ray.origin, obj->cy.top_end_cap);
     t_float D_dot_V = vec_dot(ray.direction, obj->cy.normal);
     t_float X_dot_V = vec_dot(X, obj->cy.normal);
 

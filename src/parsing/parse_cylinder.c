@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/31 14:46:17 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/11/13 13:18:59 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int	parse_cy(t_data *data, char *line)
 	}
 	free_arr(info, NULL);
 	cy_node->type = 'c';
+	cy_node->cy.top_end_cap = vec_sub(cy_node->cy.center, vec_mult(cy_node->cy.normal, cy_node->cy.height / 2.0));
 	return (0);
 }
