@@ -53,7 +53,7 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 		obj->temp.t = t;
 		obj->temp.point = ray_at(ray, obj->temp.t);
 		obj->temp.color = obj->sp.color;
-		obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->sp.center));
+		obj->temp.normal = vec_unit(vec_sub(obj->sp.center, obj->temp.point));
 		return (&obj->temp);
 	}
 	else
