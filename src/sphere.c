@@ -16,8 +16,8 @@ t_float	t_max_or_min(t_float a, t_float b, t_float discriminant)
 	t_float	t_min;
 	t_float	t_max;
 	
-	t_min = (-b - (sqrt(discriminant)) / 2 * a);
-	t_max = (-b + (sqrt(discriminant)) / 2 * a);
+	t_min = ((-b - (sqrt(discriminant))) / 2 * a);
+	t_max = ((-b + (sqrt(discriminant))) / 2 * a);
 	if (t_min >= 0)
 		return (t_min);
 	else if (t_max >= 0)
