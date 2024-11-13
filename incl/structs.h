@@ -79,7 +79,7 @@ typedef struct s_cylinder
 	t_float		radius;
 	t_float		height;
 	t_color		color;
-	t_coord		top_end_cap;
+	t_coord		top_end_cap; // might be bottom end, but egal
 }	t_cylinder;
 
 typedef struct s_intersec

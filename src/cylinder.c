@@ -1,6 +1,10 @@
 
 #include "../incl/minirt.h"
 
+// D = ray.direction
+// V = obj->cy.normal
+// C = obj->cy.top_end_cap
+
 t_coord local_normal_at(t_coord point, t_object *obj, t_float m)
 {
     t_coord normal;
@@ -39,12 +43,28 @@ static t_float find_t_cy(t_ray ray, t_object *obj)
     t_max = ((-b + sqrt(discriminant))) / (2.0 * a);
     if (t_min > t_max && t_min > 0)
         return (t_max);
-    else if (t_min >= 0) // maybe t_min > 0, not sure yet. t = 0 means that the intersection happens on the origin. Should something be redered or not?
+    else if (t_min > 0) // maybe t_min > 0, not sure yet. t = 0 means that the intersection happens on the origin. Should something be redered or not?
         return (t_min);
     else if (t_max >= 0)
         return (t_max);
     else
         return (-1); // so this might be 0 ?
+}
+
+t_intersec  *caps(t_ray ray, t_object *obj)
+{
+    t_intersec  *intersec;
+
+    obj->pl.normal = obj->cy.normal; // segfault happens here
+    obj->pl.color = obj->cy.color;
+    obj->pl.point = obj->cy.top_end_cap;
+    intersec = plane_intersect(ray, obj);
+    if (intersec)
+        return (intersec);
+    obj->pl.point = vec_add(obj->cy.top_end_cap, vec_mult(obj->cy.normal, obj->cy.height));
+    obj->pl.normal = vec_mult(obj->cy.normal, -1);
+    intersec = plane_intersect(ray, obj);
+    return (intersec);
 }
 
 t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
@@ -57,8 +77,11 @@ t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
         return (NULL);
     m = vec_dot(ray.direction, obj->cy.normal) * t + \
         vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
+    /* if (m < 0 || m > obj->cy.height)
+        return (NULL); */
+    //printf("segfault\n");
     if (m < 0 || m > obj->cy.height)
-        return (NULL);
+        return(caps(ray, obj));
     obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
