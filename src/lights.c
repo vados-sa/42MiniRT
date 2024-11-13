@@ -6,6 +6,11 @@ t_color	col_mult(t_color c, t_float scalar)
 	return (col(c.r * scalar, c.g * scalar, c.b * scalar, c.a));
 }
 
+t_color	col_add(t_color c1, t_color c2)
+{
+	return (col(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a));
+}
+
 /**
  * This function multiplies the color of an object by the
  * ratio and color of the ambient lighting or "global illumination"
@@ -36,23 +41,27 @@ t_color	ambient_light(t_A ambient)
  */
 t_color	diffuse_light(t_L *l, t_intersec *hit_rec)
 {
-    t_coord     light_dir;
-    t_float     dot_product;
-    t_color     diffuse;
+	t_coord	light_dir;
+	t_float	dot_product;
+	t_color	diffuse;
+	t_color	temp_diffuse;
+	bool	shadow;
 
 	diffuse = col(0, 0, 0, 0);
-    while (l && hit_rec)
-    {
+	while (l && hit_rec)
+	{
 		//figure out how to combine multiple lights
-        hit_rec->normal = vec_unit(hit_rec->normal); //maybe not needed if normalized before?
-        light_dir = vec_unit(vec_sub(hit_rec->point, l->point));
-        dot_product = fmax(vec_dot(hit_rec->normal, light_dir), 0.0); //if angle is bigger than 90deg, no light
-		if (dot_product > 0.0)
-        {
-            diffuse = col_mult(col_mult(l->color, dot_product), l->brightness);
-        }
-        l = l->next;
-    }
+		//hit_rec->normal = vec_unit(hit_rec->normal); //do we need it?
+		light_dir = vec_unit(vec_sub(hit_rec->point, l->point));
+		dot_product = fmax(vec_dot(hit_rec->normal, light_dir), 0.0); //if angle is bigger than 90deg, no light
+		shadow = check_shadow();
+		if (dot_product > 0.0 && shadow == false)
+		{
+			temp_diffuse = col_mult(col_mult(l->color, dot_product), l->brightness);
+			diffuse = col_add(diffuse, temp_diffuse);
+		}
+		l = l->next;
+	}
 	return (diffuse);
 }
 
@@ -64,15 +73,15 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 
 	ambient = ambient_light(data->scene->a);
 	diffuse = diffuse_light(data->scene->l, hit_rec);
-	result.r = ((t_float)(ambient.r + diffuse.r) / 510.0) * color.r;
-	result.g = ((t_float)(ambient.g + diffuse.g) / 510.0) * color.g;
-	result.b = ((t_float)(ambient.b + diffuse.b) / 510.0) * color.b;
-	/* if (result.r > 255)
+	result.r = ((t_float)(ambient.r + diffuse.r) / 255.0) * color.r;
+	result.g = ((t_float)(ambient.g + diffuse.g) / 255.0) * color.g;
+	result.b = ((t_float)(ambient.b + diffuse.b) / 255.0) * color.b;
+	if (result.r > 255)
 		result.r = 255;
 	if (result.g > 255)
 		result.g = 255;
 	if (result.b > 255)
-		result.b = 255; */
+		result.b = 255;
 	result.a = 255;
 	return (result);
 }

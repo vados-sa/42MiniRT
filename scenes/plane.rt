@@ -6,8 +6,8 @@ C      0,0,3      0,0,-1        120
 
 # Plane: Coordinates, Normal, Color
 pl    0,0,3     0,1,0         255,0,0
-pl    0,-2,0     0,1,0         0,200,0
-pl    0,-3,0     0,1,0         0,0,255
+pl    0,0,3     0,1,0         0,200,0
+pl    0,-3,3     0,1,0         0,0,255
 
 # Sphere: Coordinates, Diameter, Color
 sp    0,0,-3      1.9           255,255,255
