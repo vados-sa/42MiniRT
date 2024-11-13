@@ -64,9 +64,15 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 
 	ambient = ambient_light(data->scene->a);
 	diffuse = diffuse_light(data->scene->l, hit_rec);
-	result.r = ((t_float)(ambient.r + diffuse.r) / 255.0) * color.r;
-	result.g = ((t_float)(ambient.g + diffuse.g) / 255.0) * color.g;
-	result.b = ((t_float)(ambient.b + diffuse.b) / 255.0) * color.b;
+	result.r = ((t_float)(ambient.r + diffuse.r) / 510.0) * color.r;
+	result.g = ((t_float)(ambient.g + diffuse.g) / 510.0) * color.g;
+	result.b = ((t_float)(ambient.b + diffuse.b) / 510.0) * color.b;
+	/* if (result.r > 255)
+		result.r = 255;
+	if (result.g > 255)
+		result.g = 255;
+	if (result.b > 255)
+		result.b = 255; */
 	result.a = 255;
 	return (result);
 }
