@@ -51,21 +51,44 @@ static t_float find_t_cy(t_ray ray, t_object *obj)
         return (-1); // so this might be 0 ?
 }
 
-t_intersec  *caps(t_ray ray, t_object *obj)
+/* t_float intersect_plane(t_ray ray, t_coord point, t_coord normal)
 {
-    t_intersec  *intersec;
-
-    obj->pl.normal = obj->cy.normal; // segfault happens here
-    obj->pl.color = obj->cy.color;
-    obj->pl.point = obj->cy.top_end_cap;
-    intersec = plane_intersect(ray, obj);
-    if (intersec)
-        return (intersec);
-    obj->pl.point = vec_add(obj->cy.top_end_cap, vec_mult(obj->cy.normal, obj->cy.height));
-    obj->pl.normal = vec_mult(obj->cy.normal, -1);
-    intersec = plane_intersect(ray, obj);
-    return (intersec);
+    t_float denom = vec_dot(normal, ray.direction);
+    if (fabs(denom) > 1e-6)
+    {
+        t_float t = vec_dot(vec_sub(point, ray.origin), normal) / denom;
+        if (t >= 0)
+            return t;
+    }
+    return -1;
 }
+
+t_float caps(t_ray ray, t_object *obj, t_float t)
+{
+    t_float top_cap;
+    t_float bottom_cap;
+    t_coord top_center;
+    t_coord bottom_center;
+    t_coord p;
+
+    top_center = vec_add(obj->cy.top_end_cap, vec_mult(obj->cy.normal, obj->cy.height));
+    bottom_center = obj->cy.top_end_cap;
+    top_cap = intersect_plane(ray, bottom_center, obj->cy.normal);
+    bottom_cap = intersect_plane(ray, top_center, vec_mult(obj->cy.normal, -1));
+    if (top_cap >= 0 && top_cap < t)
+    {
+        p = ray_at(ray, top_cap);
+        if (vec_dot(vec_sub(p, top_center), vec_sub(p, top_center)) <= obj->cy.radius * obj->cy.radius)
+            return top_cap;
+    }
+    if (bottom_cap >= 0 && bottom_cap < t)
+    {
+        p = ray_at(ray, bottom_cap);
+        if (vec_dot(vec_sub(p, bottom_center), vec_sub(p, bottom_center)) <= obj->cy.radius * obj->cy.radius)
+            return bottom_cap;
+    }
+    return t;
+} */
 
 t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
 {
@@ -77,11 +100,10 @@ t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
         return (NULL);
     m = vec_dot(ray.direction, obj->cy.normal) * t + \
         vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
-    /* if (m < 0 || m > obj->cy.height)
-        return (NULL); */
-    //printf("segfault\n");
     if (m < 0 || m > obj->cy.height)
-        return(caps(ray, obj));
+        return (NULL);
+    /* if (m < 0 || m > obj->cy.height)
+        t = caps(ray, obj, t); */
     obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
