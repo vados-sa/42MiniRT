@@ -5,12 +5,12 @@
 // V = obj->cy.normal
 // C = obj->cy.top_end_cap
 
-t_coord local_normal_at(t_coord point, t_object *obj, t_float m)
+/* t_coord local_normal_at(t_coord point, t_object *obj, t_float m)
 {
     t_coord normal;
     normal = vec_sub(point, vec_add(obj->cy.center, vec_mult(obj->cy.normal, m)));
     return vec_unit(normal);
-}
+} */
 
 static t_float find_discriminant(t_ray ray, t_object *obj, t_float a, t_float b)
 {
@@ -107,6 +107,7 @@ t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
     obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
-    obj->temp.normal = local_normal_at(obj->temp.point, obj, m);
+    //obj->temp.normal = local_normal_at(obj->temp.point, obj, m);
+    obj->temp.normal = vec_unit(vec_sub(obj->cy.center, obj->temp.point));
     return (&obj->temp);
 }
