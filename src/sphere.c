@@ -15,9 +15,9 @@ t_float	t_max_or_min(t_float a, t_float b, t_float discriminant)
 {
 	t_float	t_min;
 	t_float	t_max;
-	
-	t_min = ((-b - (sqrt(discriminant))) / 2 * a);
-	t_max = ((-b + (sqrt(discriminant))) / 2 * a);
+
+	t_min = (-b - (sqrt(discriminant))) / (2 * a);
+	t_max = (-b + (sqrt(discriminant))) / (2 * a);
 	if (t_min >= 0)
 		return (t_min);
 	else if (t_max >= 0)
@@ -33,7 +33,7 @@ t_float	find_t(t_ray ray, t_object *obj)
 	t_float	a;
 	t_float	b;
 
-	
+
 	oc = vec_sub(obj->sp.center, ray.origin);
 	a = vec_dot(ray.direction, ray.direction);
 	b = -2.0 * vec_dot(ray.direction, oc);
@@ -53,6 +53,7 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 		obj->temp.t = t;
 		obj->temp.point = ray_at(ray, obj->temp.t);
 		obj->temp.color = obj->sp.color;
+		obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->sp.center));
 		return (&obj->temp);
 	}
 	else
