@@ -18,7 +18,6 @@ t_color	gradient(t_ray r, t_coord camera_up, t_data *data)
 	color.g = ((1.0 - a) * 255 + a * 182);
 	color.b = ((1.0 - a) * 255 + a * 193);
 	color.a = 255;
-	//color = calculate_light(data, NULL, color);
 	return (color);
 }
 
@@ -37,15 +36,7 @@ void	render(t_data *data)
 		while (++x < IMAGE_WIDTH)
 		{
 			ray = create_ray(x, y, data->scene->c.center, data);
-			if (intersection(data, ray, x, y))
-				continue ;
-			else
-			{
-				rgba = gradient(ray, data->scene->c.up, data);
-				color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
-				//color = create_color(3, 4, 94, 255);
-				mlx_put_pixel(data->image, x, y, color);
-			}
+			put_color(x, y, data, ray);
 		}
 	}
 }

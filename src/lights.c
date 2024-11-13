@@ -55,7 +55,7 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec)
 		light_dir = vec_unit(vec_sub(hit_rec->point, l->point));
 		dot_product = fmax(vec_dot(hit_rec->normal, light_dir), 0.0); //if angle is bigger than 90deg, no light
 		//shadow = check_shadow();
-		if (dot_product > 0.0 && shadow == false)
+		if (dot_product > 0.0) //&& shadow == false)
 		{
 			temp_diffuse = col_mult(col_mult(l->color, dot_product), l->brightness);
 			diffuse = col_add(diffuse, temp_diffuse);
