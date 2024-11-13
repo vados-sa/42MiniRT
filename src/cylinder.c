@@ -19,7 +19,7 @@ static t_float find_discriminant(t_ray ray, t_object *obj, t_float a, t_float b)
     return (b * b - 4 * a * c);
 }
 
-static t_float find_t(t_ray ray, t_object *obj)
+static t_float find_t_cy(t_ray ray, t_object *obj)
 {
     t_float discriminant;
     t_float a;
@@ -52,7 +52,7 @@ t_intersec *cylinder_intersect(t_ray ray, t_object *obj)
     t_float t;
     t_float m;
     
-    t = find_t(ray, obj);
+    t = find_t_cy(ray, obj);
     if (t == -1)
         return (NULL);
     m = vec_dot(ray.direction, obj->cy.normal) * t + \

@@ -1,12 +1,19 @@
 
 #include "minirt.h"
 
-void	put_color(t_color rgba, uint32_t x, uint32_t y, t_data *data)
+void	put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
 {
-	uint32_t	color;
+	uint32_t	col_int;
+	t_color		col_rgb;
+	t_intersec	*hit_rec;
 
-	color = create_color(rgba.r, rgba.g, rgba.b, rgba.a);
-	mlx_put_pixel(data->image, x, y, color);
+	hit_rec = intersection(data, ray);
+	if (hit_rec)
+		col_rgb = calculate_light(data, hit_rec, hit_rec->color);
+	else
+		col_rgb = gradient(ray, data->scene->c.up, data);
+	col_int = create_color(col_rgb.r, col_rgb.g, col_rgb.b, col_rgb.a);
+	mlx_put_pixel(data->image, x, y, col_int);
 }
 
 t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
@@ -16,17 +23,19 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 	t_float	d2;
 
 	if (!obj_2)
-		return(obj_1);
+		return (obj_1);
 	if (!obj_1)
 		return (obj_2);
-	d1 = sqrt(pow((obj_1->point.x - origin.x), 2) +
-				pow((obj_1->point.y - origin.y), 2) +
-				pow((obj_1->point.z - origin.z), 2));
-	d2 = sqrt(pow((obj_2->point.x - origin.x), 2) +
-				pow((obj_2->point.y - origin.y), 2) +
-				pow((obj_2->point.z - origin.z), 2));
+	d1 = sqrt(pow((obj_1->point.x - origin.x), 2) + \
+			pow((obj_1->point.y - origin.y), 2) + \
+			pow((obj_1->point.z - origin.z), 2));
+	d2 = sqrt(pow((obj_2->point.x - origin.x), 2) + \
+			pow((obj_2->point.y - origin.y), 2) + \
+			pow((obj_2->point.z - origin.z), 2));
 	if (d1 <= d2)
+	{
 		return (obj_1);
+	}
 	else
 		return (obj_2);
 }
@@ -45,9 +54,9 @@ t_float	t_max_or_min(t_float a, t_float b, t_float discriminant)
 {
 	t_float	t_min;
 	t_float	t_max;
-	
-	t_min = (-b - (sqrt(discriminant)) / 2 * a);
-	t_max = (-b + (sqrt(discriminant)) / 2 * a);
+
+	t_min = (-b - (sqrt(discriminant))) / (2 * a);
+	t_max = (-b + (sqrt(discriminant))) / (2 * a);
 	if (t_min >= 0)
 		return (t_min);
 	else if (t_max >= 0)
@@ -88,57 +97,24 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 		obj->temp.t = t;
 		obj->temp.point = ray_at(ray, obj->temp.t);
 		obj->temp.color = obj->sp.color;
+		obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->sp.center));
 		return (&obj->temp);
 	}
 	else
 		return (NULL);
 } */
 
-/* t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
-{
-	t_float	discriminant;
-	t_float	a;
-	t_float	b;
-	t_float	c;
-	t_coord	oc;
-	t_float	t_min;
-	t_float	t_max;
-
-	oc = vec_sub(obj->sp.center, ray.origin);
-	a = vec_dot(ray.direction, ray.direction);
-	b = -2.0 * vec_dot(ray.direction, oc);
-	c = vec_dot(oc, oc) - (obj->sp.radius * obj->sp.radius);
-	discriminant = (b * b) - (4.0 * a * c);
-	if (discriminant >= 0)
-	{
-		t_min = (-b - (sqrt(discriminant)) / 2.0 * a);
-		t_max = (-b + (sqrt(discriminant)) / 2.0 * a);
-		if (t_min >= 0)
-			obj->temp.t = t_min; // sphere in front of the camera
-		else if (t_max >= 0)
-			obj->temp.t = t_max; // camera inside sphere
-		else
-			return (NULL);
-		obj->temp.point = ray_at(ray, obj->temp.t);
-		//obj->temp.normal = find_normal();
-		obj->temp.color = obj->sp.color;
-		return (&obj->temp);
-	}
-	else
-		return (NULL);
-} */
-
-int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
+t_intersec	*intersection(t_data *data, t_ray ray)
 {
 	t_object	*object;
 	t_intersec	*closest;
 	t_intersec	*temp;
 
-	//save in a hit_rec struct the point, the normal and the t value
 	object = data->scene->objects;
 	closest = NULL;
 	while (object)
 	{
+		temp = NULL;
 		if (object->type == 's')
 			temp = sphere_intersect(data, ray, object);
 		else if (object->type == 'p')
@@ -149,66 +125,6 @@ int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
 		object = object->next;
 	}
 	if (closest)
-		return (put_color(closest->color, x, y, data), 1);
-		//calculate the color based on the lights and the object
-		//return the color
-		//free(closest);
-	return (0);
+		return (closest);
+	return (NULL);
 }
-
-
-/* int	sphere_intersect(t_data *data, t_ray ray, t_object *obj)
-{
-	t_float	discriminant;
-	t_float	a;
-	t_float	b;
-	t_float	c;
-	t_coord	oc;
-	t_float	t_min;
-	t_float	t_max;
-
-	oc = vec_sub(obj->sp.center, ray.origin);
-	a = vec_dot(ray.direction, ray.direction);
-	b = -2.0 * vec_dot(ray.direction, oc);
-	c = vec_dot(oc, oc) - (obj->sp.radius * obj->sp.radius);
-	discriminant = (b * b) - (4 * a * c);
-	if (discriminant >= 0)
-	{
-		return (1);
-		t_min = (-b - (sqrt(discriminant)) / 2 * a);
-		t_max = (-b + (sqrt(discriminant)) / 2 * a);
-		if (t_min >= 0)
-			return (t_min); // sphere in front of the camera
-		else if (t_max >= 0)
-			return(t_max); // camera inside sphere
-	}
-	else
-		return (0);
-}
-
-int	intersection(t_data *data, t_ray ray, uint32_t x, uint32_t y)
-{
-	t_object	*object;
-	t_object	*closest;
-
-	//save in a hit_rec struct the point, the normal and the t value
-	object = data->scene->objects;
-	closest = NULL;
-	while (object)
-	{
-		if (object->type == 's')
-			if (sphere_intersect(data, ray, object))
-				closest = object; // object.sphere ?
-		 else if (object->type == 'p')
-			plane_intersect();
-		else if (object->type == 'c')
-			cylinder_intersect();
-		closest = compare_objects(object, closest);
-		object = object->next;
-	}
-	if (closest)
-		return (put_color(closest->sp.color, x, y, data), 1);
-		//calculate the color based on the lights and the object
-		//return the color
-	return (0);
-} */

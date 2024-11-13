@@ -4,7 +4,24 @@
 		"minirt.h": "c",
 		"mlx42.h": "c",
 		"libft.h": "c",
+<<<<<<< HEAD
 		"random": "c"
+=======
+		"__split_buffer": "c",
+		"algorithm": "c",
+		"memory_resource": "c",
+		"istream": "c",
+		"limits": "c",
+		"locale": "c",
+		"mutex": "c",
+		"ratio": "c",
+		"sstream": "c",
+		"string": "c",
+		"string_view": "c",
+		"variant": "c",
+		"vector": "c",
+		"complex": "c"
+>>>>>>> lights
 	},
 	"github.copilot.editor.enableAutoCompletions": false
 }
