@@ -22,6 +22,20 @@ char	**split_three(char *info)
 	return (str_arr);
 }
 
+void	assign_rgba(char type, t_data *data, t_color rgba)
+{
+	if (type == 'A')
+		data->scene->a.color = rgba;
+	if (type == 'L')
+		(light_last_node(data->scene->l))->color = rgba;
+	if (type == 's')
+		object_last_node(data->scene->objects)->sp.color = rgba; //check later
+	if (type == 'p')
+		object_last_node(data->scene->objects)->pl.color = rgba;
+	if (type == 'c')
+		object_last_node(data->scene->objects)->cy.color = rgba;
+}
+
 int	check_color(char *info, t_data *data, char type)
 {
 	char	**color;
@@ -42,8 +56,8 @@ int	check_color(char *info, t_data *data, char type)
 	if ((rgba.r < 0 || rgba.r > 255) || (rgba.g < 0 || rgba.g > 255)
 		|| (rgba.b < 0 || rgba.b > 255))
 		return (ft_putendl_fd(COL_RANGE_ERR, 2), 1);
-	//ft_assign(type, data, rgba);
-	if (type == 'A')
+	assign_rgba(type, data, rgba);
+	/* if (type == 'A')
 		data->scene->a.color = rgba;
 	if (type == 'L')
 		(light_last_node(data->scene->l))->color = rgba;
@@ -52,7 +66,7 @@ int	check_color(char *info, t_data *data, char type)
 	if (type == 'p')
 		object_last_node(data->scene->objects)->pl.color = rgba;
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy.color = rgba;
+		object_last_node(data->scene->objects)->cy.color = rgba; */
 	return (0);
 }
 
@@ -91,6 +105,32 @@ t_coord	coord(t_float x, t_float y, t_float z)
 	return (xyz);
 }
 
+void	assign_xyz(char type, t_data *data, t_coord xyz, char coord_type)
+{
+	if (coord_type == 'n')
+	{
+		if (type == 'C')
+		data->scene->c.orientation = xyz;
+		if (type == 'p')
+			object_last_node(data->scene->objects)->pl.normal = vec_unit(xyz);
+		if (type == 'c')
+			object_last_node(data->scene->objects)->cy.normal = vec_unit(xyz);
+	}
+	else if (coord_type == 'c')
+	{
+		if (type == 'C')
+			data->scene->c.center = xyz;
+		if (type == 'L')
+			(light_last_node(data->scene->l))->point = xyz;
+		if (type == 's')
+			object_last_node(data->scene->objects)->sp.center = xyz; //check later
+		if (type == 'p')
+			object_last_node(data->scene->objects)->pl.point = xyz;
+		if (type == 'c')
+			object_last_node(data->scene->objects)->cy.center = xyz;
+	}
+}
+
 int	check_normal(char *info, t_data *data, char type)
 {
 	char			**coordinates;
@@ -113,13 +153,13 @@ int	check_normal(char *info, t_data *data, char type)
 	if ((xyz.x < -1.0 || xyz.x > 1.0) || (xyz.y < -1.0 || xyz.y > 1.0)
 		|| (xyz.z < -1.0 || xyz.z > 1.0))
 		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
-	//ft_assign(type, data, rgba);
-	if (type == 'C')
+	assign_xyz(type, data, xyz, 'n');
+	/* if (type == 'C')
 		data->scene->c.orientation = xyz;
 	if (type == 'p')
 		object_last_node(data->scene->objects)->pl.normal = vec_unit(xyz);
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy.normal = vec_unit(xyz);
+		object_last_node(data->scene->objects)->cy.normal = vec_unit(xyz); */
 	return (0);
 }
 
@@ -142,8 +182,8 @@ int	check_coordinates(char *info, t_data *data, char type)
 	xyz = coord(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
 	free_arr(coordinates, NULL);
-	//ft_assign(type, data, rgba);
-	if (type == 'C')
+	assign_xyz(type, data, xyz, 'c');
+	/* if (type == 'C')
 		data->scene->c.center = xyz;
 	if (type == 'L')
 		(light_last_node(data->scene->l))->point = xyz;
@@ -152,7 +192,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 	if (type == 'p')
 		object_last_node(data->scene->objects)->pl.point = xyz;
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy.center = xyz;
+		object_last_node(data->scene->objects)->cy.center = xyz; */
 	return (0);
 }
 
