@@ -87,7 +87,7 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 	return (result);
 }
 
-bool	check_shadow(t_ray light, t_coord origin, t_data *data)
+/* bool	check_shadow(t_ray light, t_coord origin, t_data *data)
 {
 	t_intersec	*shadow_hit;
 	t_ray		shadow_ray;
@@ -99,32 +99,26 @@ bool	check_shadow(t_ray light, t_coord origin, t_data *data)
 		&& shadow_hit->t < vec_len(vec_sub(origin, shadow_ray.origin)))
 		return (true);
 	return (false);
-}
+} */
 
-/*
-bool	check_shadow(t_ray light, t_coord origin, t_data *data)
+bool	check_shadow(t_ray light, t_coord hit_rec_point, t_data *data)
 {
 	t_intersec	*shadow_hit;
 	t_object	*object;
 	t_ray		shadow_ray;
+	t_float		max_len;
 
-	shadow_ray.direction = vec_unit(vec_sub(light.origin, origin));
-	shadow_ray.origin = origin;
+	shadow_ray.direction = light.direction;
+	shadow_ray.origin = hit_rec_point;
 	object = data->scene->objects;
+	max_len = vec_len(vec_sub(light.origin, shadow_ray.origin));
 	while (object)
 	{
 		shadow_hit = NULL;
-		if (object->type == 's')
-			shadow_hit = sphere_intersect(data, shadow_ray, object);
-		else if (object->type == 'p')
-			shadow_hit = plane_intersect(shadow_ray, object);
-		else if (object->type == 'c')
-			shadow_hit = cylinder_intersect(shadow_ray, object);
+		shadow_hit = obj_intersection(data, shadow_ray, object);
 		object = object->next;
-		if (shadow_hit && shadow_hit->t > 1e-6
-			&& shadow_hit->t < vec_len(vec_sub(light.origin, origin)))
+		if (shadow_hit && shadow_hit->t > 1e-6 && shadow_hit->t < max_len)
 			return (true);
 	}
 	return (false);
 }
- */

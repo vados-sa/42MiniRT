@@ -77,12 +77,13 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj);
 t_intersec	*plane_intersect(t_ray ray, t_object *obj);
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj);
 t_intersec	*intersection(t_data *data, t_ray ray);
+t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object);
 //t_float		find_t(t_ray ray, t_object *obj, char type);
 uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
 /*light*/
 t_color		diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data);
-bool		check_shadow(t_ray light, t_coord origin, t_data *data);
+bool		check_shadow(t_ray light, t_coord hit_rec_point, t_data *data);
 t_color		ambient_light(t_A ambient);
 t_color		calculate_light(t_data *data, t_intersec *hit_rec, t_color color);
 

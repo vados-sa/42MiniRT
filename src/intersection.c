@@ -116,16 +116,24 @@ t_intersec	*intersection(t_data *data, t_ray ray)
 	while (object)
 	{
 		temp = NULL;
-		if (object->type == 's')
-			temp = sphere_intersect(data, ray, object);
-		else if (object->type == 'p')
-			temp = plane_intersect(ray, object);
-		else if (object->type == 'c')
-			temp = cylinder_intersect(ray, object);
+		temp = obj_intersection(data, ray, object);
 		closest = compare_distance(temp, closest, ray.origin);
 		object = object->next;
 	}
 	if (closest)
 		return (closest);
 	return (NULL);
+}
+
+t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object)
+{
+	t_intersec	*hit_rec;
+
+	if (object->type == 's')
+		hit_rec = sphere_intersect(data, ray, object);
+	else if (object->type == 'p')
+		hit_rec = plane_intersect(ray, object);
+	else if (object->type == 'c')
+		hit_rec = cylinder_intersect(ray, object);
+	return (hit_rec);
 }
