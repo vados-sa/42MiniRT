@@ -4,7 +4,7 @@
 /**
  * @var oc: vector from the ray origin to a point on the plane
  * @var numerator: numerator of the function to calculate t
- * @var denominator of the function to calculate t
+ * @var denominator: denominator of the function to calculate t
  * if the denominator is close to 0, the ray will be parallel to the plane, so
  * they either perfectly coincide, offering an infinite number of solutions,
  * or they do not intersect at all. If t is negative, the intersection happens

@@ -168,7 +168,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 	char			**coordinates;
 	int				i;
 	int				j;
-	t_coord	xyz;
+	t_coord			xyz;
 
 	coordinates = split_three(info);
 	if (!coordinates)
@@ -198,7 +198,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 
 int	check_dimension(char *line, t_dimension type, t_data *data)
 {
-	t_float dimension;
+	t_float	dimension;
 
 	if (float_check(line))
 		return (ft_putendl_fd(NUM_ERR, 2), 1);
