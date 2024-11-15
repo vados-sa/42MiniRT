@@ -52,7 +52,7 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data)
 	{
 		//figure out how to combine multiple lights
 		//hit_rec->normal = vec_unit(hit_rec->normal); //do we need it?
-		light.direction = vec_unit(vec_sub(hit_rec->point, l->point));
+		light.direction = vec_unit(vec_sub(l->point, hit_rec->point));
 		light.origin = l->point;
 		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), 0.0); //if angle is bigger than 90deg, no light
 		shadow = check_shadow(light, hit_rec->point, data);
@@ -93,20 +93,22 @@ bool	check_shadow(t_ray light, t_coord origin, t_data *data)
 	t_ray		shadow_ray;
 
 	shadow_ray.direction = vec_mult(light.direction, -1.0);
-	shadow_ray.origin = origin;
+	shadow_ray.origin = light.origin;
 	shadow_hit = intersection(data, shadow_ray);
 	if (shadow_hit && shadow_hit->t > 1e-6
-		&& shadow_hit->t < vec_len(vec_sub(light.origin, shadow_ray.origin)))
+		&& shadow_hit->t < vec_len(vec_sub(origin, shadow_ray.origin)))
 		return (true);
 	return (false);
 }
-/* bool	check_shadow(t_ray light, t_coord origin, t_data *data)
+
+/*
+bool	check_shadow(t_ray light, t_coord origin, t_data *data)
 {
 	t_intersec	*shadow_hit;
 	t_object	*object;
 	t_ray		shadow_ray;
 
-	shadow_ray.direction = vec_mult(light.direction, -1.0);
+	shadow_ray.direction = vec_unit(vec_sub(light.origin, origin));
 	shadow_ray.origin = origin;
 	object = data->scene->objects;
 	while (object)
@@ -120,8 +122,9 @@ bool	check_shadow(t_ray light, t_coord origin, t_data *data)
 			shadow_hit = cylinder_intersect(shadow_ray, object);
 		object = object->next;
 		if (shadow_hit && shadow_hit->t > 1e-6
-			&& shadow_hit->t < vec_len(vec_sub(light.origin, shadow_ray.origin)))
+			&& shadow_hit->t < vec_len(vec_sub(light.origin, origin)))
 			return (true);
 	}
 	return (false);
-} */
+}
+ */
