@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/11/13 13:18:59 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:46:07 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,19 @@ char	**split_check(char *line, t_data *data)
 	}
 	return (info);
 }
+
+/* t_coord calculate_end_cap_center(t_coord center, t_coord axis, t_float height, int cap)
+{
+	t_coord	end_cap_center;
+	t_float	half_height;
+
+	half_height = height / 2.0;
+	if (cap == 1) // Bottom end cap
+	    end_cap_center = vec_sub(center, vec_mult(axis, half_height));
+	else if (cap == 2) // Top end cap
+	    end_cap_center = vec_add(center, vec_mult(axis, half_height));
+	return (end_cap_center);
+} */
 
 int	parse_cy(t_data *data, char *line)
 {
@@ -49,6 +62,9 @@ int	parse_cy(t_data *data, char *line)
 	}
 	free_arr(info, NULL);
 	cy_node->type = 'c';
-	cy_node->cy.top_end_cap = vec_sub(cy_node->cy.center, vec_mult(cy_node->cy.normal, cy_node->cy.height / 2.0));
+	cy_node->cy.top_end_cap = vec_sub(cy_node->cy.center, \
+						vec_mult(cy_node->cy.normal, cy_node->cy.height / 2));
+	cy_node->cy.bottom_end_cap = vec_add(cy_node->cy.center, \
+						vec_mult(cy_node->cy.normal, cy_node->cy.height / 2));
 	return (0);
 }
