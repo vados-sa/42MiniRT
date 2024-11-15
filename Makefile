@@ -18,7 +18,7 @@ INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 #INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
 SRCS 			=  $(SRC_DIR)/main.c $(SRC_DIR)/init.c $(SRC_DIR)/exit.c $(SRC_DIR)/light_list.c \
-					 $(SRC_DIR)/object_list.c $(SRC_DIR)/render.c $(SRC_DIR)/vec3_ops.c $(SRC_DIR)/vec3_products.c \
+					 $(SRC_DIR)/object_list.c $(SRC_DIR)/render.c $(SRC_DIR)/vec3_ops.c $(SRC_DIR)/vec3_ops2.c \
 					 $(SRC_DIR)/sphere.c $(SRC_DIR)/plane.c $(SRC_DIR)/cylinder.c $(SRC_DIR)/intersection.c \
 					 $(SRC_DIR)/ray.c $(SRC_DIR)/lights.c\
 					 $(PARSE_DIR)/parsing.c $(PARSE_DIR)/parsing_read_file.c \

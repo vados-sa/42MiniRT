@@ -64,6 +64,8 @@ t_coord		vec_add(t_coord v1, t_coord v2);
 t_coord		vec_sub(t_coord v1, t_coord v2);
 t_coord		vec_mult(t_coord v1, t_float scalar);
 t_coord		vec_unit(t_coord v);
+t_color		col_mult(t_color c, t_float scalar);
+t_color		col_add(t_color c1, t_color c2);
 
 /*rendering*/
 void		render(t_data *data);

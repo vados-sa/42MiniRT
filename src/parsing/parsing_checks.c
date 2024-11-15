@@ -112,8 +112,7 @@ int	check_normal(char *info, t_data *data, char type)
 	free_arr(coordinates, NULL);
 	if ((xyz.x < -1.0 || xyz.x > 1.0) || (xyz.y < -1.0 || xyz.y > 1.0)
 		|| (xyz.z < -1.0 || xyz.z > 1.0))
-		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght.
-	//ft_assign(type, data, rgba);
+		return (ft_putendl_fd(NORMAL_RANGE_ERR, 2), 1); // there might have  to be another check for the lenght
 	if (type == 'C')
 		data->scene->c.orientation = xyz;
 	if (type == 'p')
@@ -128,7 +127,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 	char			**coordinates;
 	int				i;
 	int				j;
-	t_coord	xyz;
+	t_coord			xyz;
 
 	coordinates = split_three(info);
 	if (!coordinates)
@@ -142,7 +141,6 @@ int	check_coordinates(char *info, t_data *data, char type)
 	xyz = coord(ft_atof(coordinates[0]), ft_atof(coordinates[1]),
 			ft_atof(coordinates[2]));
 	free_arr(coordinates, NULL);
-	//ft_assign(type, data, rgba);
 	if (type == 'C')
 		data->scene->c.center = xyz;
 	if (type == 'L')
@@ -158,7 +156,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 
 int	check_dimension(char *line, t_dimension type, t_data *data)
 {
-	t_float dimension;
+	t_float	dimension;
 
 	if (float_check(line))
 		return (ft_putendl_fd(NUM_ERR, 2), 1);

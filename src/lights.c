@@ -1,31 +1,6 @@
 
 #include "minirt.h"
 
-t_color	col_mult(t_color c, t_float scalar)
-{
-	return (col(c.r * scalar, c.g * scalar, c.b * scalar, c.a));
-}
-
-t_color	col_add(t_color c1, t_color c2)
-{
-	return (col(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a));
-}
-
-/**
- * This function multiplies the color of an object by the
- * ratio and color of the ambient lighting or "global illumination"
- * in the scene.
- * @param color: pointer to the color of the object or background
- * @param ambient: ambietn light struct containing ratio and color
- */
-t_color	ambient_light(t_A ambient)
-{
-	t_color	light;
-
-	light = col_mult(ambient.color, ambient.ratio);
-	return (light);
-}
-
 /**
  * the larger θ becomes, the less of an impact
  * the light should have on the fragment's color.
@@ -50,15 +25,14 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data)
 	diffuse = col(0, 0, 0, 0);
 	while (l && hit_rec)
 	{
-		//figure out how to combine multiple lights
-		//hit_rec->normal = vec_unit(hit_rec->normal); //do we need it?
 		light.direction = vec_unit(vec_sub(l->point, hit_rec->point));
 		light.origin = l->point;
-		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), 0.0); //if angle is bigger than 90deg, no light
+		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), 0.0);
 		shadow = check_shadow(light, hit_rec->point, data);
 		if (dot_product > 0.0 && shadow == false)
 		{
-			temp_diffuse = col_mult(col_mult(l->color, dot_product), l->brightness);
+			temp_diffuse = \
+				col_mult(col_mult(l->color, dot_product), l->brightness);
 			diffuse = col_add(diffuse, temp_diffuse);
 		}
 		l = l->next;
@@ -72,7 +46,7 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 	t_color	ambient;
 	t_color	diffuse;
 
-	ambient = ambient_light(data->scene->a);
+	ambient = col_mult(data->scene->a.color, data->scene->a.ratio);
 	diffuse = diffuse_light(data->scene->l, hit_rec, data);
 	result.r = ((t_float)(ambient.r + diffuse.r) / 255.0) * color.r;
 	result.g = ((t_float)(ambient.g + diffuse.g) / 255.0) * color.g;
@@ -86,20 +60,6 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 	result.a = 255;
 	return (result);
 }
-
-/* bool	check_shadow(t_ray light, t_coord origin, t_data *data)
-{
-	t_intersec	*shadow_hit;
-	t_ray		shadow_ray;
-
-	shadow_ray.direction = vec_mult(light.direction, -1.0);
-	shadow_ray.origin = light.origin;
-	shadow_hit = intersection(data, shadow_ray);
-	if (shadow_hit && shadow_hit->t > 1e-6
-		&& shadow_hit->t < vec_len(vec_sub(origin, shadow_ray.origin)))
-		return (true);
-	return (false);
-} */
 
 bool	check_shadow(t_ray light, t_coord hit_rec_point, t_data *data)
 {

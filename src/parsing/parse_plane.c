@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:29 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/31 14:44:57 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/11/15 13:17:15 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	parse_pl(t_data *data, char *line)
 		free_arr(info, NULL);
 		ft_exit(1, data, LEN_ERR);
 	}
-	if (check_identifier(info[0], data, "object") ||
-		check_coordinates(info[1], data, 'p') ||
+	if (check_identifier(info[0], data, "object") || \
+		check_coordinates(info[1], data, 'p') || \
 		check_normal(info[2], data, 'p') || check_color(info[3], data, 'p'))
 	{
 		free_arr(info, NULL);
