@@ -117,9 +117,9 @@ int	check_normal(char *info, t_data *data, char type)
 	if (type == 'C')
 		data->scene->c.orientation = xyz;
 	if (type == 'p')
-		object_last_node(data->scene->objects)->pl.normal = xyz;
+		object_last_node(data->scene->objects)->pl.normal = vec_unit(xyz);
 	if (type == 'c')
-		object_last_node(data->scene->objects)->cy.normal = xyz;
+		object_last_node(data->scene->objects)->cy.normal = vec_unit(xyz);
 	return (0);
 }
 

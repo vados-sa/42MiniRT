@@ -1,35 +1,26 @@
 
 #include "../incl/minirt.h"
 
-// D = ray.direction
-// V = obj->cy.normal
-// C = obj->cy.top_end_cap
-
-/* t_coord local_normal_at(t_coord point, t_object *obj, t_float m)
+static t_float	find_discriminant(t_ray ray, t_object *obj, t_float a, \
+t_float b)
 {
-	t_coord normal;
-	normal = vec_sub(point, vec_add(obj->cy.center, vec_mult(obj->cy.normal, m)));
-	return vec_unit(normal);
-} */
-
-static t_float find_discriminant(t_ray ray, t_object *obj, t_float a, t_float b)
-{
-	t_float c;
+	t_float	c;
 
 	c = vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), vec_sub(ray.origin, \
-		obj->cy.top_end_cap)) - vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), \
-		obj->cy.normal) * vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap),\
+		obj->cy.top_end_cap)) - vec_dot(vec_sub(ray.origin, \
+		obj->cy.top_end_cap), obj->cy.normal) * \
+		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), \
 		obj->cy.normal) - obj->cy.radius * obj->cy.radius;
 	return (b * b - 4 * a * c);
 }
 
-static t_float find_t_cy(t_ray ray, t_object *obj)
+static t_float	find_t_cy(t_ray ray, t_object *obj)
 {
-	t_float discriminant;
-	t_float a;
-	t_float b;
-	t_float t_max;
-	t_float t_min;
+	t_float	discriminant;
+	t_float	a;
+	t_float	b;
+	t_float	t_max;
+	t_float	t_min;
 
 	a = vec_dot(ray.direction, ray.direction) - vec_dot(ray.direction, \
 		obj->cy.normal) * vec_dot(ray.direction, obj->cy.normal);
@@ -43,12 +34,12 @@ static t_float find_t_cy(t_ray ray, t_object *obj)
 	t_max = ((-b + sqrt(discriminant))) / (2.0 * a);
 	if (t_min > t_max && t_min > 0)
 		return (t_max);
-	else if (t_min > 0) // maybe t_min > 0, not sure yet. t = 0 means that the intersection happens on the origin. Should something be redered or not?
+	else if (t_min > 0)
 		return (t_min);
 	else if (t_max >= 0)
 		return (t_max);
 	else
-		return (-1); // so this might be 0 ?
+		return (-1);
 }
 
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
@@ -68,7 +59,6 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
-	//obj->temp.normal = local_normal_at(obj->temp.point, obj, m);
-	obj->temp.normal = vec_unit(vec_sub(obj->cy.center, obj->temp.point));
+	obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->cy.center));
 	return (&obj->temp);
 }
