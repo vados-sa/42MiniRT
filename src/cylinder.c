@@ -42,6 +42,11 @@ static t_float	find_t_cy(t_ray ray, t_object *obj)
 		return (-1);
 }
 
+/* t_intersec	*intersect_cap(t_ray ray, t_object *obj)
+{
+
+} */
+
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 {
 	t_float	t;
@@ -55,10 +60,11 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	if (m < 0 || m > obj->cy.height)
 		return (NULL);
 	/* if (m < 0 || m > obj->cy.height)
-		t = caps(ray, obj, t); */
+		return (intersect_cap()); */
 	obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
-	obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->cy.center));
+	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
+				obj->cy.top_end_cap), vec_mult(obj->cy.normal, m)));
 	return (&obj->temp);
 }
