@@ -110,7 +110,7 @@ void	assign_xyz(char type, t_data *data, t_coord xyz, char coord_type)
 	if (coord_type == 'n')
 	{
 		if (type == 'C')
-		data->scene->c.orientation = xyz;
+		data->scene->c.orientation = vec_unit(xyz);
 		if (type == 'p')
 			object_last_node(data->scene->objects)->pl.normal = vec_unit(xyz);
 		if (type == 'c')
