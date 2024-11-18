@@ -42,10 +42,54 @@ static t_float	find_t_cy(t_ray ray, t_object *obj)
 		return (-1);
 }
 
-/* t_intersec	*intersect_cap(t_ray ray, t_object *obj)
+// Function to check intersection with a plane
+int intersect_plane(t_ray ray, t_coord plane_point, t_coord plane_normal, t_float *t)
 {
+    t_float denom = vec_dot(plane_normal, ray.direction);
+    if (fabs(denom) > 1e-6) // Avoid division by zero
+    {
+        t_coord p0l0 = vec_sub(plane_point, ray.origin);
+        *t = vec_dot(p0l0, plane_normal) / denom;
+        return (*t >= 0);
+    }
+    return 0;
+}
 
-} */
+// Function to check if point is within the cylinder's radius
+int is_within_radius(t_coord point, t_coord center, t_float radius)
+{
+    t_coord diff = vec_sub(point, center);
+    return (vec_dot(diff, diff) <= radius * radius);
+}
+
+t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t)
+{
+	if (intersect_plane(ray, obj->cy.top_end_cap, vec_mult(obj->cy.normal, -1), &t))
+    {
+        t_coord point = ray_at(ray, t);
+        if (is_within_radius(point, obj->cy.top_end_cap, obj->cy.radius))
+        {
+            obj->temp.t = t;
+            obj->temp.point = ray_at(ray, t);
+            obj->temp.color = obj->cy.color;
+            obj->temp.normal = vec_mult(obj->cy.normal, -1);
+            return (&obj->temp);
+        }
+    }
+    if (intersect_plane(ray, vec_add(obj->cy.top_end_cap, vec_mult(obj->cy.normal, obj->cy.height)), obj->cy.normal, &t))
+    {
+        t_coord point = ray_at(ray, t);
+        if (is_within_radius(point, vec_add(obj->cy.top_end_cap, vec_mult(obj->cy.normal, obj->cy.height)), obj->cy.radius))
+        {
+            obj->temp.t = t;
+            obj->temp.point = point;
+            obj->temp.color = obj->cy.color;
+            obj->temp.normal = obj->cy.normal;
+            return (&obj->temp);
+        }
+    }
+    return (NULL);
+}
 
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 {
@@ -57,10 +101,10 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 		return (NULL);
 	m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
-	if (m < 0 || m > obj->cy.height)
-		return (NULL);
 	/* if (m < 0 || m > obj->cy.height)
-		return (intersect_cap()); */
+		return (NULL); */
+	if (m < 0 || m > obj->cy.height)
+		return (intersect_cap(ray, obj, t));
 	obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
