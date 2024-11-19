@@ -45,10 +45,10 @@ void	render(t_data *data)
 	t_color		rgba;
 
 	y = -1;
-	while (++y < IMAGE_HEIGHT)
+	while (++y < data->image_height)
 	{
 		x = -1;
-		while (++x < IMAGE_WIDTH)
+		while (++x < data->image_width)
 		{
 			ray = create_ray(x, y, data->scene->c.center, data);
 			put_color(x, y, data, ray);

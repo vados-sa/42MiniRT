@@ -86,7 +86,10 @@ uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*light*/
 t_color		diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data);
 bool		check_shadow(t_ray light, t_coord hit_rec_point, t_data *data);
-t_color		ambient_light(t_A ambient);
 t_color		calculate_light(t_data *data, t_intersec *hit_rec, t_color color);
+
+/*hook functions*/
+void		resize(int32_t width, int32_t height, t_data *data);
+void		my_keyhook(mlx_key_data_t keydata, t_data *data);
 
 #endif

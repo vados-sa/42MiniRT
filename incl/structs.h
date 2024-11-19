@@ -3,10 +3,13 @@
 # define STRUCTS_H
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
+# include "macros.h"
 
-typedef double	t_float;
+typedef float	t_float;
+
 typedef void	(*t_keyfunc)(mlx_key_data_t keydata, void* param);
 typedef void	(*t_hookfunc)(void* param);
+typedef void	(*t_resizefunc)(int32_t width, int32_t height, void* param);
 
 typedef enum e_dimension {
 	CY_DIAM,
