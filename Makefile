@@ -42,6 +42,9 @@ LIBFT_LIB 		= -Llibft -lft
 
 all: libmlx $(LIBFT) $(NAME)
 
+bonus:
+	@$(MAKE) BONUS=1
+
 libmlx:
 	@if [ ! -d "lib/MLX42" ]; then \
 		git clone https://github.com/codam-coding-college/MLX42.git lib/MLX42; \
@@ -61,8 +64,6 @@ $(NAME): $(OBJS) $(HDRS)
 #$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LDFLAGS) $(LIBS) -o $(NAME)
 	@echo "\033[32;1mminiRT is ready\033[5m ✓ ✓ ✓\033[0m"
 
-bonus: BONUS=1
-bonus: $(BONUS) all
 
 clean:
 	@rm -f $(OBJS)
@@ -80,6 +81,7 @@ fclean: clean
 	@echo "\033[37;1mExecutable removed.\033[0m"
 
 re: fclean all
+re_b: fclean bonus
 
 .PHONY: all bonus clean fclean re libmlx $(LIBFT)
 
