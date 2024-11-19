@@ -6,10 +6,14 @@ void	my_keyhook(mlx_key_data_t keydata, t_data *data)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(data->mlx_ptr);
 		//ft_exit(0, data, NULL);
-	/* if (keydata.key == MLX_KEY_UP && keydata.action == MLX_REPEAT)
-	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_REPEAT)
-	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT)
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT) */
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+		data->scene->c.center.y -= 0.01;
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+		data->scene->c.center.y += 0.01;
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		data->scene->c.center.x -= 0.01;
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		data->scene->c.center.x += 0.01;
 }
 
 void	resize(int32_t width, int32_t height, t_data *data)
@@ -22,7 +26,6 @@ void	resize(int32_t width, int32_t height, t_data *data)
 	data->image_width = width;
 	data->image_height = height;
 	setup_viewport(data, data->scene->c);
-	render(data);
 }
 
 int	main(int argc, char **argv)
