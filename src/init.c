@@ -23,27 +23,25 @@ void	init(t_data **data)
 void	setup_viewport(t_data *data, t_C camera)
 {
 	t_coord	world_up;
-	t_coord	camera_right;
-	t_coord	camera_up;
 
 	world_up = coord(0.0, 1.0, 0.0);
 	if (fabs(camera.orientation.y) == 1.0)
 		world_up = coord(0.0, 0.0, 1.0);
 	data->vp.width = 2.0 * FOCAL_LENGTH * tan((camera.fov * PI / 180.0) / 2.0);
 	data->vp.height = data->vp.width / (data->image_width / data->image_height);
-	camera_right = vec_unit(vec_cross(camera.orientation, world_up));
-	camera_up = vec_unit(vec_cross(camera_right, camera.orientation));
+	camera.right = vec_unit(vec_cross(camera.orientation, world_up));
+	camera.up = vec_unit(vec_cross(camera.right, camera.orientation));
 	data->vp.center = vec_add(camera.center, vec_mult(camera.orientation, \
 						FOCAL_LENGTH));
 	data->vp.up_left = vec_add(vec_sub(data->vp.center, \
-	vec_mult(camera_right, (data->vp.width / 2))), \
-	vec_mult(camera_up, (data->vp.height / 2)));
-	data->vp.pixel_x = vec_mult(camera_right, (data->vp.width / \
+	vec_mult(camera.right, (data->vp.width / 2))), \
+	vec_mult(camera.up, (data->vp.height / 2)));
+	data->vp.pixel_x = vec_mult(camera.right, (data->vp.width / \
 					data->image_width));
-	data->vp.pixel_y = vec_mult(camera_up, -(data->vp.height / \
+	data->vp.pixel_y = vec_mult(camera.up, -(data->vp.height / \
 					data->image_height));
 	data->vp.pixel00 = vec_add(data->vp.up_left, \
 	vec_mult((vec_add(data->vp.pixel_x, data->vp.pixel_y)), 0.5));
-	data->scene->c.up = camera_up;
-	data->scene->c.right = camera_right;
+	data->scene->c.up = camera.up;
+	data->scene->c.right = camera.right;
 }
