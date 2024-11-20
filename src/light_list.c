@@ -1,20 +1,20 @@
 
 #include "minirt.h"
 
-t_L	*new_light_node(void)
+t_l	*new_light_node(void)
 {
-	t_L	*new;
+	t_l	*new;
 
-	new = (t_L *)ft_calloc(1, sizeof(*new));
+	new = (t_l *)ft_calloc(1, sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->next = NULL;
 	return (new);
 }
 
-t_L	*light_last_node(t_L *light)
+t_l	*light_last_node(t_l *light)
 {
-	t_L	*trav;
+	t_l	*trav;
 
 	if (!light)
 		return (NULL);
@@ -24,9 +24,9 @@ t_L	*light_last_node(t_L *light)
 	return (trav);
 }
 
-void	add_light_node(t_L **light, t_L	*new)
+void	add_light_node(t_l **light, t_l	*new)
 {
-	t_L	*tmp;
+	t_l	*tmp;
 
 	if (light)
 	{
@@ -40,10 +40,10 @@ void	add_light_node(t_L **light, t_L	*new)
 	}
 }
 
-void	delete_light_list(t_L **lights)
+void	delete_light_list(t_l **lights)
 {
-	t_L	*post;
-	t_L	*current;
+	t_l	*post;
+	t_l	*current;
 
 	if (lights == NULL)
 		return ;

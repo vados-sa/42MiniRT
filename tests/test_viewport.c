@@ -19,7 +19,7 @@ void print_vp(t_vp vp) {
 	printf("vp.pixel_y: (%f, %f, %f)\n", data->vp.pixel_y.x, data->vp.pixel_y.y, data->vp.pixel_y.z);
 	printf("vp.pixel00: (%f, %f, %f)\n", data->vp.pixel00.x, data->vp.pixel00.y, data->vp.pixel00.z); */
 
-void setup_viewport(t_data *data, t_C camera)
+void setup_viewport(t_data *data, t_c camera)
 {
     t_coord world_up;
     t_coord camera_right;

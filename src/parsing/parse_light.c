@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:21 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/31 14:45:39 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/11/20 14:16:56 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parse_l(t_data *data, char *line)
 {
 	char	**info;
-	t_L		*node;
+	t_l		*node;
 
 	node = new_light_node();
 	if (!node)

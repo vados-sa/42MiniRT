@@ -14,17 +14,17 @@
 
 /*init*/
 void		init(t_data **data);
-void		setup_viewport(t_data *data, t_C camera);
+void		setup_viewport(t_data *data, t_c camera);
 
 /*lists*/
 t_object	*new_object_node(void);
 t_object	*object_last_node(t_object *head);
 void		add_object_node(t_object **object, t_object	*new);
 void		delete_object_list(t_object **objects);
-t_L			*new_light_node(void);
-t_L			*light_last_node(t_L *light);
-void		add_light_node(t_L **light, t_L	*new);
-void		delete_light_list(t_L **lights);
+t_l			*new_light_node(void);
+t_l			*light_last_node(t_l *light);
+void		add_light_node(t_l **light, t_l	*new);
+void		delete_light_list(t_l **lights);
 
 /*error-handling*/
 void		ft_exit(int exit_code, t_data *data, char *message);
@@ -84,15 +84,15 @@ t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object);
 uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
 /*light*/
-t_color		diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data);
+t_color		diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data);
 bool		check_shadow(t_ray light, t_coord hit_rec_point, t_data *data);
 t_color		calculate_light(t_data *data, t_intersec *hit_rec, t_color color);
 
 /*hook functions*/
 void		resize(int32_t width, int32_t height, t_data *data);
 void		my_keyhook(mlx_key_data_t keydata, t_data *data);
-void		move(mlx_key_data_t keydata, t_data *data, t_C camera);
-void		zoom(mlx_key_data_t keydata, t_data *data, t_C camera);
-void		rotate(mlx_key_data_t keydata, t_data *data, t_C camera);
+void		move(mlx_key_data_t keydata, t_data *data, t_c camera);
+void		zoom(mlx_key_data_t keydata, t_data *data, t_c camera);
+void		rotate(mlx_key_data_t keydata, t_data *data, t_c camera);
 
 #endif

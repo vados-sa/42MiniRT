@@ -10,14 +10,14 @@ void print_color(t_color color) {
     printf("Color (r, g, b): (%d, %d, %d)\n", color.r, color.g, color.b);
 }
 
-// Print function for t_A
-void print_A(t_A a) {
+// Print function for t_a
+void print_A(t_a a) {
     printf("Ambient Light Ratio: %lf\n", a.ratio);
     print_color(a.color);
 }
 
-// Print function for t_C
-void print_C(t_C c) {
+// Print function for t_c
+void print_C(t_c c) {
     printf("Camera View Point:\n");
     print_coordinate(c.center);
     printf("Camera Normal:\n");

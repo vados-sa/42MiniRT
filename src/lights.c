@@ -14,7 +14,7 @@
  * @param l: a linked list of light sources
  * @param hit_rec: a t_intersection struct that contains the surface normal and the point where the object was hit
  */
-t_color	diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data)
+t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 {
 	t_ray	light;
 	t_float	dot_product;

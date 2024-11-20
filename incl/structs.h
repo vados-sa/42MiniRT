@@ -38,28 +38,28 @@ typedef struct s_ray
 	t_coord	direction;
 }	t_ray;
 
-typedef struct s_A
+typedef struct s_a
 {
 	t_float	ratio;
 	t_color	color;
-}	t_A;
+}	t_a;
 
-typedef struct s_C
+typedef struct s_c
 {
 	t_coord		center;
 	t_coord		orientation;
 	t_coord		up;
 	t_coord		right;
 	t_float		fov;
-}	t_C;
+}	t_c;
 
-typedef struct s_L
+typedef struct s_l
 {
 	t_coord		point;
 	t_float		brightness;
 	t_color		color;
-	struct s_L	*next;
-}	t_L;
+	struct s_l	*next;
+}	t_l;
 
 typedef struct s_plane
 {
@@ -107,9 +107,9 @@ typedef struct s_object
 
 typedef struct s_scene
 {
-	t_A			a;
-	t_C			c;
-	t_L			*l;
+	t_a			a;
+	t_c			c;
+	t_l			*l;
 	t_object	*objects;
 }	t_scene;
 

@@ -22,7 +22,7 @@ void	init(t_data **data)
 /**
  * comparing to EPSILON because of floating point precision, comparing to 0 does not work
  */
-void	setup_viewport(t_data *data, t_C camera)
+void	setup_viewport(t_data *data, t_c camera)
 {
 	t_coord	world_up;
 

@@ -1,7 +1,7 @@
 
 #include "minirt.h"
 
-void	move(mlx_key_data_t keydata, t_data *data, t_C camera)
+void	move(mlx_key_data_t keydata, t_data *data, t_c camera)
 {
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 		data->scene->c.center = \
@@ -17,7 +17,7 @@ void	move(mlx_key_data_t keydata, t_data *data, t_C camera)
 		vec_sub(camera.center, vec_mult(camera.right, 0.1));
 }
 
-void	zoom(mlx_key_data_t keydata, t_data *data, t_C camera)
+void	zoom(mlx_key_data_t keydata, t_data *data, t_c camera)
 {
 	if (keydata.key == MLX_KEY_EQUAL && keydata.action == MLX_PRESS)
 		data->scene->c.center = \
@@ -27,7 +27,7 @@ void	zoom(mlx_key_data_t keydata, t_data *data, t_C camera)
 		vec_sub(camera.center, vec_mult(camera.orientation, 0.1));
 }
 
-void	rotate(mlx_key_data_t keydata, t_data *data, t_C camera)
+void	rotate(mlx_key_data_t keydata, t_data *data, t_c camera)
 {
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		data->scene->c.orientation = \
@@ -45,7 +45,7 @@ void	rotate(mlx_key_data_t keydata, t_data *data, t_C camera)
 
 void	my_keyhook(mlx_key_data_t keydata, t_data *data)
 {
-	t_C	camera;
+	t_c	camera;
 
 	camera = data->scene->c;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
