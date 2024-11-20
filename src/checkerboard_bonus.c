@@ -19,7 +19,7 @@ bool	checker_plane(t_coord point)
 	t_coord	uv;
 
 	uv = planar_map(point);
-	if ((uv.x + uv.y) < 0.5 || (uv.x + uv.y) > 1.0)
+	if ((uv.x <= 0.5 && uv.y <= 0.5) || (uv.x > 0.5 && uv.y > 0.5))  //|| (uv.x + uv.y) > 1.0)
 		return (true);
 	return (false);
 }
