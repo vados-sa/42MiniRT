@@ -91,5 +91,8 @@ t_color		calculate_light(t_data *data, t_intersec *hit_rec, t_color color);
 /*hook functions*/
 void		resize(int32_t width, int32_t height, t_data *data);
 void		my_keyhook(mlx_key_data_t keydata, t_data *data);
+void		move(mlx_key_data_t keydata, t_data *data, t_C camera);
+void		zoom(mlx_key_data_t keydata, t_data *data, t_C camera);
+void		rotate(mlx_key_data_t keydata, t_data *data, t_C camera);
 
 #endif
