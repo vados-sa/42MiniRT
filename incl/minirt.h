@@ -11,6 +11,9 @@
 # include "../lib/libft/libft.h"
 # include "structs.h"
 # include "macros.h"
+//# ifdef BONUS //check why this does not work!!
+# include "bonus.h"
+//# endif
 
 /*init*/
 void		init(t_data **data);

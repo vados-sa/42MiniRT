@@ -26,12 +26,13 @@ void	put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
 	uint32_t	col_int;
 	t_color		col_rgb;
 	t_intersec	*hit_rec;
+	t_color		obj_color;
 
 	hit_rec = intersection(data, ray);
 	if (hit_rec)
 	{
-		checkerboard(hit_rec->color, hit_rec->type, hit_rec->point); //store type!
-		col_rgb = calculate_light(data, hit_rec, hit_rec->color);
+		obj_color = checkerboard(hit_rec->color, hit_rec->type, hit_rec->point); //store type!
+		col_rgb = calculate_light(data, hit_rec, obj_color);
 	}
 	else
 		col_rgb = gradient(ray, data->scene->c.up, data);
@@ -54,7 +55,7 @@ void	render(t_data *data)
 		while (++x < data->image_width)
 		{
 			ray = create_ray(x, y, data->scene->c.center, data);
-			put_color_bonus(x, y, data, ray);
+			put_color(x, y, data, ray);
 		}
 	}
 }

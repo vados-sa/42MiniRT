@@ -11,14 +11,6 @@ PARSE_DIR 		= 	$(SRC_DIR)/parsing/
 LIBFTDIR 		= 	./lib/libft
 LIBMLX			= 	./lib/MLX42
 
-ifdef BONUS
-	CFLAGS += -DBONUS=1
-	NAME = miniRT_bonus
-	SRCS += $(addprefix $(SRC_DIR), checkerboard_bonus.c render_bonus.c)
-	SRCS -= $(addprefix $(SRC_DIR), render.c)
-else
-	CFLAGS += -DBONUS=0
-endif
 
 LIBS			=  	$(LIBMLX)/build/libmlx42.a -ldl -L/opt/homebrew/lib -lglfw -pthread -lm #-L/opt/homebrew/lib for mac
 LIBS 			+= 	$(LIBFTDIR)/libft.a
@@ -38,6 +30,15 @@ HDRS 			= $(addprefix incl/, minirt.h macros.h structs.h)
 
 LIBFT 			= $(LIBFTDIR)/libft.a
 LIBFT_LIB 		= -Llibft -lft
+
+ifdef BONUS
+CFLAGS += -DBONUS=1
+NAME = miniRT_bonus
+SRCS += $(addprefix $(SRC_DIR), checkerboard_bonus.c render_bonus.c)
+SRCS := $(filter-out $(addprefix $(SRC_DIR), render.c), $(SRCS))
+else
+CFLAGS += -DBONUS=0
+endif
 
 all: libmlx $(LIBFT) $(NAME)
 
