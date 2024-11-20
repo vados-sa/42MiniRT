@@ -4,6 +4,6 @@
 
 # include "minirt.h"
 
-t_color	checkerboard(t_color black, char type, t_coord point);
+t_color	checkerboard(t_intersec *object);
 
 #endif

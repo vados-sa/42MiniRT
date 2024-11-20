@@ -31,7 +31,7 @@ void	put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
 	hit_rec = intersection(data, ray);
 	if (hit_rec)
 	{
-		obj_color = checkerboard(hit_rec->color, hit_rec->type, hit_rec->point); //store type!
+		obj_color = checkerboard(hit_rec);
 		col_rgb = calculate_light(data, hit_rec, obj_color);
 	}
 	else
