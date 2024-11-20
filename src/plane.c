@@ -34,5 +34,6 @@ t_intersec	*plane_intersect(t_ray ray, t_object *obj)
 		obj->temp.normal = vec_unit(obj->pl.normal);
 	else
 		obj->temp.normal = vec_unit(vec_mult(obj->pl.normal, -1.0));
+	obj->temp.type = 'p';
 	return (&obj->temp);
 }

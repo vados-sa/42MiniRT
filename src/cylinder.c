@@ -60,5 +60,6 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
 	obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->cy.center));
+	obj->temp.type = 'c';
 	return (&obj->temp);
 }

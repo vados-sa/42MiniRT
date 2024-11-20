@@ -14,6 +14,8 @@ LIBMLX			= 	./lib/MLX42
 ifdef BONUS
 	CFLAGS += -DBONUS=1
 	NAME = miniRT_bonus
+	SRCS += $(addprefix $(SRC_DIR), checkerboard_bonus.c render_bonus.c)
+	SRCS -= $(addprefix $(SRC_DIR), render.c)
 else
 	CFLAGS += -DBONUS=0
 endif

@@ -92,6 +92,7 @@ typedef struct s_intersec
 	t_coord		point;
 	t_coord		normal;
 	t_color		color;
+	char		type;
 }	t_intersec;
 
 typedef struct s_object
