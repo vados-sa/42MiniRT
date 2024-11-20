@@ -22,7 +22,6 @@ LIBS			=  	$(LIBMLX)/build/libmlx42.a -ldl -L/opt/homebrew/lib -lglfw -pthread -
 LIBS 			+= 	$(LIBFTDIR)/libft.a
 
 INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
-#INCLUDES		=  	-I./include -I$(LIBMLX)/include -I$(LIBFTDIR) -I/opt/homebrew/opt/glfw/include #petras mac
 
 SRCS 			=  $(addprefix $(SRC_DIR), main.c init.c exit.c light_list.c \
 					 object_list.c render.c vec3_ops.c vec3_ops2.c \
@@ -37,7 +36,6 @@ HDRS 			= $(addprefix incl/, minirt.h macros.h structs.h)
 
 LIBFT 			= $(LIBFTDIR)/libft.a
 LIBFT_LIB 		= -Llibft -lft
-#LDFLAGS 		= -L/opt/homebrew/opt/glfw/lib #for glfw
 
 all: libmlx $(LIBFT) $(NAME)
 
@@ -60,7 +58,6 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HDRS)
 
 $(NAME): $(OBJS) $(HDRS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
-#$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LDFLAGS) $(LIBS) -o $(NAME)
 	@echo "\033[32;1mminiRT is ready\033[5m ✓ ✓ ✓\033[0m"
 
 
