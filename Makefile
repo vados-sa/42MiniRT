@@ -11,6 +11,13 @@ PARSE_DIR 		= 	$(SRC_DIR)/parsing/
 LIBFTDIR 		= 	./lib/libft
 LIBMLX			= 	./lib/MLX42
 
+ifdef BONUS
+	CFLAGS += -DBONUS=1
+	NAME = miniRT_bonus
+else
+	CFLAGS += -DBONUS=0
+endif
+
 LIBS			=  	$(LIBMLX)/build/libmlx42.a -ldl -L/opt/homebrew/lib -lglfw -pthread -lm #-L/opt/homebrew/lib for mac
 LIBS 			+= 	$(LIBFTDIR)/libft.a
 
@@ -35,6 +42,9 @@ LIBFT_LIB 		= -Llibft -lft
 
 all: libmlx $(LIBFT) $(NAME)
 
+bonus:
+	@$(MAKE) BONUS=1
+
 libmlx:
 	@if [ ! -d "lib/MLX42" ]; then \
 		git clone https://github.com/codam-coding-college/MLX42.git lib/MLX42; \
@@ -54,6 +64,7 @@ $(NAME): $(OBJS) $(HDRS)
 #$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LDFLAGS) $(LIBS) -o $(NAME)
 	@echo "\033[32;1mminiRT is ready\033[5m ✓ ✓ ✓\033[0m"
 
+
 clean:
 	@rm -f $(OBJS)
 	@rm -rf $(OBJ_DIR)
@@ -62,12 +73,16 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@if [ -f miniRT_bonus ]; then \
+		rm miniRT_bonus; \
+	fi
 	@$(MAKE) --no-print-directory -C $(LIBFTDIR) fclean
 	@# rm -rf $(LIBMLX)/build
 	@echo "\033[37;1mExecutable removed.\033[0m"
 
 re: fclean all
+re_b: fclean bonus
 
-.PHONY: all clean fclean re libmlx $(LIBFT)
+.PHONY: all bonus clean fclean re libmlx $(LIBFT)
 
 

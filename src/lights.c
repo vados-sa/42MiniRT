@@ -27,9 +27,9 @@ t_color	diffuse_light(t_L *l, t_intersec *hit_rec, t_data *data)
 	{
 		light.direction = vec_unit(vec_sub(l->point, hit_rec->point));
 		light.origin = l->point;
-		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), 1e-6);
+		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), EPSILON);
 		shadow = check_shadow(light, hit_rec->point, data);
-		if (dot_product > 1e-6 && shadow == false)
+		if (dot_product > EPSILON && shadow == false)
 		{
 			temp_diffuse = \
 				col_mult(col_mult(l->color, dot_product), l->brightness);
@@ -77,7 +77,7 @@ bool	check_shadow(t_ray light, t_coord hit_rec_point, t_data *data)
 		shadow_hit = NULL;
 		shadow_hit = obj_intersection(data, shadow_ray, object);
 		object = object->next;
-		if (shadow_hit && shadow_hit->t > 1e-6 && shadow_hit->t < max_len)
+		if (shadow_hit && shadow_hit->t > EPSILON && shadow_hit->t < max_len)
 			return (true);
 	}
 	return (false);

@@ -25,5 +25,12 @@ type identifier is not valid or is declared more than once"
 # define IMAGE_HEIGHT 675.0
 # define PI 3.1415926535897932385
 # define FOCAL_LENGTH 1.0
+# define EPSILON 1e-6
+
+# if BONUS == 1
+#  define MAX_LIGHT 100
+# else
+#  define MAX_LIGHT 1
+# endif
 
 #endif
