@@ -19,7 +19,7 @@ INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 
 SRCS 			=  $(addprefix $(SRC_DIR), main.c init.c exit.c light_list.c \
 					 object_list.c render.c vec3_ops.c vec3_ops2.c \
-					 sphere.c plane.c cylinder.c intersection.c \
+					 sphere.c plane.c cylinder.c cy_cap.c intersection.c \
 					 ray.c lights.c) \
 					$(addprefix $(PARSE_DIR),parsing.c parsing_read_file.c \
 					 parsing_checks.c number_checks.c \
