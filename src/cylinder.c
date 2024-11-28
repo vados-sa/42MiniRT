@@ -53,13 +53,11 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
 	if (m < 0 || m > obj->cy.height)
-		return (NULL);
-	/* if (m < 0 || m > obj->cy.height)
-		t = caps(ray, obj, t); */
+		return (intersect_cap(ray, obj, t));
 	obj->temp.t = t;
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
-	obj->temp.normal = vec_unit(vec_sub(obj->temp.point, obj->cy.center));
-	obj->temp.type = 'c';
+	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
+				obj->cy.top_end_cap), vec_mult(obj->cy.normal, m)));
 	return (&obj->temp);
 }

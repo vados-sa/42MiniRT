@@ -81,6 +81,7 @@ void		put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray);
 t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj);
 t_intersec	*plane_intersect(t_ray ray, t_object *obj);
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj);
+t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t);
 t_intersec	*intersection(t_data *data, t_ray ray);
 t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object);
 //t_float		find_t(t_ray ray, t_object *obj, char type);
