@@ -9,7 +9,7 @@ static int	intersect_plane(t_ray ray, t_coord pl_point, \
 	t_coord	oc;
 
 	denom = vec_dot(pl_normal, ray.direction);
-	if (fabs(denom) > 1e-6)
+	if (fabs(denom) > EPSILON)
 	{
 		oc = vec_sub(pl_point, ray.origin);
 		*t = vec_dot(oc, pl_normal) / denom;
