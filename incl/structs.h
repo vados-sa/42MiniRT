@@ -4,6 +4,7 @@
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "macros.h"
+# include "bonus.h"
 
 typedef float	t_float;
 
@@ -103,6 +104,7 @@ typedef struct s_object
 	t_plane			pl;
 	t_sphere		sp;
 	t_cylinder		cy;
+	t_cone			cone;
 	int				flag;
 	t_intersec		temp;
 	struct s_object	*next;
