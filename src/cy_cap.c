@@ -27,38 +27,40 @@ static int	is_within_radius(t_coord point, t_coord center, t_float radius)
 	return (vec_dot(diff, diff) <= radius * radius);
 }
 
-t_intersec *intersect_single_cap(t_ray ray, t_object *obj, t_float t, \
-								t_coord cap_center, t_coord cap_normal)
+t_intersec	*intersect_single_cap(t_ray ray, t_object *obj, t_float t)
 {
 	t_coord	point;
 
-	if (intersect_plane(ray, cap_center, cap_normal, &t))
+	if (intersect_plane(ray, obj->cy.cap_center, obj->cy.cap_normal, &t))
 	{
 		point = ray_at(ray, t);
-		if (is_within_radius(point, cap_center, obj->cy.radius))
+		if (is_within_radius(point, obj->cy.cap_center, obj->cy.radius))
 		{
 			obj->temp.t = t;
 			obj->temp.point = point;
 			obj->temp.color = obj->cy.color;
-			obj->temp.normal = cap_normal;
+			obj->temp.normal = obj->cy.cap_normal;
 			return (&obj->temp);
 		}
 	}
 	return (NULL);
 }
 
-t_intersec *intersect_cap(t_ray ray, t_object *obj, t_float t)
+t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t)
 {
 	t_intersec	*result;
 
-	result = intersect_single_cap(ray, obj, t, obj->cy.top_end_cap, \
-					vec_mult(obj->cy.normal, -1));
+	obj->cy.cap_center = obj->cy.top_end_cap;
+	obj->cy.cap_normal = vec_mult(obj->cy.normal, -1);
+	result = intersect_single_cap(ray, obj, t);
 	if (result)
-	    return (result);
-	result = intersect_single_cap(ray, obj, t, vec_add(obj->cy.top_end_cap, \
-					vec_mult(obj->cy.normal, obj->cy.height)), obj->cy.normal);
+		return (result);
+	obj->cy.cap_center = vec_add(obj->cy.top_end_cap, \
+					vec_mult(obj->cy.normal, obj->cy.height));
+	obj->cy.cap_normal = obj->cy.normal;
+	result = intersect_single_cap(ray, obj, t);
 	if (result)
-	    return (result);
+		return (result);
 	return (NULL);
 }
 
@@ -69,9 +71,6 @@ t_intersec *intersect_cap(t_ray ray, t_object *obj, t_float t)
 	t_coord	diff;
 
 	point = ray_at(ray, t);
-	//printf("Point: (%f, %f, %f)\n", point.x, point.y, point.z);
-    //printf("Top End Cap: (%f, %f, %f)\n", obj->cy.top_end_cap.x, obj->cy.top_end_cap.y, obj->cy.top_end_cap.z);
-    //printf("Radius: %f\n", obj->cy.radius);
 	if (is_within_radius(point, obj->cy.top_end_cap, obj->cy.radius))
 	{
 		obj->temp.t = t;
