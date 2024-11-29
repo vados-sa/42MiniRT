@@ -81,6 +81,8 @@ typedef struct s_cylinder
 	t_color		color;
 	t_coord		top_end_cap;
 	t_coord		bottom_end_cap;
+	t_coord		cap_center;
+	t_coord		cap_normal;
 }	t_cylinder;
 
 typedef struct s_intersec
