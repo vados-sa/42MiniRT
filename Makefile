@@ -36,6 +36,7 @@ CFLAGS += -DBONUS=1
 NAME = miniRT_bonus
 SRCS += $(addprefix $(SRC_DIR), checkerboard_bonus.c render_bonus.c)
 SRCS := $(filter-out $(addprefix $(SRC_DIR), render.c), $(SRCS))
+HDRS += $(addprefix incl/, minirt_bonus.h)
 else
 CFLAGS += -DBONUS=0
 endif
@@ -80,7 +81,7 @@ fclean: clean
 	@echo "\033[37;1mExecutable removed.\033[0m"
 
 re: fclean all
-re_b: fclean bonus
+re_bonus: fclean bonus
 
 .PHONY: all bonus clean fclean re libmlx $(LIBFT)
 

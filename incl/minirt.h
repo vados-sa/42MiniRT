@@ -12,7 +12,7 @@
 # include "structs.h"
 # include "macros.h"
 # if BONUS == 1 //check if this is norm-compatible
-#  include "bonus.h"
+#  include "minirt_bonus.h"
 # endif
 
 /*init*/
