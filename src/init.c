@@ -28,15 +28,14 @@ t_data	*init(void)
 	}
 	return (data);
 }
-/**
- * comparing to EPSILON because of floating point precision, comparing to 0 does not work
- */
+
 void	setup_viewport(t_data *data, t_c camera)
 {
 	t_coord	world_up;
 
 	world_up = coord(0.0, 1.0, 0.0);
-	if (fabs(camera.orientation.y - 1) < EPSILON || fabs(camera.orientation.y + 1) < EPSILON)
+	if (fabs(camera.orientation.y - 1) < EPSILON || \
+	fabs(camera.orientation.y + 1) < EPSILON)
 		world_up = coord(0.0, 0.0, 1.0);
 	data->vp.width = 2.0 * FOCAL_LENGTH * tan((camera.fov * PI / 180.0) / 2.0);
 	data->vp.height = data->vp.width / (data->image_width / data->image_height);

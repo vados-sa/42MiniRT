@@ -1,19 +1,6 @@
 
 #include "minirt.h"
 
-/**
- * the larger θ becomes, the less of an impact
- * the light should have on the fragment's color.
- * to get (only) the cosine of the angle between
- * both vectors we will work with unit vectors (vectors of length 1)
- * so we need to make sure all the vectors are normalized
- * surface_normal: a vector that is perpendicular to the vertex' surface.
- * The directed light ray: a direction vector that is the difference vector
- * between the light's position and the fragment's position. To calculate this light
- * ray we need the light's position vector and the fragment's position vector.
- * @param l: a linked list of light sources
- * @param hit_rec: a t_intersection struct that contains the surface normal and the point where the object was hit
- */
 t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 {
 	t_ray	light;

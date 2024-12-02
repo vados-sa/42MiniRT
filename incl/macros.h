@@ -17,7 +17,7 @@ information."
 # define FOV_ERR "Error\nFOV invalid or out of bounds."
 # define GEN_INFO_ERR "Error\nWrong amount of information."
 # define COL_RANGE_ERR "Error\nR,G,B color values are out of bounds."
-# define NORMAL_RANGE_ERR "Error\n3d normalized orientation vector's \
+# define NORMAL_RANGE_ERR "Error\nThe 3d normalized vector's \
 values are out of bounds."
 # define NUM_ERR "Error\nNumber contains invalid characters."
 # define DIMENSION_ERR "Error\nObject dimensions have to be positive values."
