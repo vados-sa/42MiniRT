@@ -13,11 +13,17 @@ void	init(t_data **data)
 	(*data)->image_height = (t_float)IMAGE_HEIGHT;
 	(*data)->mlx_ptr = mlx_init(IMAGE_WIDTH, IMAGE_HEIGHT, "miniRT", true);
 	if (!(*data)->mlx_ptr)
+	{
+		mlx_close_window((*data)->mlx_ptr);
 		ft_exit(1, *data, NULL);
+	}
 	(*data)->image = mlx_new_image((*data)->mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT);
 	if (!(*data)->image
 		|| mlx_image_to_window((*data)->mlx_ptr, (*data)->image, 0, 0))
+	{
+		mlx_close_window((*data)->mlx_ptr);
 		ft_exit(1, *data, NULL);
+	}
 }
 /**
  * comparing to EPSILON because of floating point precision, comparing to 0 does not work
