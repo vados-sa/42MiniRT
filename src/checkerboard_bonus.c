@@ -41,10 +41,11 @@ bool	checker_plane(t_coord point, t_coord normal)
 t_color	checkerboard(t_intersec *object)
 {
 	t_color	black;
-	t_color	white; //complementary color
+	t_color	white;
 
 	black = object->color;
-	white = col(abs(255 - black.r), abs(255 - black.g), abs(255 - black.b), 255);
+	white = col(abs(255 - black.r), abs(255 - black.g), \
+				abs(255 - black.b), 255);
 	if (object->type == 'p')
 	{
 		if (checker_plane(object->point, object->normal))

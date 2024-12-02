@@ -33,7 +33,6 @@ t_float	find_t(t_ray ray, t_object *obj)
 	t_float	a;
 	t_float	b;
 
-
 	oc = vec_sub(obj->sp.center, ray.origin);
 	a = vec_dot(ray.direction, ray.direction);
 	b = -2.0 * vec_dot(ray.direction, oc);
