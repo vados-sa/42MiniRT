@@ -5,7 +5,7 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "macros.h"
 
-typedef float	t_float;
+typedef double	t_float;
 
 typedef void	(*t_keyfunc)(mlx_key_data_t keydata, void* param);
 typedef void	(*t_hookfunc)(void* param);

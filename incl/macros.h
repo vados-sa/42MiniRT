@@ -26,9 +26,9 @@ type identifier is not valid or is declared more than once"
 # define PI 3.1415926535897932385
 # define FOCAL_LENGTH 1.0
 //if t_float is double
-//# define EPSILON 1e-6
+# define EPSILON 1e-6
 //if t_float is float
-# define EPSILON 1e-4
+//# define EPSILON 0.0005
 
 # if BONUS == 1
 #  define MAX_LIGHT 100
