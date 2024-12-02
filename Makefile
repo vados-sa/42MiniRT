@@ -22,8 +22,8 @@ SRCS 			=  $(addprefix $(SRC_DIR), main.c init.c exit.c light_list.c \
 					 sphere.c plane.c cylinder.c cy_cap.c intersection.c \
 					 ray.c lights.c hooks.c) \
 					$(addprefix $(PARSE_DIR),parsing.c parsing_read_file.c \
-					 parsing_checks.c number_checks.c \
-					 parse_amb_light.c parse_light.c parse_camera.c \
+					 parsing_checks.c number_checks.c parse_utils.c \
+					 parse_lighting.c parse_camera.c \
 					 parse_plane.c parse_cylinder.c parse_sphere.c)
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 HDRS 			= $(addprefix incl/, minirt.h macros.h structs.h)

@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:37 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/31 14:46:42 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:51:44 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+char	**info_split(char *line, t_data *data)
+{
+	char	**info;
+
+	info = ft_split(line, ' ');
+	if (!info)
+		ft_exit(1, data, ALLOC_ERR);
+	return (info);
+}
 
 int	parse_sp(t_data *data, char *line)
 {
@@ -21,9 +31,7 @@ int	parse_sp(t_data *data, char *line)
 	if (!sp_node)
 		ft_exit(1, data, ALLOC_ERR);
 	add_object_node(&data->scene->objects, sp_node);
-	info = ft_split(line, ' ');
-	if (!info)
-		ft_exit(1, data, ALLOC_ERR);
+	info = info_split(line, data);
 	if (ft_arr_len(info) != 4)
 	{
 		free_arr(info, NULL);

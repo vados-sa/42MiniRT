@@ -53,11 +53,13 @@ int			parse_pl(t_data *data, char *line);
 int			parse_sp(t_data *data, char *line);
 int			check_color(char *info, t_data *data, char type);
 int			check_identifier(char *info, t_data *data, char *type);
-int			check_ratio(char *info, t_data *data, char type);
+//int			check_ratio(char *info, t_data *data, char type);
 int			check_coordinates(char *info, t_data *data, char type);
 int			check_normal(char *info, t_data *data, char type);
 int			check_dimension(char *line, t_dimension type, t_data *data);
 int			check_fov(char *info, t_data *data);
+void		assign_xyz(char type, t_data *data, t_coord xyz, char coord_type);
+void		assign_rgba(char type, t_data *data, t_color rgba);
 
 /*vector operations*/
 t_float		vec_dot(t_coord v1, t_coord v2);
