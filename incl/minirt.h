@@ -16,7 +16,7 @@
 # endif
 
 /*init*/
-void		init(t_data **data);
+t_data		*init(void);
 void		setup_viewport(t_data *data, t_c camera);
 
 /*lists*/

@@ -1,29 +1,32 @@
 
 #include "minirt.h"
 
-void	init(t_data **data)
+t_data	*init(void)
 {
-	*data = ft_calloc(1, sizeof(t_data));
-	if (!*data)
-		ft_exit(1, *data, ALLOC_ERR);
-	(*data)->scene = ft_calloc(1, sizeof(t_scene));
-	if (!(*data)->scene)
-		ft_exit(1, *data, ALLOC_ERR);
-	(*data)->image_width = (t_float)IMAGE_WIDTH;
-	(*data)->image_height = (t_float)IMAGE_HEIGHT;
-	(*data)->mlx_ptr = mlx_init(IMAGE_WIDTH, IMAGE_HEIGHT, "miniRT", true);
-	if (!(*data)->mlx_ptr)
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		ft_exit(1, data, ALLOC_ERR);
+	(data)->scene = ft_calloc(1, sizeof(t_scene));
+	if (!(data)->scene)
+		ft_exit(1, data, ALLOC_ERR);
+	(data)->image_width = (t_float)IMAGE_WIDTH;
+	(data)->image_height = (t_float)IMAGE_HEIGHT;
+	(data)->mlx_ptr = mlx_init(IMAGE_WIDTH, IMAGE_HEIGHT, "miniRT", true);
+	if (!(data)->mlx_ptr)
 	{
-		mlx_close_window((*data)->mlx_ptr);
-		ft_exit(1, *data, NULL);
+		mlx_close_window((data)->mlx_ptr);
+		ft_exit(1, data, NULL);
 	}
-	(*data)->image = mlx_new_image((*data)->mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT);
-	if (!(*data)->image
-		|| mlx_image_to_window((*data)->mlx_ptr, (*data)->image, 0, 0))
+	(data)->image = mlx_new_image((data)->mlx_ptr, IMAGE_WIDTH, IMAGE_HEIGHT);
+	if (!(data)->image
+		|| mlx_image_to_window((data)->mlx_ptr, (data)->image, 0, 0))
 	{
-		mlx_close_window((*data)->mlx_ptr);
-		ft_exit(1, *data, NULL);
+		mlx_close_window((data)->mlx_ptr);
+		ft_exit(1, data, NULL);
 	}
+	return (data);
 }
 /**
  * comparing to EPSILON because of floating point precision, comparing to 0 does not work
