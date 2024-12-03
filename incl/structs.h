@@ -90,12 +90,12 @@ typedef struct s_cylinder
 
 typedef struct s_intersec
 {
-	t_float		t;
-	t_coord		point;
-	t_coord		normal;
-	t_color		color;
-	char		type;
-	t_object	*self;
+	t_float			t;
+	t_coord			point;
+	t_coord			normal;
+	t_color			color;
+	char			type;
+	struct s_object	*self;
 }	t_intersec;
 
 typedef struct s_object

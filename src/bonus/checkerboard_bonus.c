@@ -1,5 +1,5 @@
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 t_coord	planar_map(t_coord plane, t_coord normal)
 {
@@ -24,11 +24,47 @@ t_coord	planar_map(t_coord plane, t_coord normal)
 	return (coord(u, v, 0));
 }
 
-bool	checker_plane(t_coord point, t_coord normal)
+t_coord	spherical_map(t_coord point, t_float radius, t_coord normal)
+{
+	t_float	u;
+	t_float	v;
+	t_float	theta;
+	t_float	phi;
+
+	//if (fabs(normal.y) > EPSILON)
+	//{
+		theta = atan2(point.x, point.z);
+		phi = acos(point.y / radius);
+	//}
+	//else if (fabs(normal.x) > EPSILON)
+	//{
+	//	theta = atan2(point.y, point.z);
+	//	phi = acos(point.x / radius);
+	//}
+	//else if (fabs(normal.z) > EPSILON)
+	//{
+	//	theta = atan2(point.x, point.y);
+	//	phi = acos(point.z / radius);
+	//}
+	u = theta / (2.0 * PI);
+	u = 1.0 - (u + 0.5);
+	v = 1 - phi / PI;
+	u *= 10;
+	v *= 10;
+
+	return (coord(u, v, 0));
+}
+
+bool	checker_color(t_intersec *object)
 {
 	t_coord	uv;
 
-	uv = planar_map(point, normal);
+	if (object->type == 'p')
+		uv = planar_map(object->point, object->normal);
+	else if (object->type == 's')
+		uv = spherical_map(object->point, object->self->sp.radius, object->normal);
+	else
+		return (false);
 	if (((int)floor(uv.x * 2) % 2) == ((int)floor(uv.y * 2) % 2))
 		return (true);
 	return (false);
@@ -46,20 +82,7 @@ t_color	checkerboard(t_intersec *object)
 	black = object->color;
 	white = col(abs(255 - black.r), abs(255 - black.g), \
 				abs(255 - black.b), 255);
-	if (object->type == 'p')
-	{
-		if (checker_plane(object->point, object->normal))
-			return (black);
-	}
-/* 	if (type == 's')
-	{
-		if (checker_sphere(point))
-			return (black);
-	}
-	if (type == 'c')
-	{
-		if (checker_cylinder(point))
-			return (black);
-	} */
+	if (checker_color(object))
+		return (black);
 	return (white);
 }
