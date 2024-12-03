@@ -7,7 +7,11 @@ CFLAGS 			+= 	-Iinclude -Isrc -O3 -Wunreachable-code -Ofast
 
 OBJ_DIR			= 	obj/
 SRC_DIR			= 	src/
+INIT_DIR 		= 	$(SRC_DIR)/init/
+MATH_DIR 		= 	$(SRC_DIR)/math/
 PARSE_DIR 		= 	$(SRC_DIR)/parsing/
+RENDER_DIR 		= 	$(SRC_DIR)/render/
+BONUS_DIR 		= 	$(SRC_DIR)/bonus/
 LIBFTDIR 		= 	./lib/libft
 LIBMLX			= 	./lib/MLX42
 
@@ -17,14 +21,15 @@ LIBS 			+= 	$(LIBFTDIR)/libft.a
 
 INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 
-SRCS 			=  $(addprefix $(SRC_DIR), main.c init.c exit.c light_list.c \
-					 object_list.c render.c vec3_ops.c vec3_ops2.c \
-					 sphere.c plane.c cylinder.c cy_cap.c intersection.c \
-					 ray.c lights.c hooks.c) \
+SRCS 			=  $(addprefix $(SRC_DIR), main.c  exit.c hooks.c) \
+					$(addprefix $(INIT_DIR), init.c light_list.c object_list.c) \
+					$(addprefix $(MATH_DIR), vec3_ops.c vec3_ops2.c) \
 					$(addprefix $(PARSE_DIR),parsing.c parsing_read_file.c \
-					 parsing_checks.c number_checks.c parse_utils.c \
-					 parse_lighting.c parse_camera.c \
-					 parse_plane.c parse_cylinder.c parse_sphere.c)
+						parsing_checks.c number_checks.c parse_utils.c \
+						parse_lighting.c parse_camera.c \
+						parse_plane.c parse_cylinder.c parse_sphere.c) \
+					$(addprefix $(RENDER_DIR), render.c sphere.c plane.c cylinder.c \
+						cy_cap.c intersection.c ray.c lights.c)
 OBJS 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))
 HDRS 			= $(addprefix incl/, minirt.h macros.h structs.h)
 
@@ -34,8 +39,8 @@ LIBFT_LIB 		= -Llibft -lft
 ifdef BONUS
 CFLAGS += -DBONUS=1
 NAME = miniRT_bonus
-SRCS += $(addprefix $(SRC_DIR), checkerboard_bonus.c render_bonus.c)
-SRCS := $(filter-out $(addprefix $(SRC_DIR), render.c), $(SRCS))
+SRCS += $(addprefix $(BONUS_DIR), checkerboard_bonus.c render_bonus.c)
+SRCS := $(filter-out $(addprefix $(RENDER_DIR), render.c), $(SRCS))
 HDRS += $(addprefix incl/, minirt_bonus.h)
 else
 CFLAGS += -DBONUS=0
