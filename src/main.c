@@ -7,7 +7,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_exit(1, NULL, ARGV_ERR);
-	init(&data);
+	data = init();
 	parse(data, argv[1]);
 	setup_viewport(data, data->scene->c);
 	mlx_loop_hook(data->mlx_ptr, (t_hookfunc)render, data);

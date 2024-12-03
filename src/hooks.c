@@ -49,7 +49,10 @@ void	my_keyhook(mlx_key_data_t keydata, t_data *data)
 
 	camera = data->scene->c;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
 		mlx_close_window(data->mlx_ptr);
+		return ;
+	}
 	move(keydata, data, camera);
 	zoom(keydata, data, camera);
 	rotate(keydata, data, camera);

@@ -6,7 +6,7 @@
 # include "macros.h"
 # include "bonus.h"
 
-typedef float	t_float;
+typedef double	t_float;
 
 typedef void	(*t_keyfunc)(mlx_key_data_t keydata, void* param);
 typedef void	(*t_hookfunc)(void* param);

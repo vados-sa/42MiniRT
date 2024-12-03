@@ -1,6 +1,6 @@
 
-#ifndef BONUS_H
-# define BONUS_H
+#ifndef MINIRT_BONUS_H
+# define MINIRT_BONUS_H
 
 # include "minirt.h"
 

@@ -33,7 +33,6 @@ t_float	find_t(t_ray ray, t_object *obj)
 	t_float	a;
 	t_float	b;
 
-
 	oc = vec_sub(obj->sp.center, ray.origin);
 	a = vec_dot(ray.direction, ray.direction);
 	b = -2.0 * vec_dot(ray.direction, oc);
@@ -60,37 +59,3 @@ t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
 	else
 		return (NULL);
 }
-
-/* t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj)
-{
-	t_float	discriminant;
-	t_float	a;
-	t_float	b;
-	t_float	c;
-	t_coord	oc;
-	t_float	t_min;
-	t_float	t_max;
-
-	oc = vec_sub(obj->sp.center, ray.origin);
-	a = vec_dot(ray.direction, ray.direction);
-	b = -2.0 * vec_dot(ray.direction, oc);
-	c = vec_dot(oc, oc) - (obj->sp.radius * obj->sp.radius);
-	discriminant = (b * b) - (4.0 * a * c);
-	if (discriminant >= 0)
-	{
-		t_min = (-b - (sqrt(discriminant)) / 2.0 * a);
-		t_max = (-b + (sqrt(discriminant)) / 2.0 * a);
-		if (t_min >= 0)
-			obj->temp.t = t_min; // sphere in front of the camera
-		else if (t_max >= 0)
-			obj->temp.t = t_max; // camera inside sphere
-		else
-			return (NULL);
-		obj->temp.point = ray_at(ray, obj->temp.t);
-		//obj->temp.normal = find_normal();
-		obj->temp.color = obj->sp.color;
-		return (&obj->temp);
-	}
-	else
-		return (NULL);
-} */

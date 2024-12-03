@@ -28,4 +28,3 @@ t_coord	vec_unit(t_coord v)
 	len = vec_len(v);
 	return (coord(v.x / len, v.y / len, v.z / len));
 }
-
