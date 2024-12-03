@@ -4,7 +4,7 @@
 
 //error messages
 # define ALLOC_ERR "Error\nAllocation error."
-# define ARGV_ERR "Error\nUsage: ./minirt *.rt"
+# define ARGV_ERR "Error\nUsage: ./miniRT *.rt"
 # define OPEN_ERR "Error\nFile does not exist or cannot be opened."
 # define EXTENSION_ERR "Error\nFormat *.rt required."
 # define EMPTY_ERR "Error\nEmpty file."
@@ -28,7 +28,7 @@ values are out of bounds."
 # define PI 3.1415926535897932385
 # define FOCAL_LENGTH 1.0
 //if t_float is double
-# define EPSILON 1e-6
+//# define EPSILON 1e-6
 //if t_float is float
 //# define EPSILON 0.0005
 
