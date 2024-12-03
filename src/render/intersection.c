@@ -49,5 +49,6 @@ t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object)
 		hit_rec = plane_intersect(ray, object);
 	else if (object->type == 'c')
 		hit_rec = cylinder_intersect(ray, object);
+	hit_rec->self = object;
 	return (hit_rec);
 }
