@@ -1,7 +1,7 @@
 
 #include "minirt.h"
 
-t_data	*init(void)
+t_data	*init(int bonus)
 {
 	t_data	*data;
 
@@ -26,6 +26,7 @@ t_data	*init(void)
 		mlx_close_window((data)->mlx_ptr);
 		ft_exit(1, data, NULL);
 	}
+	data->bonus = bonus;
 	return (data);
 }
 

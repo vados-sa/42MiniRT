@@ -4,7 +4,6 @@
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "macros.h"
-# include "bonus.h"
 
 typedef double	t_float;
 
@@ -16,6 +15,8 @@ typedef enum e_dimension {
 	CY_DIAM,
 	CY_HEIGHT,
 	SP_DIAM,
+	CO_DIAM,
+	CO_HEIGHT,
 }	t_dimension;
 
 typedef struct s_coord
@@ -89,6 +90,18 @@ typedef struct s_cylinder
 	t_coord		cap_normal;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	t_coord		center;
+	t_coord		axis;
+	t_float		r;
+	t_float		h;
+	t_color		color;
+	t_coord		vertex;
+	t_coord		cap_center;
+	t_coord		cap_normal;
+}	t_cone;
+
 typedef struct s_intersec
 {
 	t_float		t;
@@ -104,7 +117,7 @@ typedef struct s_object
 	t_plane			pl;
 	t_sphere		sp;
 	t_cylinder		cy;
-	t_cone			cone;
+	t_cone			co;
 	int				flag;
 	t_intersec		temp;
 	struct s_object	*next;
@@ -138,6 +151,7 @@ typedef struct s_data
 	t_float		image_width;
 	char		**lines;
 	t_vp		vp;
+	int			bonus;
 }	t_data;
 
 #endif

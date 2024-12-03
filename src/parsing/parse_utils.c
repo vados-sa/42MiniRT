@@ -34,6 +34,8 @@ t_coord	coord(t_float x, t_float y, t_float z)
 
 void	assign_xyz(char type, t_data *data, t_coord xyz, char coord_type)
 {
+	if (data->bonus == 1)
+		assign_xyz_bonus(type, data, xyz, coord_type);
 	if (coord_type == 'n')
 	{
 		if (type == 'C')
@@ -60,6 +62,8 @@ void	assign_xyz(char type, t_data *data, t_coord xyz, char coord_type)
 
 void	assign_rgba(char type, t_data *data, t_color rgba)
 {
+	if (data->bonus == 1)
+		assign_rgba_bonus(type, data, rgba);
 	if (type == 'A')
 		data->scene->a.color = rgba;
 	if (type == 'L')

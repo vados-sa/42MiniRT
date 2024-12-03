@@ -97,5 +97,9 @@ int	check_dimension(char *line, t_dimension type, t_data *data)
 		object_last_node(data->scene->objects)->cy.height = dimension;
 	if (type == SP_DIAM)
 		object_last_node(data->scene->objects)->sp.radius = dimension / 2.0;
+	if (type == CO_DIAM)
+		object_last_node(data->scene->objects)->co.r = dimension / 2.0;
+	if (type == CO_HEIGHT)
+		object_last_node(data->scene->objects)->co.h = dimension;
 	return (0);
 }

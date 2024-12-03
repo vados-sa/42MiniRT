@@ -36,7 +36,7 @@ void	parse_lines(t_data *data)
 			parse_sp(data, data->lines[i]);
 		else if (ft_strncmp(data->lines[i], "cy", 2) == 0)
 			parse_cy(data, data->lines[i]);
-		else
+		else if (data->bonus == 1 && ft_strncmp(data->lines[i], "co", 2))
 			ft_exit(1, data, TYPE_ID_ERR);
 	}
 }
@@ -44,5 +44,7 @@ void	parse_lines(t_data *data)
 void	parse(t_data *data, char *filename)
 {
 	read_file(filename, data);
+	if (data->bonus == 1)
+		parse_bonus(data);
 	parse_lines(data);
 }

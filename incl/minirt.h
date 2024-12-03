@@ -11,12 +11,13 @@
 # include "../lib/libft/libft.h"
 # include "structs.h"
 # include "macros.h"
+# include "minirt_bonus.h"
 # if BONUS == 1 //check if this is norm-compatible
 #  include "minirt_bonus.h"
 # endif
 
 /*init*/
-t_data		*init(void);
+t_data		*init(int bonus);
 void		setup_viewport(t_data *data, t_c camera);
 
 /*lists*/
@@ -60,6 +61,7 @@ int			check_dimension(char *line, t_dimension type, t_data *data);
 int			check_fov(char *info, t_data *data);
 void		assign_xyz(char type, t_data *data, t_coord xyz, char coord_type);
 void		assign_rgba(char type, t_data *data, t_color rgba);
+char		**split_check(char *line, t_data *data);
 
 /*vector operations*/
 t_float		vec_dot(t_coord v1, t_coord v2);

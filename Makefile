@@ -39,7 +39,7 @@ LIBFT_LIB 		= -Llibft -lft
 ifdef BONUS
 CFLAGS += -DBONUS=1
 NAME = miniRT_bonus
-SRCS += $(addprefix $(BONUS_DIR), checkerboard_bonus.c render_bonus.c)
+SRCS += $(addprefix $(BONUS_DIR), checkerboard_bonus.c render_bonus.c cone_bonus.c)
 SRCS := $(filter-out $(addprefix $(RENDER_DIR), render.c), $(SRCS))
 HDRS += $(addprefix incl/, minirt_bonus.h)
 else

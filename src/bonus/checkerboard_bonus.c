@@ -1,5 +1,6 @@
 
-#include "minirt.h"
+
+#include "minirt_bonus.h"
 
 t_coord	planar_map(t_coord plane, t_coord normal)
 {
