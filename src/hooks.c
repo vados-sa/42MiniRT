@@ -31,16 +31,16 @@ void	rotate(mlx_key_data_t keydata, t_data *data, t_c camera)
 {
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		data->scene->c.orientation = \
-		vec_add(camera.orientation, vec_mult(camera.up, 0.1)); //only does 180 degrees, not 360 - why?
+		vec_unit(vec_add(camera.orientation, vec_mult(camera.up, 0.1)));
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 		data->scene->c.orientation = \
-		vec_sub(camera.orientation, vec_mult(camera.up, 0.1)); //only does 180 degrees, not 360 - why?
+		vec_unit(vec_sub(camera.orientation, vec_mult(camera.up, 0.1)));
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 		data->scene->c.orientation = \
-		vec_sub(camera.orientation, vec_mult(camera.right, 0.1));
+		vec_unit(vec_sub(camera.orientation, vec_mult(camera.right, 0.1)));
 	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 		data->scene->c.orientation = \
-		vec_add(camera.orientation, vec_mult(camera.right, 0.1));
+		vec_unit(vec_add(camera.orientation, vec_mult(camera.right, 0.1)));
 }
 
 void	my_keyhook(mlx_key_data_t keydata, t_data *data)
