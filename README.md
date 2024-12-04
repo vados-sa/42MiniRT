@@ -31,3 +31,9 @@ t_intersec	*plane_intersect(t_ray ray, t_object *obj)
  * @param hit_rec: a t_intersection struct that contains the surface normal and the point where the object was hit
  */
 t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
+
+/**
+ * checkerboard based on the color of the object in the .rt file and
+ * on its complementary color
+ */
+t_color	checkerboard(t_intersec *object)

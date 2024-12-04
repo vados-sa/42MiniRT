@@ -49,12 +49,13 @@ bool	checker_color(t_intersec *object)
 	t_coord	uv;
 	t_coord	relative_point;
 
-	if (object->type == 'p')
+	if (object->type == 'p' && CHECKP == 1)
 		uv = planar_map(object->point, object->normal);
-	else if (object->type == 's')
+	else if (object->type == 's' && CHECKS == 1)
 	{
 		relative_point = vec_sub(object->point, object->self->sp.center);
-		uv = spherical_map(relative_point, object->self->sp.radius, object->normal);
+		uv = spherical_map(relative_point, \
+			object->self->sp.radius, object->normal);
 	}
 	else
 		return (false);
@@ -63,10 +64,6 @@ bool	checker_color(t_intersec *object)
 	return (false);
 }
 
-/**
- * checkerboard based on the color of the object in the .rt file and
- * on its complementary color
- */
 t_color	checkerboard(t_intersec *object)
 {
 	t_color	black;
@@ -76,6 +73,6 @@ t_color	checkerboard(t_intersec *object)
 	white = col(abs(255 - black.r), abs(255 - black.g), \
 				abs(255 - black.b), 255);
 	if (checker_color(object))
-		return (black);
-	return (white);
+		return (white);
+	return (black);
 }
