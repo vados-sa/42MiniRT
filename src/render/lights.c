@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:23 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:24 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:25:33 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 			diffuse = col_add(diffuse, temp_diffuse);
 		}
 		l = l->next;
-
 	}
 	return (diffuse);
 }
@@ -70,7 +69,6 @@ bool	check_shadow(t_ray light, t_coord point, t_data *data, t_coord normal)
 	shadow_ray.direction = light.direction;
 	shadow_ray.origin = vec_add(point, \
 		vec_mult(normal, EPSILON));
-
 	object = data->scene->objects;
 	max_len = vec_len(vec_sub(light.origin, shadow_ray.origin));
 	while (object)
