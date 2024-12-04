@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:12:42 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:11 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:39:41 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ void	ft_putnbr_fd(int nb, int fd)
 		ft_putnbr_fd(nb % 10, fd);
 	}
 }
-

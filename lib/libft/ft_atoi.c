@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 12:34:03 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:32:32 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:38:22 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (nbr * sign);
 }
-
