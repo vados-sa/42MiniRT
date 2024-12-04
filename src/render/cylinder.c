@@ -32,11 +32,11 @@ static t_float	find_t_cy(t_ray ray, t_object *obj)
 		return (-1);
 	t_min = ((-b - sqrt(discriminant))) / (2.0 * a);
 	t_max = ((-b + sqrt(discriminant))) / (2.0 * a);
-	if (t_min > t_max && t_min > 0)
+	if (t_min > t_max && t_min > EPSILON)
 		return (t_max);
-	else if (t_min > 0)
+	else if (t_min > EPSILON)
 		return (t_min);
-	else if (t_max >= 0)
+	else if (t_max >= EPSILON)
 		return (t_max);
 	else
 		return (-1);
@@ -52,9 +52,10 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 		return (NULL);
 	m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
-	if (m < 0 || m > obj->cy.height)
+	if (m < EPSILON || m > obj->cy.height)
 		return (intersect_cap(ray, obj, t));
 	obj->temp.t = t;
+	obj->temp.type = 'c';
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
 	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \

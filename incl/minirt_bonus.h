@@ -2,9 +2,8 @@
 #ifndef MINIRT_BONUS_H
 # define MINIRT_BONUS_H
 
-# define CHECKP 1
-# define CHECKS 1
-# define CHECKC 1
+# define CHECKP 0
+# define CHECKS 0
 
 # include "minirt.h"
 
