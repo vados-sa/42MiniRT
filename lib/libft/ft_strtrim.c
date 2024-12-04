@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 16:43:03 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:37:01 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:40:57 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ static char	*aux_newstring(char const *s1, int i, int j)
 	new[k] = '\0';
 	return (new);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:43:43 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:33:24 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:43:35 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		return (-1);
 	return (0);
 }
-

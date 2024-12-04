@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 10:59:02 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:50 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:40:07 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		return (src_size + dst_size);
 	return (size + src_size);
 }
-

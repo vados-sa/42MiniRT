@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:37:04 by pbencze           #+#    #+#             */
-/*   Updated: 2024/11/06 13:47:04 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:43:21 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ char	*ft_strdup(const char *s)
 	duplicate[i] = '\0';
 	return (duplicate);
 }
-

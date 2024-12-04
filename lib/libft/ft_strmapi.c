@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 22:10:49 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:36:20 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:40:19 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	new[i] = '\0';
 	return (new);
 }
-

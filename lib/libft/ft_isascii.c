@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:04:15 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:32:50 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:38:48 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,3 @@ int	ft_isascii(int c)
 {
 	return (c >= 0 && c <= 127);
 }
-

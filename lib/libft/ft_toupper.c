@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:01:50 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:37:11 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:41:09 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,3 @@ int	ft_toupper(int c)
 		return (c - (97 - 65));
 	return (c);
 }
-

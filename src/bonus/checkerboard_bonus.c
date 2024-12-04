@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checkerboard_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/04 14:47:10 by vados-sa          #+#    #+#             */
+/*   Updated: 2024/12/04 14:47:43 by vados-sa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
@@ -40,7 +51,6 @@ t_coord	spherical_map(t_coord point, t_float radius, t_coord normal)
 	v = 1 - phi / PI;
 	u *= scale;
 	v *= scale;
-
 	return (coord(u, v, 0));
 }
 

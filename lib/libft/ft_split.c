@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:11:03 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:29 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:39:49 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,3 @@ static char	**ft_freewords(char **str, int i)
 	free(str);
 	return (NULL);
 }
-

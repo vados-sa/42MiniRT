@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:42:20 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:36:49 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:40:49 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)&s[i]);
 	return (NULL);
 }
-

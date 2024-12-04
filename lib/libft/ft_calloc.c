@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:17:31 by pbencze           #+#    #+#             */
-/*   Updated: 2024/02/02 15:32:40 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/04 14:38:33 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	ft_bzero(memory, nmemb * size);
 	return (memory);
 }
-
