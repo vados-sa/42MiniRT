@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:37 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:56:26 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,26 @@ t_intersec	*intersect_single_cap(t_ray ray, t_object *obj, t_float t)
 
 t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t)
 {
-	t_intersec	*result;
+	t_intersec	*top_cap;
+	t_intersec	*bottom_cap;
+	t_intersec	*cap;
 
 	obj->cy.cap_center = obj->cy.top_end_cap;
 	obj->cy.cap_normal = vec_mult(obj->cy.normal, -1);
-	result = intersect_single_cap(ray, obj, t);
-	if (result)
-		return (result);
+	top_cap = intersect_single_cap(ray, obj, t);
 	obj->cy.cap_center = vec_add(obj->cy.top_end_cap, \
 					vec_mult(obj->cy.normal, obj->cy.height));
 	obj->cy.cap_normal = obj->cy.normal;
-	result = intersect_single_cap(ray, obj, t);
-	if (result)
-		return (result);
-	return (NULL);
+	bottom_cap = intersect_single_cap(ray, obj, t);
+	if (top_cap && !bottom_cap)
+		return (top_cap);
+	else if (!top_cap && bottom_cap)
+		return (bottom_cap);
+	else if (top_cap && bottom_cap)
+	{
+		cap = compare_distance(top_cap, bottom_cap, ray.origin);
+		return (cap);
+	}
+	else
+		return (NULL);
 }
