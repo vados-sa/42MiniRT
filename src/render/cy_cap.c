@@ -6,12 +6,13 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/06 17:21:17 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:10:37 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
+ //problem is here with the normals?
 static int	intersect_cap_plane(t_ray ray, t_coord pl_point, \
 							t_coord *pl_normal, t_float *t)
 {
@@ -27,7 +28,7 @@ static int	intersect_cap_plane(t_ray ray, t_coord pl_point, \
 			*pl_normal = *pl_normal;
 		else
 			*pl_normal = vec_mult(*pl_normal, -1.0);
-		return (*t >= EPSILON); //problem is here
+		return (*t >= EPSILON);
 	}
 	return (0);
 }
