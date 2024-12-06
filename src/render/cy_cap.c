@@ -6,25 +6,28 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/06 16:59:00 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/06 17:21:17 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
 static int	intersect_cap_plane(t_ray ray, t_coord pl_point, \
-							t_coord pl_normal, t_float *t)
+							t_coord *pl_normal, t_float *t)
 {
 	t_float	denom;
 	t_coord	oc;
 
-	denom = vec_dot(ray.direction, pl_normal);
+	denom = vec_dot(ray.direction, *pl_normal);
 	if (fabs(denom) > EPSILON)
 	{
 		oc = vec_sub(ray.origin, pl_point);
-		*t = (-1 * vec_dot(oc, pl_normal)) / denom;
+		*t = (-1 * vec_dot(oc, *pl_normal)) / denom;
 		if (denom < 0)
-		return (*t >= EPSILON);
+			*pl_normal = *pl_normal;
+		else
+			*pl_normal = vec_mult(*pl_normal, -1.0);
+		return (*t >= EPSILON); //problem is here
 	}
 	return (0);
 }
@@ -45,7 +48,7 @@ t_intersec	*intersect_single_cap(t_ray ray, t_object *obj, t_float t)
 	t_float	t_temp;
 
 	t_temp = t;
-	if (intersect_cap_plane(ray, obj->cy.cap_center, obj->cy.cap_normal, &t_temp))
+	if (intersect_cap_plane(ray, obj->cy.cap_center, &obj->cy.cap_normal, &t_temp))
 	{
 		point = ray_at(ray, t_temp);
 		if (is_within_radius(point, obj->cy.cap_center, obj->cy.radius))
