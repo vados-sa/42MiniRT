@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cy_cap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/06 12:57:05 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:59:00 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ static int	intersect_cap_plane(t_ray ray, t_coord pl_point, \
 	t_float	denom;
 	t_coord	oc;
 
-	denom = vec_dot(pl_normal, ray.direction);
+	denom = vec_dot(ray.direction, pl_normal);
 	if (fabs(denom) > EPSILON)
 	{
-		oc = vec_sub(pl_point, ray.origin);
-		*t = vec_dot(oc, pl_normal) / denom;
-		return (*t >= 0);
+		oc = vec_sub(ray.origin, pl_point);
+		*t = (-1 * vec_dot(oc, pl_normal)) / denom;
+		if (denom < 0)
+		return (*t >= EPSILON);
 	}
 	return (0);
 }
@@ -33,19 +34,23 @@ static int	is_within_radius(t_coord point, t_coord center, t_float radius)
 	t_coord	diff;
 
 	diff = vec_sub(point, center);
-	return (vec_dot(diff, diff) <= radius * radius);
+	if (vec_dot(diff, diff) <= (radius * radius))
+		return (1);
+	return (0);
 }
 
 t_intersec	*intersect_single_cap(t_ray ray, t_object *obj, t_float t)
 {
 	t_coord	point;
+	t_float	t_temp;
 
-	if (intersect_cap_plane(ray, obj->cy.cap_center, obj->cy.cap_normal, &t))
+	t_temp = t;
+	if (intersect_cap_plane(ray, obj->cy.cap_center, obj->cy.cap_normal, &t_temp))
 	{
-		point = ray_at(ray, t);
+		point = ray_at(ray, t_temp);
 		if (is_within_radius(point, obj->cy.cap_center, obj->cy.radius))
 		{
-			obj->temp.t = t;
+			obj->temp.t = t_temp;
 			obj->temp.point = point;
 			obj->temp.color = obj->cy.color;
 			obj->temp.normal = obj->cy.cap_normal;
@@ -64,9 +69,8 @@ t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t)
 	obj->cy.cap_center = obj->cy.top_end_cap;
 	obj->cy.cap_normal = obj->cy.normal;
 	top_cap = intersect_single_cap(ray, obj, t);
-	obj->cy.cap_center = vec_add(obj->cy.top_end_cap, \
-					vec_mult(obj->cy.normal, obj->cy.height)); // maybe height / 2
-	obj->cy.cap_normal = vec_mult(obj->cy.normal, -1);
+	obj->cy.cap_center = obj->cy.bottom_end_cap;
+	obj->cy.cap_normal = vec_mult(obj->cy.normal, -1.0);
 	bottom_cap = intersect_single_cap(ray, obj, t);
 	if (top_cap && !bottom_cap)
 		return (top_cap);

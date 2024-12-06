@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/06 15:02:02 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/06 15:10:09 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	populate_cy_node(t_object *node)
 {
 	node->type = 'c';
 	node->cy.bottom_end_cap = vec_sub(node->cy.center, \
-						vec_mult(node->cy.normal, node->cy.height / 2));
+						vec_mult(node->cy.normal, node->cy.height / 2.0));
 	node->cy.top_end_cap = vec_add(node->cy.center, \
-						vec_mult(node->cy.normal, node->cy.height / 2));
+						vec_mult(node->cy.normal, node->cy.height / 2.0));
 	node->cy.cap_center = coord(0.0, 0.0, 0.0);
 	node->cy.cap_normal = coord(0.0, 0.0, 0.0);
 }

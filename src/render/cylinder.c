@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/06 12:34:28 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:36:07 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_float b)
 	return (b * b - 4 * a * c);
 }
 
-static t_float	find_t_cy(t_ray ray, t_object *obj)
+static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
 {
 	t_float	discriminant;
 	t_float	a;
@@ -50,7 +50,7 @@ static t_float	find_t_cy(t_ray ray, t_object *obj)
 	else if (t_max >= EPSILON)
 		return (t_max);
 	else
-		return (-1.0); 
+		return (-1.0);
 }
 
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
@@ -62,7 +62,7 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	if (t == -1.0)
 		return (intersect_cap(ray, obj, t));
 	m = vec_dot(ray.direction, obj->cy.normal) * t + \
-		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
+		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	if (m < EPSILON || m > obj->cy.height)
 		return (intersect_cap(ray, obj, t));
 	obj->temp.t = t;
@@ -70,6 +70,6 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	obj->temp.point = ray_at(ray, obj->temp.t);
 	obj->temp.color = obj->cy.color;
 	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
-				obj->cy.top_end_cap), vec_mult(obj->cy.normal, m)));
+				obj->cy.bottom_end_cap), vec_mult(obj->cy.normal, m)));
 	return (&obj->temp);
 }
