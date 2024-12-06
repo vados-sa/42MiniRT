@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/05 14:56:26 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:57:05 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t)
 	t_intersec	*cap;
 
 	obj->cy.cap_center = obj->cy.top_end_cap;
-	obj->cy.cap_normal = vec_mult(obj->cy.normal, -1);
+	obj->cy.cap_normal = obj->cy.normal;
 	top_cap = intersect_single_cap(ray, obj, t);
 	obj->cy.cap_center = vec_add(obj->cy.top_end_cap, \
-					vec_mult(obj->cy.normal, obj->cy.height));
-	obj->cy.cap_normal = obj->cy.normal;
+					vec_mult(obj->cy.normal, obj->cy.height)); // maybe height / 2
+	obj->cy.cap_normal = vec_mult(obj->cy.normal, -1);
 	bottom_cap = intersect_single_cap(ray, obj, t);
 	if (top_cap && !bottom_cap)
 		return (top_cap);

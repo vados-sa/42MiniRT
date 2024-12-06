@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:33 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/06 12:34:28 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_float	find_t_cy(t_ray ray, t_object *obj)
 	else if (t_max >= EPSILON)
 		return (t_max);
 	else
-		return (-1);
+		return (-1.0); 
 }
 
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
@@ -59,8 +59,8 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	t_float	m;
 
 	t = find_t_cy(ray, obj);
-	if (t == -1)
-		return (NULL);
+	if (t == -1.0)
+		return (intersect_cap(ray, obj, t));
 	m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), obj->cy.normal);
 	if (m < EPSILON || m > obj->cy.height)
