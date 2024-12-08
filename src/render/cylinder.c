@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/06 17:04:25 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/08 18:27:59 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ t_float b)
 {
 	t_float	c;
 
-	c = vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), vec_sub(ray.origin, \
-		obj->cy.top_end_cap)) - vec_dot(vec_sub(ray.origin, \
-		obj->cy.top_end_cap), obj->cy.normal) * \
-		vec_dot(vec_sub(ray.origin, obj->cy.top_end_cap), \
+	c = vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), vec_sub(ray.origin, \
+		obj->cy.bottom_end_cap)) - vec_dot(vec_sub(ray.origin, \
+		obj->cy.bottom_end_cap), obj->cy.normal) * \
+		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), \
 		obj->cy.normal) - obj->cy.radius * obj->cy.radius;
 	return (b * b - 4 * a * c);
 }
@@ -35,9 +35,9 @@ static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
 
 	a = vec_dot(ray.direction, ray.direction) - vec_dot(ray.direction, \
 		obj->cy.normal) * vec_dot(ray.direction, obj->cy.normal);
-	b = 2 * (vec_dot(ray.direction, vec_sub(ray.origin, obj->cy.top_end_cap)) - \
+	b = 2 * (vec_dot(ray.direction, vec_sub(ray.origin, obj->cy.bottom_end_cap)) - \
 		vec_dot(ray.direction, obj->cy.normal) * vec_dot(vec_sub(ray.origin, \
-		obj->cy.top_end_cap), obj->cy.normal));
+		obj->cy.bottom_end_cap), obj->cy.normal));
 	discriminant = find_discriminant(ray, obj, a, b);
 	if (discriminant < 0)
 		return (-1);
@@ -53,18 +53,18 @@ static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
 		return (-1.0);
 }
 
-t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
+t_intersec	*cy_body_intersect(t_ray ray, t_object *obj)
 {
 	t_float	t;
 	t_float	m;
 
 	t = find_t_cy(ray, obj);
 	if (t == -1.0)
-		return (intersect_cap(ray, obj, t));
-	m = vec_dot(ray.direction, obj->cy.normal) * t + \
+		return (NULL);
+		m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	if (m < EPSILON || m > obj->cy.height)
-		return (intersect_cap(ray, obj, t));
+		return (NULL);
 	obj->temp.t = t;
 	obj->temp.type = 'c';
 	obj->temp.point = ray_at(ray, obj->temp.t);
@@ -73,3 +73,43 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 				obj->cy.bottom_end_cap), vec_mult(obj->cy.normal, m)));
 	return (&obj->temp);
 }
+
+t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
+{
+	t_intersec	*body;
+	t_intersec	*cap;
+	t_intersec	*closest;
+
+	body = cy_body_intersect(ray, obj);
+	cap = intersect_cap(ray, obj);
+	if (body && cap)
+        closest = compare_distance(body, cap, ray.origin);
+    else if (body)
+        closest = body;
+    else if (cap)
+        closest = cap;
+    else
+        closest = NULL;
+    return (closest);
+}
+
+/* t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
+{
+	t_float	t;
+	t_float	m;
+
+	t = find_t_cy(ray, obj);
+	if (t == -1.0)
+		return (intersect_cap(ray, obj));
+	m = vec_dot(ray.direction, obj->cy.normal) * t + \
+		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
+	if (m < EPSILON || m > obj->cy.height)
+		return (intersect_cap(ray, obj));
+	obj->temp.t = t;
+	obj->temp.type = 'c';
+	obj->temp.point = ray_at(ray, obj->temp.t);
+	obj->temp.color = obj->cy.color;
+	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
+				obj->cy.bottom_end_cap), vec_mult(obj->cy.normal, m)));
+	return (&obj->temp);
+} */

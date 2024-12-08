@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:36:53 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:30:38 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ typedef struct s_cylinder
 	t_color		color;
 	t_coord		top_end_cap;
 	t_coord		bottom_end_cap;
-	t_coord		cap_center;
-	t_coord		cap_normal;
+	//t_coord		cap_center;
+	//t_coord		cap_normal;
 }	t_cylinder;
 
 typedef struct s_intersec

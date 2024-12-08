@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/05 12:55:00 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/08 18:08:26 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray);
 t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj);
 t_intersec	*plane_intersect(t_ray ray, t_object *obj);
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj);
-t_intersec	*intersect_cap(t_ray ray, t_object *obj, t_float t);
+t_intersec	*intersect_cap(t_ray ray, t_object *obj);
 t_intersec	*intersection(t_data *data, t_ray ray);
 t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object);
 t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
