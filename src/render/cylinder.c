@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/08 18:27:59 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:57:45 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
 		obj->cy.bottom_end_cap), obj->cy.normal));
 	discriminant = find_discriminant(ray, obj, a, b);
 	if (discriminant < 0)
-		return (-1);
-	t_min = ((-b - sqrt(discriminant))) / (2.0 * a);
-	t_max = ((-b + sqrt(discriminant))) / (2.0 * a);
+		return (-1.0);
+	t_min = (-b - (sqrt(discriminant))) / (2.0 * a);
+	t_max = (-b + (sqrt(discriminant))) / (2.0 * a);
 	if (t_min > t_max && t_min > EPSILON)
 		return (t_max);
 	else if (t_min > EPSILON)
@@ -61,13 +61,13 @@ t_intersec	*cy_body_intersect(t_ray ray, t_object *obj)
 	t = find_t_cy(ray, obj);
 	if (t == -1.0)
 		return (NULL);
-		m = vec_dot(ray.direction, obj->cy.normal) * t + \
+	m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	if (m < EPSILON || m > obj->cy.height)
 		return (NULL);
 	obj->temp.t = t;
 	obj->temp.type = 'c';
-	obj->temp.point = ray_at(ray, obj->temp.t);
+	obj->temp.point = ray_at(ray, t);
 	obj->temp.color = obj->cy.color;
 	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
 				obj->cy.bottom_end_cap), vec_mult(obj->cy.normal, m)));

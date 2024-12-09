@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/08 18:13:34 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:43:42 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ t_intersec	*intersect_bottom_cap(t_ray ray, t_object *obj)
 	//t_intersec	*bottom_cap;
 
 	denom = vec_dot(ray.direction, vec_mult(obj->cy.normal, -1));
-	if (fabs(denom) <= EPSILON) // check if < instead
+	if (fabs(denom) < EPSILON) // check if < instead
 		return (NULL);
 	t_cap = vec_dot(vec_sub(obj->cy.bottom_end_cap, ray.origin), vec_mult(obj->cy.normal, -1)) / vec_dot(ray.direction, vec_mult(obj->cy.normal, -1));
-	if (t_cap <= EPSILON) // check if just <
+	if (t_cap < EPSILON) // check if just <
 		return (NULL);
 	point = ray_at(ray, t_cap);
 	if (is_within_radius(point, obj->cy.bottom_end_cap, obj->cy.radius))
@@ -127,15 +127,15 @@ t_intersec	*intersect_cap(t_ray ray, t_object *obj)
 	//obj->cy.cap_normal = obj->cy.normal;
 	//top_cap = intersect_single_cap(ray, obj, t);
 	top_cap = intersect_top_cap(ray, obj);
-	if (top_cap && !bottom_cap)
-		return (top_cap);
-	else if (!top_cap && bottom_cap)
-		return (bottom_cap);
-	else if (top_cap && bottom_cap)
+	if (top_cap && bottom_cap)
 	{
 		cap = compare_distance(top_cap, bottom_cap, ray.origin);
 		return (cap);
 	}
+	else if (bottom_cap)
+		return (bottom_cap);
+	else if (top_cap)
+		return (top_cap);
 	else
 		return (NULL);
 }
