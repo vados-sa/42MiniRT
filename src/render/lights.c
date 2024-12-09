@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:23 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 16:21:02 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:42:22 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 	{
 		light.direction = vec_unit(vec_sub(l->point, hit_rec->point));
 		light.origin = l->point;
-		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), EPSILON); //check later 
+		dot_product = fmax(vec_dot(hit_rec->normal, light.direction), EPSILON);
 		shadow = check_shadow(light, hit_rec->point, data, hit_rec->normal);
 		if (dot_product > EPSILON && shadow == false)
 		{

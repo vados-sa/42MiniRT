@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 17:33:31 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:03:43 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ t_float b)
 	return (b * b - 4 * a * c);
 }
 
-static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
+static t_float	find_t_cy(t_ray ray, t_object *obj)
 {
 	t_float	discriminant;
 	t_float	a;
 	t_float	b;
 	t_float	t_max;
 	t_float	t_min;
-	t_float m1;
-	t_float	m2;
 
 	a = vec_dot(ray.direction, ray.direction) - vec_dot(ray.direction, \
 		obj->cy.normal) * vec_dot(ray.direction, obj->cy.normal);
@@ -45,6 +43,14 @@ static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
 		return (-1.0);
 	t_min = (-b - (sqrt(discriminant))) / (2.0 * a);
 	t_max = (-b + (sqrt(discriminant))) / (2.0 * a);
+	return (compare_t(ray, obj, t_min, t_max));
+}
+
+static t_float	compare_t(t_ray ray, t_object *obj, t_float t_min, t_float t_max)
+{
+	t_float	m1;
+	t_float	m2;
+	
 	m1 = vec_dot(ray.direction, obj->cy.normal) * t_min + \
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	m2 = vec_dot(ray.direction, obj->cy.normal) * t_max + \
@@ -69,8 +75,6 @@ t_intersec	*cy_body_intersect(t_ray ray, t_object *obj)
 		return (NULL);
 	m = vec_dot(ray.direction, obj->cy.normal) * t + \
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
-	//if (m < EPSILON || m > obj->cy.height)
-	//	return (NULL);
 	obj->cy.body.t = t;
 	obj->cy.body.type = 'c';
 	obj->cy.body.point = ray_at(ray, t);
@@ -89,12 +93,7 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
 	body = cy_body_intersect(ray, obj);
 	cap = intersect_cap(ray, obj);
 	if (body && cap)
-	{
-        //closest = compare_distance(body, cap, ray.origin);
-		if (body->t <= cap->t)
-			return (body);
-		return (cap);
-	}
+        closest = compare_distance(body, cap, ray.origin);
     else if (body)
         closest = body;
     else if (cap)
@@ -103,24 +102,3 @@ t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
         closest = NULL;
     return (closest);
 }
-
-/* t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
-{
-	t_float	t;
-	t_float	m;
-
-	t = find_t_cy(ray, obj);
-	if (t == -1.0)
-		return (intersect_cap(ray, obj));
-	m = vec_dot(ray.direction, obj->cy.normal) * t + \
-		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
-	if (m < EPSILON || m > obj->cy.height)
-		return (intersect_cap(ray, obj));
-	obj->temp.t = t;
-	obj->temp.type = 'c';
-	obj->temp.point = ray_at(ray, obj->temp.t);
-	obj->temp.color = obj->cy.color;
-	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
-				obj->cy.bottom_end_cap), vec_mult(obj->cy.normal, m)));
-	return (&obj->temp);
-} */

@@ -6,13 +6,12 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 17:34:42 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:55:44 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minirt.h"
 
- //problem is here with the normals?
 static int	intersect_cap_plane(t_ray ray, t_coord pl_point, \
 							t_coord *pl_normal, t_float *t)
 {
@@ -43,27 +42,6 @@ static int	is_within_radius(t_coord point, t_coord center, t_float radius)
 	return (0);
 }
 
-/* t_intersec	*intersect_single_cap(t_ray ray, t_object *obj, t_float t)
-{
-	t_coord	point;
-	t_float	t_temp;
-
-	t_temp = t;
-	if (intersect_cap_plane(ray, obj->cy.cap_center, &obj->cy.cap_normal, &t_temp))
-	{
-		point = ray_at(ray, t_temp);
-		if (is_within_radius(point, obj->cy.cap_center, obj->cy.radius))
-		{
-			obj->temp.t = t_temp;
-			obj->temp.point = point;
-			obj->temp.color = obj->cy.color;
-			obj->temp.normal = obj->cy.cap_normal;
-			return (&obj->temp);
-		}
-	}
-	return (NULL);
-} */
-
 t_intersec	*intersect_top_cap(t_ray ray, t_object *obj)
 {
 	t_coord	point;
@@ -71,10 +49,11 @@ t_intersec	*intersect_top_cap(t_ray ray, t_object *obj)
 	t_float	denom;
 
 	denom = vec_dot(ray.direction, obj->cy.normal);
-	if (fabs(denom) <= EPSILON) // check if < instead
+	if (fabs(denom) < EPSILON)
 		return (NULL);
-	t_cap = vec_dot(vec_sub(obj->cy.top_end_cap, ray.origin), obj->cy.normal) / denom;
-	if (t_cap <= EPSILON) // check if just <
+	t_cap = vec_dot(vec_sub(obj->cy.top_end_cap, ray.origin), \
+		obj->cy.normal) / denom;
+	if (t_cap <= EPSILON)
 		return (NULL);
 	point = ray_at(ray, t_cap);
 	if (is_within_radius(point, obj->cy.top_end_cap, obj->cy.radius))
@@ -95,10 +74,11 @@ t_intersec	*intersect_bottom_cap(t_ray ray, t_object *obj)
 	t_float		denom;
 
 	denom = vec_dot(ray.direction, vec_mult(obj->cy.normal, -1));
-	if (fabs(denom) <= EPSILON) // check if < instead
+	if (fabs(denom) < EPSILON)
 		return (NULL);
-	t_cap = vec_dot(vec_sub(obj->cy.bottom_end_cap, ray.origin), vec_mult(obj->cy.normal, -1)) / denom;
-	if (t_cap < EPSILON) // check if just <
+	t_cap = vec_dot(vec_sub(obj->cy.bottom_end_cap, ray.origin), \
+		vec_mult(obj->cy.normal, -1)) / denom;
+	if (t_cap <= EPSILON)
 		return (NULL);
 	point = ray_at(ray, t_cap);
 	if (is_within_radius(point, obj->cy.bottom_end_cap, obj->cy.radius))

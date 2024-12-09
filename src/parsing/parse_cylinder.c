@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/08 18:30:48 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:49:58 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static void	populate_cy_node(t_object *node)
 						vec_mult(node->cy.normal, node->cy.height / 2.0));
 	node->cy.top_end_cap = vec_add(node->cy.center, \
 						vec_mult(node->cy.normal, node->cy.height / 2.0));
-	//node->cy.cap_center = coord(0.0, 0.0, 0.0);
-	//node->cy.cap_normal = coord(0.0, 0.0, 0.0);
 }
 
 int	parse_cy(t_data *data, char *line)

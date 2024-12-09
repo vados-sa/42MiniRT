@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:27 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 15:23:47 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:56:07 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 		return (obj_2);
 	d1 = vec_len(vec_sub(obj_1->point, origin));
 	d2 = vec_len(vec_sub(obj_2->point, origin));
-	//printf("d1: %f, d2: %f\n", d1 * 10000000000, d2 * 10000000000);
 	if (d1 <= d2)
-		return (obj_1);	
+		return (obj_1);
 	else
 		return (obj_2);
 }
