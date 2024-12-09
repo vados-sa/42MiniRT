@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 15:53:18 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:34:42 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ t_intersec	*intersect_top_cap(t_ray ray, t_object *obj)
 	point = ray_at(ray, t_cap);
 	if (is_within_radius(point, obj->cy.top_end_cap, obj->cy.radius))
 	{
-		obj->temp.t = t_cap;
-		obj->temp.point = point;
-		obj->temp.color = obj->cy.color;
-		obj->temp.normal = obj->cy.normal;
-		return (&obj->temp);
+		obj->cy.top.t = t_cap;
+		obj->cy.top.point = point;
+		obj->cy.top.color = obj->cy.color;
+		obj->cy.top.normal = obj->cy.normal;
+		return (&obj->cy.top);
 	}
 	return (NULL);
 }
@@ -103,11 +103,11 @@ t_intersec	*intersect_bottom_cap(t_ray ray, t_object *obj)
 	point = ray_at(ray, t_cap);
 	if (is_within_radius(point, obj->cy.bottom_end_cap, obj->cy.radius))
 	{
-		obj->temp.t = t_cap;
-		obj->temp.point = point;
-		obj->temp.color = obj->cy.color;
-		obj->temp.normal = vec_mult(obj->cy.normal, -1);
-		return (&obj->temp);
+		obj->cy.bottom.t = t_cap;
+		obj->cy.bottom.point = point;
+		obj->cy.bottom.color = obj->cy.color;
+		obj->cy.bottom.normal = vec_mult(obj->cy.normal, -1);
+		return (&obj->cy.bottom);
 	}
 	return (NULL);
 }
@@ -118,9 +118,9 @@ t_intersec	*intersect_cap(t_ray ray, t_object *obj)
 	t_intersec	*bottom_cap;
 	t_intersec	*cap;
 
-	bottom_cap = intersect_bottom_cap(ray, obj);
 	top_cap = intersect_top_cap(ray, obj);
-	if (top_cap && bottom_cap)
+	bottom_cap = intersect_bottom_cap(ray, obj);
+	if (bottom_cap && top_cap)
 	{
 		cap = compare_distance(top_cap, bottom_cap, ray.origin);
 		return (cap);

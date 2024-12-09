@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/08 18:30:38 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:35:22 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,6 @@ typedef struct s_sphere
 	t_color		color;
 }	t_sphere;
 
-typedef struct s_cylinder
-{
-	t_coord		center;
-	t_coord		normal;
-	t_float		radius;
-	t_float		height;
-	t_color		color;
-	t_coord		top_end_cap;
-	t_coord		bottom_end_cap;
-	//t_coord		cap_center;
-	//t_coord		cap_normal;
-}	t_cylinder;
 
 typedef struct s_intersec
 {
@@ -108,6 +96,20 @@ typedef struct s_intersec
 	char			type;
 	struct s_object	*self;
 }	t_intersec;
+
+typedef struct s_cylinder
+{
+	t_coord		center;
+	t_coord		normal;
+	t_float		radius;
+	t_float		height;
+	t_color		color;
+	t_coord		top_end_cap;
+	t_coord		bottom_end_cap;
+	t_intersec	top;
+	t_intersec	bottom;
+	t_intersec	body;
+}	t_cylinder;
 
 typedef struct s_object
 {

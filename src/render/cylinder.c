@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 16:46:54 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/09 17:33:31 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_float	find_t_cy(t_ray ray, t_object *obj) //problem here?
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	m2 = vec_dot(ray.direction, obj->cy.normal) * t_max + \
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
-	if (t_min > t_max && t_min > EPSILON && (m2 >= EPSILON && m2 < obj->cy.height))
+	if (t_min > t_max && t_min > EPSILON && (m2 >= EPSILON && m2 <= obj->cy.height))
 		return (t_max);
 	else  if (t_min > EPSILON && (m1 >= EPSILON && m1 <= obj->cy.height))
 		return (t_min);
@@ -71,13 +71,13 @@ t_intersec	*cy_body_intersect(t_ray ray, t_object *obj)
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	//if (m < EPSILON || m > obj->cy.height)
 	//	return (NULL);
-	obj->temp.t = t;
-	obj->temp.type = 'c';
-	obj->temp.point = ray_at(ray, t);
-	obj->temp.color = obj->cy.color;
-	obj->temp.normal = vec_unit(vec_sub(vec_sub(obj->temp.point, \
+	obj->cy.body.t = t;
+	obj->cy.body.type = 'c';
+	obj->cy.body.point = ray_at(ray, t);
+	obj->cy.body.color = obj->cy.color;
+	obj->cy.body.normal = vec_unit(vec_sub(vec_sub(obj->cy.body.point, \
 				obj->cy.bottom_end_cap), vec_mult(obj->cy.normal, m)));
-	return (&obj->temp);
+	return (&obj->cy.body);
 }
 
 t_intersec	*cylinder_intersect(t_ray ray, t_object *obj)
