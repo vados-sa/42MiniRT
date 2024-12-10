@@ -1,0 +1,20 @@
+# Ambient lighting: Ratio, Color
+A      1.0                                    255,255,255
+
+# Camera: Coordinates, Normal, FOV
+C      0,0,-10      0,0,1        75
+
+# Light: Coordinates, Brightness, Color
+L      3,2,-10                   1.0        255,255,255
+
+# Plane: Coordinates, Normal, Color (Plane 1 - purple)
+pl    0,-1,0       0,1,0                  131,56,236
+
+# Plane: Coordinates, Normal, Color (Plane 2 - orange)
+pl    1,0,0        -0.5,0.5,0.707107                   251,86,7
+
+# Plane: Coordinates, Normal, Color (Plane 3 - blue)
+pl    -1,0,0       0.5,0.5,0.707107                  58,134,255
+
+# Sphere: Coordinates, Diameter, Color
+sp    0,0,-5               2          255,0,110

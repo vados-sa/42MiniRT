@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/08 18:08:26 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:51:05 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 /*light*/
 t_color		diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data);
 bool		check_shadow(t_ray light, t_coord point, t_data *data, \
-	t_coord normal);
+							t_coord normal);
 t_color		calculate_light(t_data *data, t_intersec *hit_rec, t_color color);
 
 /*hook functions*/

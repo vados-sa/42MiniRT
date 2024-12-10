@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 17:49:58 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:54:16 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int	parse_cy(t_data *data, char *line)
 		ft_exit(1, data, NULL);
 	}
 	free_arr(info, NULL);
-	populate_cy_node(cy_node);
+	cy_node->type = 'c';
+	cy_node->cy.bottom_end_cap = vec_sub(cy_node->cy.center, \
+					vec_mult(cy_node->cy.normal, cy_node->cy.height / 2.0));
+	cy_node->cy.top_end_cap = vec_add(cy_node->cy.center, \
+					vec_mult(cy_node->cy.normal, cy_node->cy.height / 2.0));
 	return (0);
 }
