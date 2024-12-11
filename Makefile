@@ -48,7 +48,7 @@ endif
 
 all: libmlx $(LIBFT) $(NAME)
 
-bonus:
+bonus: clean
 	@$(MAKE) BONUS=1
 
 libmlx:
@@ -69,7 +69,6 @@ $(NAME): $(OBJS) $(HDRS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "\033[32;1mminiRT is ready\033[5m ✓ ✓ ✓\033[0m"
 
-
 clean:
 	@rm -f $(OBJS)
 	@rm -rf $(OBJ_DIR)
@@ -82,12 +81,10 @@ fclean: clean
 		rm miniRT_bonus; \
 	fi
 	@$(MAKE) --no-print-directory -C $(LIBFTDIR) fclean
-	@# rm -rf $(LIBMLX)/build
+	@rm -rf $(LIBMLX)/build
 	@echo "\033[37;1mExecutable removed.\033[0m"
 
 re: fclean all
 re_bonus: fclean bonus
 
 .PHONY: all bonus clean fclean re libmlx $(LIBFT)
-
-
