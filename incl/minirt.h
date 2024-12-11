@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/10 16:51:05 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:31:04 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../lib/libft/libft.h"
 # include "structs.h"
 # include "macros.h"
-# if BONUS == 1 //check if this is norm-compatible
+# if BONUS == 1
 #  include "minirt_bonus.h"
 # endif
 
