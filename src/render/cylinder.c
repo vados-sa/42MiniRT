@@ -6,7 +6,7 @@
 /*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/10 16:48:18 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/11 09:19:13 by vados-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_float	compare_t(t_ray ray, t_object *obj, t_float t_min, \
 {
 	t_float	m1;
 	t_float	m2;
-	
+
 	m1 = vec_dot(ray.direction, obj->cy.normal) * t_min + \
 		vec_dot(vec_sub(ray.origin, obj->cy.bottom_end_cap), obj->cy.normal);
 	m2 = vec_dot(ray.direction, obj->cy.normal) * t_max + \
@@ -38,7 +38,7 @@ static t_float	compare_t(t_ray ray, t_object *obj, t_float t_min, \
 	if (t_min > t_max && t_min > EPSILON && \
 		(m2 >= EPSILON && m2 <= obj->cy.height))
 		return (t_max);
-	else  if (t_min > EPSILON && (m1 >= EPSILON && m1 <= obj->cy.height))
+	else if (t_min > EPSILON && (m1 >= EPSILON && m1 <= obj->cy.height))
 		return (t_min);
 	else if (t_max >= EPSILON && (m2 >= EPSILON && m2 <= obj->cy.height))
 		return (t_max);
