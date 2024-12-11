@@ -48,7 +48,7 @@ endif
 
 all: libmlx $(LIBFT) $(NAME)
 
-bonus: clean
+bonus:
 	@$(MAKE) BONUS=1
 
 libmlx:
