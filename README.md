@@ -13,13 +13,13 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 ![multi light](readme/multi_light.png)
 
 ## Useful links
-[MLX42 docs](https://github.com/codam-coding-college/MLX42/tree/master/docs)
-[geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html)
-[checkerboards](http://raytracerchallenge.com/bonus/texture-mapping.html)
-[lighting](https://learnopengl.com/Lighting/Basic-Lighting)
-[Raytracing In One Weekend](https://raytracing.github.io/)
-[Fundamentals of Ray Tracing](http://cosinekitty.com/raytrace/raytrace_us.pdf)
-[the famous scratchapixel website to get started](https://www.scratchapixel.com/)
+* [MLX42 docs](https://github.com/codam-coding-college/MLX42/tree/master/docs)
+* [geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html)
+* [checkerboards](http://raytracerchallenge.com/bonus/texture-mapping.html)
+* [lighting](https://learnopengl.com/Lighting/Basic-Lighting)
+* [Raytracing In One Weekend](https://raytracing.github.io/)
+* [Fundamentals of Ray Tracing](http://cosinekitty.com/raytrace/raytrace_us.pdf)
+* [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
 
 /**
  * @var oc: vector from the ray origin to a point on the plane
