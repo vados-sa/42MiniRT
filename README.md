@@ -1,7 +1,14 @@
 # 42MiniRT
+
 This project is an introduction to Raytracing: a simulation of light and its interactions with physical objects with the help of mathematical formulas and the MLX42 graphics library.
 
+Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.com/vados-sa).
 
+## Examples
+![temple](readme/temple.png)
+![solar system](readme/solar.png)
+![checkerboard for the plane](readme/checker_plane.png)
+![checkerboard for the sphere](readme/checker_sphere.png)
 
 /**
  * @var oc: vector from the ray origin to a point on the plane
