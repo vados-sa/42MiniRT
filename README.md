@@ -5,10 +5,12 @@ This project is an introduction to Raytracing: a simulation of light and its int
 Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.com/vados-sa).
 
 ## Examples
-![temple](readme/temple.png)
+![purple room](readme/purple_room.png)
 ![solar system](readme/solar.png)
 ![checkerboard for the plane](readme/checker_plane.png)
 ![checkerboard for the sphere](readme/checker_sphere.png)
+![blue light](readme/blue_light.png)
+![multi light](readme/multi_light.png)
 
 /**
  * @var oc: vector from the ray origin to a point on the plane
