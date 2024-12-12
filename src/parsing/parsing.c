@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:47 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:13:55 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void	parse_lines(t_data *data)
 	}
 }
 
+/**
+ * @brief: reads the .rt file, 
+ * stores it in a 2D-array and 
+ * parses its lines into a t_scene struct.
+ */
 void	parse(t_data *data, char *filename)
 {
 	read_file(filename, data);

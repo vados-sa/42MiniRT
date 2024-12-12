@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:14 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:15 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:43:27 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @return: a t_ray ray originating at the camera´s position and 
+ * directed towards the center of the windows's pixel at width x and height y,
+ * translated into viewport dimensions. The calculation starts at pixel00.
+ */
 t_ray	create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data)
 {
 	t_ray	ray;
@@ -27,6 +32,10 @@ t_ray	create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data)
 	return (ray);
 }
 
+/**
+ * @brief: much used function to determine the point on 
+ * the ray which is at distance t from the ray's origin
+ */
 t_coord	ray_at(t_ray r, t_float t)
 {
 	return (vec_add(r.origin, vec_mult(r.direction, t)));

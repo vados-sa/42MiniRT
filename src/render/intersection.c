@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:27 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 17:56:07 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:05:26 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: compares to intersection points to determine the closest.
+ */
 t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 								t_coord origin)
 {
@@ -30,6 +33,12 @@ t_intersec	*compare_distance(t_intersec *obj_1, t_intersec *obj_2, \
 		return (obj_2);
 }
 
+/**
+ * @brief: function looping through each object, checking for 
+ * intersections of the ray and the objects and comparing 
+ * the intersections to find the closest one.
+ * @returns the closest t_intersect struct or NULL if there is none.
+ */
 t_intersec	*intersection(t_data *data, t_ray ray)
 {
 	t_object	*object;

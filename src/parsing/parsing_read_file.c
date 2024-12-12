@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_read_file.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:51 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:52 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:19:04 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ char	**free_arr(char **arr1, char **arr2)
 	return (NULL);
 }
 
+/**
+ * @brief: appends a char *array to a char **array.
+ */
 static char	**append_arr(char **arr, char *new_str)
 {
 	ssize_t	i;
@@ -71,6 +74,11 @@ static char	**append_arr(char **arr, char *new_str)
 	return (new_arr);
 }
 
+/**
+ * @brief: loops throught the file and
+ * uses get_next_line(int fd) 
+ * to extract the content of each line.
+ */
 static char	**read_lines(int fd)
 {
 	char	**arr;
@@ -97,6 +105,11 @@ static char	**read_lines(int fd)
 	return (arr);
 }
 
+/**
+ * @brief: checks the extension, opens the file, 
+ * passes the fd to the readline function,
+ * closes the file and checks the extracted content.
+ */
 void	read_file(char *filename, t_data *data)
 {
 	int	fd;
