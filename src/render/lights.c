@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:23 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 16:02:50 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:21:08 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
  * account the spotlights in the .rt file. 
  * @details: The larger the dot product becomes, the less of an impact
  * the light should have on the object's color.
- * To get the cosine of the angle between both vectors 
- * we will work with the following unit vectors:
+ * To get just(!!!) the cosine of the angle between both vectors 
+ * we will work with the following unit(!!!) vectors:
  * surface_normal: a vector perpendicular to the object's surface
  * the direction of the light ray: the difference vector
  * between the light's position and the object's position.
+ * a · b = |a| × |b| × cos(θ), so if the length of both a and b are 1,
+ * we should get cos(θ).
  * To avoid rounding problems and strange surface colors, 
  * we compare to our arbitrary EPSILON.
  * @param l: a linked list of light sources
