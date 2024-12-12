@@ -12,6 +12,25 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 ![blue light](readme/blue_light.png)
 ![multi light](readme/multi_light.png)
 
+## Features
+* smooth window management (minimizing, resizing, ESC, cross etc.)
+* rendering of 3 colored geometric objects: plane, sphere, cylinder
+* handling of all possible intersections and the inside of the object
+* possibility of: resizing, translation, rotation in the .rt file
+* moving around with arrows and WASD keys
+* light management: spot brightness, hard shadows, ambient lighting
+* clean memory management (however, still reachables after running valgrind because of MLX42; we free everything we allocated)
+* parsing of a .rt file with specific error messages
+* bonus: checkerboard for planes and spheres, multi- and colored light
+
+## Usage
+1. clone the repository and go to the directory
+`git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
+2. run make
+`make`
+3. execute the file with a scene of your choice
+`./miniRT scenes/*`
+
 ## Useful links
 * [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
 * [checkerboards](http://raytracerchallenge.com/bonus/texture-mapping.html)
@@ -20,38 +39,3 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 * [Fundamentals of Ray Tracing by Don Cross](http://cosinekitty.com/raytrace/raytrace_us.pdf)
 * [geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html)
 * [MLX42 docs](https://github.com/codam-coding-college/MLX42/tree/master/docs)
-
-/**
- * @var oc: vector from the ray origin to a point on the plane
- * @var numerator: numerator of the function to calculate t
- * @var denominator: denominator of the function to calculate t
- * if the denominator is close to 0, the ray will be parallel to the plane, so
- * they either perfectly coincide, offering an infinite number of solutions,
- * or they do not intersect at all. If t is negative, the intersection happens
- * nbehind the ray origin, which we don't want to take into consideration.
- * If the ray is coming from the back side of the plane, we want to invert the normal.
- * @return value: t_intersection struct if there is an intersection, NULL if there is not
- * or if the intersection happens behind the camera.
- */
-t_intersec	*plane_intersect(t_ray ray, t_object *obj)
-
-/**
- * the larger θ becomes, the less of an impact
- * the light should have on the fragment's color.
- * to get (only) the cosine of the angle between
- * both vectors we will work with unit vectors (vectors of length 1)
- * so we need to make sure all the vectors are normalized
- * surface_normal: a vector that is perpendicular to the vertex' surface.
- * The directed light ray: a direction vector that is the difference vector
- * between the light's position and the fragment's position. To calculate this light
- * ray we need the light's position vector and the fragment's position vector.
- * @param l: a linked list of light sources
- * @param hit_rec: a t_intersection struct that contains the surface normal and the point where the object was hit
- */
-t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
-
-/**
- * checkerboard based on the color of the object in the .rt file and
- * on its complementary color
- */
-t_color	checkerboard(t_intersec *object)

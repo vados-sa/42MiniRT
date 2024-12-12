@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkerboard_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:10 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:47:43 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:26:02 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ bool	checker_color(t_intersec *object)
 	return (false);
 }
 
+/**
+ * checkerboard based on the color of the object in the .rt file and
+ * on its complementary color
+ */
 t_color	checkerboard(t_intersec *object)
 {
 	t_color	black;

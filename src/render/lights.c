@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   lights.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:23 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/09 17:42:22 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:32:41 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * The larger the dot product becomes, the less of an impact
+ * the light should have on the object's color.
+ * To get the cosine of the angle between both vectors 
+ * we will work with the following unit vectors:
+ * surface_normal: a vector perpendicular to the object's surface
+ * the direction of the light ray: the difference vector
+ * between the light's position and the object's position.
+ * @param l: a linked list of light sources
+ * @param hit_rec: a t_intersection struct with the color, the surface normal and the intersection point
+ */
 t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 {
 	t_ray	light;
