@@ -29,7 +29,7 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 2. run make <br/>
 `make`
 3. execute the file with a scene of your choice<br/>
-`./miniRT scenes/*`
+`./miniRT scenes/*.rt`
 
 ## Useful links
 * [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
