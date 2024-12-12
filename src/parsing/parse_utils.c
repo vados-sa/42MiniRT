@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:59 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:46:03 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:48:56 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: splits and arry into three arrays delimited by commas and spaces
+ */
 char	**split_three(char *info)
 {
 	int		i;
@@ -33,6 +36,9 @@ char	**split_three(char *info)
 	return (str_arr);
 }
 
+/**
+ * @brief: creates a 3D-vector from 3 t_float values.
+ */
 t_coord	coord(t_float x, t_float y, t_float z)
 {
 	t_coord	xyz;
@@ -43,6 +49,9 @@ t_coord	coord(t_float x, t_float y, t_float z)
 	return (xyz);
 }
 
+/**
+ * @brief: assigns normals or points to objects, lights, or the camera.
+ */
 void	assign_xyz(char type, t_data *data, t_coord xyz, char coord_type)
 {
 	if (coord_type == 'n')
@@ -69,6 +78,9 @@ void	assign_xyz(char type, t_data *data, t_coord xyz, char coord_type)
 	}
 }
 
+/**
+ * @brief: assigns rgba values lights or objects
+ * */
 void	assign_rgba(char type, t_data *data, t_color rgba)
 {
 	if (type == 'A')

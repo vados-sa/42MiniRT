@@ -6,12 +6,15 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:31 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/11/06 13:14:44 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:03:07 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: checks the range of the field of view.
+ */
 int	check_fov(char *info, t_data *data)
 {
 	t_float	fov;
@@ -25,6 +28,9 @@ int	check_fov(char *info, t_data *data)
 	return (0);
 }
 
+/**
+ * @brief: parses information for the camera
+ */
 int	parse_c(t_data *data, char *line)
 {
 	char	**info;

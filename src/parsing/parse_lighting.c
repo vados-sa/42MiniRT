@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_lighting.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:21 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/02 18:27:31 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:00:32 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: checks the light ratio and stores it.
+ */
 static int	check_ratio(char *info, t_data *data, char type)
 {
 	t_float	ratio;
@@ -28,6 +31,9 @@ static int	check_ratio(char *info, t_data *data, char type)
 	return (0);
 }
 
+/**
+ * @brief: parses information for the ambient lighting
+ */
 int	parse_a(t_data *data, char *line)
 {
 	char	**info;
@@ -53,6 +59,9 @@ int	parse_a(t_data *data, char *line)
 	return (1);
 }
 
+/**
+ * @brief: parses information for the lighting
+ */
 int	parse_l(t_data *data, char *line)
 {
 	char	**info;

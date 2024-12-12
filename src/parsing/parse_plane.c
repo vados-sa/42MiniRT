@@ -6,12 +6,15 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:29 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/11/15 13:17:15 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/12 17:00:15 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: parses information for the plane
+ */
 int	parse_pl(t_data *data, char *line)
 {
 	t_object	*pl_node;

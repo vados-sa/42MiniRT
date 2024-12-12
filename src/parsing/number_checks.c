@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   number_checks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:09 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/10/30 18:42:12 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:08:05 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: a check before atof is applied on the string
+ * to make the parsing strict.
+ * We only accept digits, one sign and one precision point.
+ */
 int	float_check(char *str)
 {
 	int	i;
@@ -33,6 +38,11 @@ int	float_check(char *str)
 	return (0);
 }
 
+/**
+ * @brief: a check before atof is applied on the string
+ * to make the parsing strict.
+ * We only accept digits and one sign.
+ */
 int	int_check(char *str)
 {
 	int	i;

@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_checks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:55 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:45:56 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:46:10 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: checks if the rgb values are correct, transforms them into integers,
+ * stores them in a struct and assigns them to a light or object.
+ * @returns 1 on error and 0 on success.
+ */
 int	check_color(char *info, t_data *data, char type)
 {
 	char	**color;
@@ -45,6 +50,11 @@ int	check_identifier(char *info, t_data *data, char *type)
 	return (0);
 }
 
+/**
+ * @brief: checks if the coordinate values are correct and normalized, transforms them into floats,
+ * stores them in a struct and assigns them to a light, camera or object.
+ * @returns 1 on error and 0 on success.
+ */
 int	check_normal(char *info, t_data *data, char type)
 {
 	char			**coordinates;
@@ -70,6 +80,11 @@ int	check_normal(char *info, t_data *data, char type)
 	return (0);
 }
 
+/**
+ * @brief: checks if the coordinate values are correct, transforms them into floats,
+ * stores them in a struct and assigns them to a light, camera or object.
+ * @returns 1 on error and 0 on success.
+ * */
 int	check_coordinates(char *info, t_data *data, char type)
 {
 	char			**coordinates;
@@ -93,6 +108,12 @@ int	check_coordinates(char *info, t_data *data, char type)
 	return (0);
 }
 
+/**
+ * @brief: checks if the radius or height value is correct, 
+ * transforms it into float,
+ * and assigns it to a sphere or cylinder.
+ * @returns 1 on error and 0 on success.
+ */
 int	check_dimension(char *line, t_dimension type, t_data *data)
 {
 	t_float	dimension;

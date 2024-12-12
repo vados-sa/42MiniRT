@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:42:42 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/10 16:54:16 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:01:32 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ static void	populate_cy_node(t_object *node)
 						vec_mult(node->cy.normal, node->cy.height / 2.0));
 }
 
+/**
+ * @brief: parses information for the cylinder
+ */
 int	parse_cy(t_data *data, char *line)
 {
 	t_object	*cy_node;

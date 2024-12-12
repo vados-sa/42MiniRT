@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 18:48:37 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/02 16:51:44 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 16:59:51 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: splits the line by spaces.
+ */
 char	**info_split(char *line, t_data *data)
 {
 	char	**info;
@@ -22,6 +25,9 @@ char	**info_split(char *line, t_data *data)
 	return (info);
 }
 
+/**
+ * @brief: parses information for the sphere
+ */
 int	parse_sp(t_data *data, char *line)
 {
 	t_object	*sp_node;

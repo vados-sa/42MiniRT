@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:27 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 16:05:26 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/12 16:33:36 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ t_intersec	*intersection(t_data *data, t_ray ray)
 	return (NULL);
 }
 
+/**
+ * @brief: calls specific intersection functions based on the object type
+ * and @returns the t_intersect hit record.
+ */
 t_intersec	*obj_intersection(t_data *data, t_ray ray, t_object *object)
 {
 	t_intersec	*hit_rec;
