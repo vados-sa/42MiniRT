@@ -17,7 +17,7 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 * rendering of 3 colored geometric objects: plane, sphere, cylinder
 * handling of all possible intersections and the inside of the object
 * possibility of: resizing, translation, rotation in the .rt file
-* moving around with arrows and WASD keys
+* moving around with arrows and WASD keys or zooming with + and -
 * light management: spot brightness, hard shadows, ambient lighting
 * clean memory management (however, still reachables after running valgrind because of MLX42; we free everything we allocated)
 * parsing of a .rt file with specific error messages

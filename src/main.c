@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:44:40 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:44:44 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 15:00:40 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: main function containing the initialization of the general
+ * t_data struct, parsing, viewport initialization, mlx-hooks for rendering,
+ * resizing and pressing certain keys, the mlx loop, freeing of data.
+ * @return: 0 on success (when closing the mlx window)
+ */
 int	main(int argc, char **argv)
 {
 	t_data	*data;
