@@ -24,11 +24,11 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 * bonus: checkerboard for planes and spheres, multi- and colored light
 
 ## Usage
-1. clone the repository and go to the directory</b>
+1. clone the repository and go to the directory<br/>
 `git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
-2. run make </b>
+2. run make <br/>
 `make`
-3. execute the file with a scene of your choice</b>
+3. execute the file with a scene of your choice<br/>
 `./miniRT scenes/*`
 
 ## Useful links
