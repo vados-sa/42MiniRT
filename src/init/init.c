@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:48 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:46:49 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:44:17 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: function that initialises the general data struct,
+ * the mlx window and image pointer, and stores the width and 
+ * the height of the window.
+ */
 t_data	*init(void)
 {
 	t_data	*data;
@@ -40,6 +45,16 @@ t_data	*init(void)
 	return (data);
 }
 
+/**
+ * @brief: sets up the viewport aka an imaginary canvas based on the
+ * camera's position and orientation and on our chosen 
+ * (right-handed) coordinate system.
+ * @details: the world is our coordinate system. As up vector we choose
+ * the values (0,1,0), but if the camera is aligned with the y axis, we have to
+ * change the up vector to (0,0,1), so that we can calculate the cross product.
+ * The cross product will determine the vector pointing right of the viewing direction.
+ * 
+ */
 void	setup_viewport(t_data *data, t_c camera)
 {
 	t_coord	world_up;
@@ -48,10 +63,10 @@ void	setup_viewport(t_data *data, t_c camera)
 	if (fabs(camera.orientation.y - 1) < EPSILON || \
 	fabs(camera.orientation.y + 1) < EPSILON)
 		world_up = coord(0.0, 0.0, 1.0);
-	data->vp.width = 2.0 * FOCAL_LENGTH * tan((camera.fov * PI / 180.0) / 2.0);
-	data->vp.height = data->vp.width / (data->image_width / data->image_height);
 	camera.right = vec_unit(vec_cross(camera.orientation, world_up));
 	camera.up = vec_unit(vec_cross(camera.right, camera.orientation));
+	data->vp.width = 2.0 * FOCAL_LENGTH * tan((camera.fov * PI / 180.0) / 2.0);
+	data->vp.height = data->vp.width / (data->image_width / data->image_height);
 	data->vp.center = vec_add(camera.center, vec_mult(camera.orientation, \
 						FOCAL_LENGTH));
 	data->vp.up_left = vec_add(vec_sub(data->vp.center, \
