@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:10 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/13 10:28:38 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/13 10:39:17 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ t_coord	spherical_map(t_coord point, t_float radius, t_coord normal)
  * a mapping function that maps the coordinates of the
  * intersection point to a checkerboard grid. The x and y values
  * of uv will be between -1 and 1. We scale them to twice
- * the size, so that we can comp
+ * the size, so that we can check if the fields are pair or not pair
+ * To do this, we need the "floor" of uv.x and uv.y, which is the
+ * closest integer less then or equal to a real number.
+ * E.g. floor(1.34) = 1; floor(-0.3) = -1;
+ * If both fields are pair or
  */
 bool	checker_color(t_intersec *object)
 {
