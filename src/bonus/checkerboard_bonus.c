@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:10 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/13 10:39:17 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/13 13:54:37 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ t_coord	planar_map(t_coord plane, t_coord normal)
 	return (coord(u, v, 0));
 }
 
+/**
+ * @brief: Maps a point on a sphere to 2D UV coordinates for texturing.
+ * @param point: The 3D coordinates of the point on the sphere.
+ * @param radius: The radius of the sphere.
+ * @param normal: The normal vector at the point.
+ * @return: A t_coord structure containing the UV coordinates.
+ * @details: This function calculates the UV coordinates for
+ * a point on a sphere using spherical coordinates.
+ * The theta angle is calculated using atan2 for the
+ * x and z coordinates, and the phi angle is calculated
+ *  using acos for the y coordinate.
+ * The UV coordinates are then scaled and
+ * adjusted to fit the checkerboard pattern.
+ */
 t_coord	spherical_map(t_coord point, t_float radius, t_coord normal)
 {
 	t_float	u;
@@ -61,12 +75,13 @@ t_coord	spherical_map(t_coord point, t_float radius, t_coord normal)
  * @details: depending on the object type, we call
  * a mapping function that maps the coordinates of the
  * intersection point to a checkerboard grid. The x and y values
- * of uv will be between -1 and 1. We scale them to twice
+ * of uv will be between 0 and 1. We scale them to twice
  * the size, so that we can check if the fields are pair or not pair
  * To do this, we need the "floor" of uv.x and uv.y, which is the
  * closest integer less then or equal to a real number.
- * E.g. floor(1.34) = 1; floor(-0.3) = -1;
- * If both fields are pair or
+ * E.g. floor(1.34) = 1; floor(-1.34) = -2;
+ * If both values are pair or both are unpair, they will
+ * return true, otherwise they return false.
  */
 bool	checker_color(t_intersec *object)
 {
