@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   light_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/04 14:46:44 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/13 09:59:21 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+/**
+ * @brief: allocates a new t_l node.
+ * @returns the node or NULL on failure of allocation.
+ */
 t_l	*new_light_node(void)
 {
 	t_l	*new;
@@ -23,6 +27,9 @@ t_l	*new_light_node(void)
 	return (new);
 }
 
+/**
+ * @brief: adds a node to the end of the t_l list.
+ */
 t_l	*light_last_node(t_l *light)
 {
 	t_l	*trav;
@@ -35,6 +42,10 @@ t_l	*light_last_node(t_l *light)
 	return (trav);
 }
 
+/**
+ * @brief: loops through the t_l list to find the last node.
+ * @returns the last node or NULL if there is none.
+ */
 void	add_light_node(t_l **light, t_l	*new)
 {
 	t_l	*tmp;
@@ -51,6 +62,10 @@ void	add_light_node(t_l **light, t_l	*new)
 	}
 }
 
+/**
+ * @brief: frees each node of the t_l list.
+ * @param t_object **objects: the address of the head of the list.
+ */
 void	delete_light_list(t_l **lights)
 {
 	t_l	*post;

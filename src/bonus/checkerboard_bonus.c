@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:10 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 14:26:02 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/13 10:28:38 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ t_coord	spherical_map(t_coord point, t_float radius, t_coord normal)
 	return (coord(u, v, 0));
 }
 
+/**
+ * @brief: determines the color of the intersection point.
+ * @return: true if the color should turn into the
+ * complementary color, false if the color stays the same.
+ * @details: depending on the object type, we call
+ * a mapping function that maps the coordinates of the
+ * intersection point to a checkerboard grid. The x and y values
+ * of uv will be between -1 and 1. We scale them to twice
+ * the size, so that we can comp
+ */
 bool	checker_color(t_intersec *object)
 {
 	t_coord	uv;
@@ -75,8 +85,8 @@ bool	checker_color(t_intersec *object)
 }
 
 /**
- * checkerboard based on the color of the object in the .rt file and
- * on its complementary color
+ * @brief: checkerboard based on the color of the object in the .rt file and
+ * on its complementary color.
  */
 t_color	checkerboard(t_intersec *object)
 {

@@ -6,28 +6,29 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:23 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 17:21:08 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/13 09:59:55 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /**
- * @brief: calculates the color of the object taking into 
- * account the spotlights in the .rt file. 
+ * @brief: calculates the color of the object taking into
+ * account the spotlights in the .rt file.
  * @details: The larger the dot product becomes, the less of an impact
  * the light should have on the object's color.
- * To get just(!!!) the cosine of the angle between both vectors 
+ * To get just(!!!) the cosine of the angle between both vectors
  * we will work with the following unit(!!!) vectors:
  * surface_normal: a vector perpendicular to the object's surface
  * the direction of the light ray: the difference vector
  * between the light's position and the object's position.
  * a · b = |a| × |b| × cos(θ), so if the length of both a and b are 1,
  * we should get cos(θ).
- * To avoid rounding problems and strange surface colors, 
+ * To avoid rounding problems and strange surface colors,
  * we compare to our arbitrary EPSILON.
  * @param l: a linked list of light sources
- * @param hit_rec: a t_intersection struct with the color, the surface normal and the intersection point
+ * @param hit_rec: a t_intersection struct with the color,
+ * the surface normal and the intersection point
  */
 t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 {
@@ -56,8 +57,8 @@ t_color	diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data)
 }
 
 /**
- * @brief: multiplies the color of the object (0-255) by the values of 
- * the ambient and diffuse lighting (0-1). 
+ * @brief: multiplies the color of the object (0-255) by the values of
+ * the ambient and diffuse lighting (0-1).
  * The max value for the result r,g,b,a is 255.
  * @param color: color of the intersected object.
  * @returns the final color.
@@ -86,13 +87,13 @@ t_color	calculate_light(t_data *data, t_intersec *hit_rec, t_color color)
 /**
  * @brief: checks if a point is lit or in shadow.
  * @details:
- * As opposed to real life, the calculations consider the light ray 
- * to go from the object to the light source and not versa. 
- * We loop through each object in our list. 
+ * As opposed to real life, the calculations consider the light ray
+ * to go from the object to the light source and not versa.
+ * We loop through each object in our list.
  * If the ray encounters an object before it gets to the light point,
  * it @returns true, otherwise it @returns false.
- * To avoid "self-shadowing", we start not directly at 
- * the object-light intersection point, but slightly further, 
+ * To avoid "self-shadowing", we start not directly at
+ * the object-light intersection point, but slightly further,
  * we use EPSILON to do this.
  * @param point: the intersection point of the light and the object
  * @param normal: surface normal of the intersected object

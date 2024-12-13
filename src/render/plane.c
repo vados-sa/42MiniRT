@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:18 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 14:38:12 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/13 10:01:57 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
  * @var oc: vector from the ray origin to a point on the plane
  * @var numerator: numerator of the function to calculate t
  * @var denominator: denominator of the function to calculate t
- * if the denominator is close to 0, the ray will be parallel to the plane, so
- * they either perfectly coincide, offering an infinite number of solutions,
- * or they do not intersect at all. If t is negative, the intersection happens
- * behind the ray origin, which we don't want to take into consideration.
- * If the ray is coming from the back side of the plane, we want to invert the normal.
- * @return value: t_intersection struct if there is an intersection, NULL if there is not
- * or if the intersection happens behind the camera.
+ * if the denominator is close to 0, the ray will be parallel to
+ * the plane, so they either perfectly coincide,
+ * offering an infinite number of solutions,
+ * or they do not intersect at all. If t is negative,
+ * the intersection happens behind the ray origin,
+ * which we don't want to take into consideration.
+ * If the ray is coming from the back side of the plane,
+ * we want to invert the normal.
+ * @return value: t_intersection struct if there is an intersection,
+ * NULL if there is not or if the intersection happens behind the camera.
  */
 t_intersec	*plane_intersect(t_ray ray, t_object *obj)
 {

@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:48 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 17:44:17 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/13 10:13:36 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /**
  * @brief: function that initialises the general data struct,
- * the mlx window and image pointer, and stores the width and 
+ * the mlx window and image pointer, and stores the width and
  * the height of the window.
  */
 t_data	*init(void)
@@ -46,14 +46,26 @@ t_data	*init(void)
 }
 
 /**
- * @brief: sets up the viewport aka an imaginary canvas based on the
- * camera's position and orientation and on our chosen 
- * (right-handed) coordinate system.
- * @details: the world is our coordinate system. As up vector we choose
- * the values (0,1,0), but if the camera is aligned with the y axis, we have to
- * change the up vector to (0,0,1), so that we can calculate the cross product.
- * The cross product will determine the vector pointing right of the viewing direction.
- * 
+ * @brief: sets up the viewport aka an imaginary
+ * canvas based on the camera's position, orientation
+ * and on our chosen (right-handed) coordinate system.
+ * @details: the "world" is our coordinate system.
+ * As up vector we choose the values (0,1,0),
+ * but if the camera is aligned with the y axis, meaning
+ * that it has a value between -EPSILON and EPSILON,
+ * we have to change the up vector to (0,0,1),
+ * so that we can calculate the cross product of it later.
+ * The cross product will determine the vector
+ * pointing right of the viewing direction.
+ * Then we calculate the viewport width based on the tangent
+ * of our horizontal field of view in radians devided by 2 and
+ * on our focal length. We get half of the width, so we multiply
+ * by 2. The height is easy to calculate, we just need the aspect
+ * ratio (width/height).
+ * Then we will need thepixel at position 0,0 and since
+ * we would like to cast rays into the middle of our pixels
+ * and not into the corners, we will calculate the deltas for
+ * pixel_x and pixel_y, i.e. the distance between two pixels.
  */
 void	setup_viewport(t_data *data, t_c camera)
 {
