@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:21 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 17:26:45 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/15 17:52:21 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,20 @@ t_color	col_mult(t_color c, t_float scalar)
 t_color	col_add(t_color c1, t_color c2)
 {
 	return (col(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a));
+}
+
+/**
+ * @brief: calculates the reflection vector
+ * based on the light direction (incident) and the surface normal.
+ * Used for specular reflection.
+ */
+t_coord vec_reflect(t_coord incident, t_coord normal)
+{
+	t_float dot;
+	t_coord reflection;
+
+    dot = vec_dot(incident, normal);
+    reflection = vec_sub(incident, vec_mult(normal, 2.0 * dot));
+
+    return reflection;
 }

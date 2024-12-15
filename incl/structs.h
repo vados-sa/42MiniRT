@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/11 09:19:37 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:48:16 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,17 @@ typedef struct s_c
 	t_coord		right;
 	t_float		fov;
 }	t_c;
+
+typedef struct s_specular
+{
+	t_color	temp_specular;
+    t_coord	light_dir;
+    t_coord	view_dir;
+    t_coord	reflect_dir;
+    t_float	spec;
+    t_float	shine;
+    t_float	strength;
+}	t_specular;
 
 typedef struct s_l
 {

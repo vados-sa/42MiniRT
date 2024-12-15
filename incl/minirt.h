@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/11 11:31:04 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/15 17:53:10 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ t_coord		vec_mult(t_coord v1, t_float scalar);
 t_coord		vec_unit(t_coord v);
 t_color		col_mult(t_color c, t_float scalar);
 t_color		col_add(t_color c1, t_color c2);
+t_coord		vec_reflect(t_coord incident, t_coord normal);
 
 /*rendering*/
 void		render(t_data *data);
@@ -106,6 +107,7 @@ t_color		diffuse_light(t_l *l, t_intersec *hit_rec, t_data *data);
 bool		check_shadow(t_ray light, t_coord point, t_data *data, \
 							t_coord normal);
 t_color		calculate_light(t_data *data, t_intersec *hit_rec, t_color color);
+t_color		specular_light(t_l *light, t_intersec *hit_rec, t_data *data);
 
 /*hook functions*/
 void		resize(int32_t width, int32_t height, t_data *data);
