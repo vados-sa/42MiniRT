@@ -6,12 +6,23 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:10 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/13 13:54:37 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/15 13:58:24 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
+/**
+ * @brief: Maps a point on a 3D plane to 2D UV coordinates for texturing.
+ * @param point: The 3D coordinates of the point on the plane.
+ * @param normal: The normal vector at the point.
+ * @return: A t_coord structure containing the UV coordinates.
+ * @details: This function calculates the UV coordinates for
+ * a point on a plane using different coordinates depending
+ * on the orientation of the plane.
+ * To calculate, we use the floor values, so that we get u and v
+ * in a range of (-1 - +1).
+ */
 t_coord	planar_map(t_coord plane, t_coord normal)
 {
 	t_float	u;
@@ -37,7 +48,8 @@ t_coord	planar_map(t_coord plane, t_coord normal)
 
 /**
  * @brief: Maps a point on a sphere to 2D UV coordinates for texturing.
- * @param point: The 3D coordinates of the point on the sphere.
+ * @param point: The 3D coordinates of the relative (because we consider 
+ * the sphere to have its center at (0,0,0)) point on the sphere.
  * @param radius: The radius of the sphere.
  * @param normal: The normal vector at the point.
  * @return: A t_coord structure containing the UV coordinates.
@@ -45,7 +57,7 @@ t_coord	planar_map(t_coord plane, t_coord normal)
  * a point on a sphere using spherical coordinates.
  * The theta angle is calculated using atan2 for the
  * x and z coordinates, and the phi angle is calculated
- *  using acos for the y coordinate.
+ * using acos for the y coordinate.
  * The UV coordinates are then scaled and
  * adjusted to fit the checkerboard pattern.
  */

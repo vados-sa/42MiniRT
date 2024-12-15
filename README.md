@@ -6,10 +6,10 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 
 ## Examples
 ![purple room](readme/purple_room.png)
-![solar system](readme/solar.png)
+![blue light](readme/blue_light.png)
 ![checkerboard for the plane](readme/checker_plane.png)
 ![checkerboard for the sphere](readme/checker_sphere.png)
-![blue light](readme/blue_light.png)
+![solar system](readme/solar.png)
 ![multi light](readme/multi_light.png)
 
 ## Features
