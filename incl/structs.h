@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/11 09:19:37 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/15 14:39:07 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ typedef enum e_dimension {
 	CY_HEIGHT,
 	SP_DIAM,
 }	t_dimension;
+
+typedef struct s_matrix3x3
+{
+	t_float	m[3][3];
+}	t_matrix3x3;
 
 typedef struct s_coord
 {

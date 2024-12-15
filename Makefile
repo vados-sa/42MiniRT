@@ -21,7 +21,7 @@ LIBS 			+= 	$(LIBFTDIR)/libft.a
 
 INCLUDES		=  	-I./incl -I$(LIBMLX)/include -I$(LIBFTDIR)
 
-SRCS 			=  $(addprefix $(SRC_DIR), main.c  exit.c hooks.c) \
+SRCS 			=  $(addprefix $(SRC_DIR), main.c  exit.c hooks.c hooks_rotation.c) \
 					$(addprefix $(INIT_DIR), init.c light_list.c object_list.c) \
 					$(addprefix $(MATH_DIR), vec3_ops.c vec3_ops2.c) \
 					$(addprefix $(PARSE_DIR),parsing.c parsing_read_file.c \

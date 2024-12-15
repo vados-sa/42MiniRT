@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vados-sa <vados-sa@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/11 11:31:04 by vados-sa         ###   ########.fr       */
+/*   Updated: 2024/12/15 14:36:37 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,7 @@ void		my_keyhook(mlx_key_data_t keydata, t_data *data);
 void		move(mlx_key_data_t keydata, t_data *data, t_c camera);
 void		zoom(mlx_key_data_t keydata, t_data *data, t_c camera);
 void		rotate(mlx_key_data_t keydata, t_data *data, t_c camera);
+t_coord		apply_rotation(t_coord vec, t_matrix3x3 matrix);
+t_matrix3x3 rotation_matrix(t_coord axis, float angle);
 
 #endif

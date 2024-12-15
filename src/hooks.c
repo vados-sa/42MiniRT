@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:44:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 15:12:34 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/15 14:51:03 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	move(mlx_key_data_t keydata, t_data *data, t_c camera)
  */
 void	zoom(mlx_key_data_t keydata, t_data *data, t_c camera)
 {
-	if (keydata.key == MLX_KEY_EQUAL && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_EQUAL || keydata.key == 24 && keydata.action == MLX_PRESS)
 		data->scene->c.center = \
 		vec_add(camera.center, vec_mult(camera.orientation, 0.1));
-	if (keydata.key == MLX_KEY_MINUS && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_MINUS || keydata.key == 27 && keydata.action == MLX_PRESS)
 		data->scene->c.center = \
 		vec_sub(camera.center, vec_mult(camera.orientation, 0.1));
 }
@@ -49,18 +49,29 @@ void	zoom(mlx_key_data_t keydata, t_data *data, t_c camera)
  */
 void	rotate(mlx_key_data_t keydata, t_data *data, t_c camera)
 {
+	t_matrix3x3	rotation;
+	
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-		data->scene->c.orientation = \
-		vec_unit(vec_add(camera.orientation, vec_mult(camera.up, 0.1)));
+	{
+		rotation = rotation_matrix(camera.right, 0.1);
+		data->scene->c.orientation = vec_unit(apply_rotation(camera.orientation, rotation));
+	}
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-		data->scene->c.orientation = \
-		vec_unit(vec_sub(camera.orientation, vec_mult(camera.up, 0.1)));
+	{
+		rotation = rotation_matrix(camera.right, -0.1);
+		data->scene->c.orientation = vec_unit(apply_rotation(camera.orientation, rotation));
+	}
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		data->scene->c.orientation = \
-		vec_unit(vec_sub(camera.orientation, vec_mult(camera.right, 0.1)));
+	{
+        rotation = rotation_matrix(camera.up, 0.1);
+        data->scene->c.orientation = vec_unit(apply_rotation(camera.orientation, rotation));
+	}
 	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-		data->scene->c.orientation = \
-		vec_unit(vec_add(camera.orientation, vec_mult(camera.right, 0.1)));
+	{
+        rotation = rotation_matrix(camera.up, -0.1);
+        data->scene->c.orientation = vec_unit(apply_rotation(camera.orientation, rotation));
+	}
+	data->scene->c.orientation = vec_unit(data->scene->c.orientation);
 }
 
 /**
