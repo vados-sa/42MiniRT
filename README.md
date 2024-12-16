@@ -26,16 +26,30 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 ## Usage
 1. clone the repository and go to the directory<br/>
 `git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
-2. run make <br/>
+2. run make or make bonus<br/>
 `make`
+`make bonus`
 3. execute the file with a scene of your choice<br/>
 `./miniRT scenes/*.rt`
+`./miniRT_bonus scenes/*.rt`
 
 ## Useful links
-* [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
-* [checkerboards](http://raytracerchallenge.com/bonus/texture-mapping.html)
-* [lighting](https://learnopengl.com/Lighting/Basic-Lighting)
+These were our main resources throughout the project and they are also useful if you are
+unfamiliar with raytracing and just found our repository.<br/>
+General Guides:
 * [Raytracing In One Weekend by Peter Shirley et al.](https://raytracing.github.io/)
 * [Fundamentals of Ray Tracing by Don Cross](http://cosinekitty.com/raytrace/raytrace_us.pdf)
-* [geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html)
-* [MLX42 docs](https://github.com/codam-coding-college/MLX42/tree/master/docs)
+* [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
+Specific Guides:
+* [how to apply checkerboard patterns](http://raytracerchallenge.com/bonus/texture-mapping.html)
+* [different types of lighting](https://learnopengl.com/Lighting/Basic-Lighting)
+* [ray-shape intersection](https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm)
+* [geometry, coordinate systems, vector operations](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html)
+* [MLX42 docs, how and what mlx functions to use](https://github.com/codam-coding-college/MLX42/tree/master/docs)
+
+## Limitations
+* still reachable memory because of the MLX42, suppression file available (mlx42.supp)
+* with the keys W and S only 180 degrees of rotation are possible
+* slow movement or rendering if the scene contains many objects
+* since we use the same memory address for all ntersections with the same object,
+the implementation of multithreading requires changes in several files or structures
