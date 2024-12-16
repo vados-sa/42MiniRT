@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:46:21 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/15 17:52:21 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/16 12:04:56 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief: calculates the dot product of two vectors.
  * @details: if both v1 and v2 have a length of 1,
- * meaning that they are normalized, we get following values 
+ * meaning that they are normalized, we get following values
  * for cos(θ), i.e. the cosine of the angle between the vectors:
  * - 1 if the point in the same direction and are parallel
  * - -1 if they point in the opposite direction and are parallel
@@ -29,7 +29,7 @@ t_float	vec_dot(t_coord v1, t_coord v2)
 /**
  * @brief: calculates the cross product of two vectors.
  * @details: is denoted as v1 x v2.
- * @returns a vector perpendicular to both parameters. 
+ * @returns a vector perpendicular to both parameters.
  * The cross product of parallel vectors is a zero vector.
  */
 t_coord	vec_cross(t_coord v1, t_coord v2)
@@ -54,20 +54,4 @@ t_color	col_mult(t_color c, t_float scalar)
 t_color	col_add(t_color c1, t_color c2)
 {
 	return (col(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a));
-}
-
-/**
- * @brief: calculates the reflection vector
- * based on the light direction (incident) and the surface normal.
- * Used for specular reflection.
- */
-t_coord vec_reflect(t_coord incident, t_coord normal)
-{
-	t_float dot;
-	t_coord reflection;
-
-    dot = vec_dot(incident, normal);
-    reflection = vec_sub(incident, vec_mult(normal, 2.0 * dot));
-
-    return reflection;
 }

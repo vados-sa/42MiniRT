@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:55 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/12 16:46:10 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/16 12:11:09 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	check_identifier(char *info, t_data *data, char *type)
 }
 
 /**
- * @brief: checks if the coordinate values are correct and normalized, transforms them into floats,
+ * @brief: checks if the coordinate values are correct and normalized,
+ * transforms them into floats,
  * stores them in a struct and assigns them to a light, camera or object.
  * @returns 1 on error and 0 on success.
  */
@@ -81,7 +82,8 @@ int	check_normal(char *info, t_data *data, char type)
 }
 
 /**
- * @brief: checks if the coordinate values are correct, transforms them into floats,
+ * @brief: checks if the coordinate values are correct,
+ * transforms them into floats,
  * stores them in a struct and assigns them to a light, camera or object.
  * @returns 1 on error and 0 on success.
  * */
@@ -109,7 +111,7 @@ int	check_coordinates(char *info, t_data *data, char type)
 }
 
 /**
- * @brief: checks if the radius or height value is correct, 
+ * @brief: checks if the radius or height value is correct,
  * transforms it into float,
  * and assigns it to a sphere or cylinder.
  * @returns 1 on error and 0 on success.
