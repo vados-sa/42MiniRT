@@ -5,9 +5,9 @@ This project is an introduction to Raytracing: a simulation of light and its int
 Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.com/vados-sa).
 
 ## Examples
-![purple room](readme/purple_room.png)
-![blue light](readme/blue_light.png)
-![checkerboard for the plane](readme/checker_plane.png)
+![purple room](readme/purple_room_specular.png)
+![blue light](readme/blue_light_specular.png)
+![checkerboard for the plane](readme/white_sphere.png)
 ![checkerboard for the sphere](readme/checker_sphere.png)
 ![solar system](readme/solar.png)
 ![multi light](readme/multi_light.png)
