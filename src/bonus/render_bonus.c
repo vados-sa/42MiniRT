@@ -6,11 +6,11 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:00 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/13 10:14:48 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/16 13:05:29 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 uint32_t	create_color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
@@ -51,16 +51,18 @@ void	put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
 	mlx_put_pixel(data->image, x, y, col_int);
 }
 
-void	render(t_data *data)
+void	*render_section(void *param)
 {
-	uint32_t	x;
-	uint32_t	y;
-	t_ray		ray;
-	uint32_t	color;
-	t_color		rgba;
+	t_thread_data	*thread_data;
+	t_data			*data;
+	uint32_t		x;
+	uint32_t		y;
+	t_ray			ray;
 
+	thread_data = (t_thread_data *)param;
+	data = thread_data->data;
 	y = -1;
-	while (++y < data->image_height)
+	while (++y < thread_data->end_y)
 	{
 		x = -1;
 		while (++x < data->image_width)
@@ -69,4 +71,29 @@ void	render(t_data *data)
 			put_color(x, y, data, ray);
 		}
 	}
+	return (NULL);
+}
+
+void	render(t_data *data)
+{
+	pthread_t		sections[NUM_THREADS];
+	t_thread_data	thread_data[NUM_THREADS];
+	uint32_t		i;
+	uint32_t		rows_per_section;
+
+	rows_per_section = data->image_height / NUM_THREADS;
+	i = -1;
+	while (++i < NUM_THREADS)
+	{
+		thread_data[i].data = data;
+		thread_data[i].start_y = i * rows_per_section;
+		if (i == NUM_THREADS - 1)
+			thread_data[i].end_y = data->image_height;
+		else
+			thread_data[i].end_y = (i + 1) * rows_per_section;
+		pthread_create(&sections[i], NULL, render_section, &thread_data[i]);
+	}
+	i = -1;
+	while (++i < NUM_THREADS)
+		pthread_join(sections[i], NULL);
 }
