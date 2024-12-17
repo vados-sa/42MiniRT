@@ -39,8 +39,9 @@ unfamiliar with raytracing and just found our repository.<br/>
 General Guides:
 * [Raytracing In One Weekend by Peter Shirley et al.](https://raytracing.github.io/)
 * [Fundamentals of Ray Tracing by Don Cross](http://cosinekitty.com/raytrace/raytrace_us.pdf)
-* [the famous scratchapixel website to get started](https://www.scratchapixel.com/) <br/>
-Specific Guides: <br/>
+* [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
+
+<br/>Specific Guides: <br/>
 * [how to apply checkerboard patterns](http://raytracerchallenge.com/bonus/texture-mapping.html)
 * [different types of lighting](https://learnopengl.com/Lighting/Basic-Lighting)
 * [ray-shape intersection](https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm)
