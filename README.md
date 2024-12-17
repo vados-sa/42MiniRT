@@ -27,10 +27,10 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 1. clone the repository and go to the directory<br/>
 `git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
 2. run make or make bonus<br/>
-`make`
+`make` or 
 `make bonus`
 3. execute the file with a scene of your choice<br/>
-`./miniRT scenes/*.rt`
+`./miniRT scenes/*.rt` or 
 `./miniRT_bonus scenes/*.rt`
 
 ## Useful links
@@ -39,8 +39,8 @@ unfamiliar with raytracing and just found our repository.<br/>
 General Guides:
 * [Raytracing In One Weekend by Peter Shirley et al.](https://raytracing.github.io/)
 * [Fundamentals of Ray Tracing by Don Cross](http://cosinekitty.com/raytrace/raytrace_us.pdf)
-* [the famous scratchapixel website to get started](https://www.scratchapixel.com/)
-Specific Guides:
+* [the famous scratchapixel website to get started](https://www.scratchapixel.com/) <br/>
+Specific Guides: <br/>
 * [how to apply checkerboard patterns](http://raytracerchallenge.com/bonus/texture-mapping.html)
 * [different types of lighting](https://learnopengl.com/Lighting/Basic-Lighting)
 * [ray-shape intersection](https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm)
@@ -48,8 +48,8 @@ Specific Guides:
 * [MLX42 docs, how and what mlx functions to use](https://github.com/codam-coding-college/MLX42/tree/master/docs)
 
 ## Limitations
-* still reachable memory because of the MLX42, suppression file available (mlx42.supp)
+* still reachable memory due to MLX42, suppression file available (mlx42.supp)
 * with the keys W and S only 180 degrees of rotation are possible
 * slow movement or rendering if the scene contains many objects
-* since we use the same memory address for all ntersections with the same object,
-the implementation of multithreading requires changes in several files or structures
+* since we refer to the identical memory address for all intersections with the same object,
+the implementation of multithreading would require changes in several files or structures
