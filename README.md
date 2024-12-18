@@ -19,21 +19,71 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 * possibility of: resizing, translation, rotation in the .rt file
 * moving around with arrows and WASD keys or zooming with + and -
 * light management: spot brightness, hard shadows, ambient lighting
-* clean memory management (however, still reachables after running valgrind because of MLX42; we free everything we allocated)
+* clean memory management
 * parsing of a .rt file with specific error messages
 * bonus: checkerboard for planes and spheres, multi- and colored light
+
+## The .rt File
+The .rt file will be executed with our miniRT and it contains information on the scene: on the light, the camera and the objects.<br/>
+Below you can find an example and comments about the content of the elements.<br/>
+To get familiar with the .rt file, we recommend you to play around with it,
+change the values and see what image you get when executing miniRT with the new scene. Have fun!
+```python
+# Ambient lighting: Ratio (0.0 - 1.0), Color (rgb values 0 - 255)
+A   0.5       255,255,255
+
+# Camera: Coordinates, Direction (unit or normalized vector), Horizontal field of view (0 - 180 degrees)
+C              0,0,-3    0,0,1    90
+
+# Light: Coordinates, Intensity (0 - 1.0), Color
+L              -1.5,3,0    0.4   122,0,0
+
+# Sphere: Coordinates, Diameter, Color
+sp             0,0,0      2   255,255,255
+
+# Plane: Coordinates, Normal (perpendicular vector to the surface), Color
+pl        0,-1,0   0,1,0   255,255,255
+
+# Cylinder: Coordinates, Axis (normalized), Diameter, Height, Color
+cy              0,0,1         0,-1,0          1        2   0,0,255
+```
 
 ## Usage
 1. clone the repository and go to the directory<br/>
 `git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
-2. run make or make bonus<br/>
-`make` or 
-`make bonus`
+2. run make<br/>
+`make`
 3. execute the file with a scene of your choice<br/>
-`./miniRT scenes/*.rt` or 
-`./miniRT_bonus scenes/*.rt`
+`./miniRT scenes/*.rt`
+4. play around and change the color, the position, the axis
+or the dimensions of the objects in the .rt files; execute miniRT again<br/>
+```c
+//white plane perpendicular to the y-axis
+pl    0,-1,0       0,1,0                    255,255,255
+//red plane perpendicular to the z-axis
+pl    0,-1,0       0,0,1                    255,0,0
+```
+5. move around in the scene or resize the window:
+- W, A, S, D for rotation
+- up, down, left, right for translation
+- '+' and '-' for zooming
 
-## Useful links
+6. remove the object files and the executable<br/>
+`make fclean`
+7. see the bonus features: now you can  have several light parameters with different colors in the .rt file; play around with that
+`make bonus`
+`./miniRT_bonus scenes/bonus/multi_light.rt`
+8. see more bonus features: set the flags to 1 in the `incl/minirt_bonus.h` header file to have checkerboard patterns or sepcular light<br/>
+```c
+# define CHECKP 1 //checkerboard for plane
+# define CHECKS 1 //checkerboard for sphere
+# define SPECULAR 1 //specular light
+```
+9. recompile and execute the bonus<br/>
+`make re_bonus`
+`./miniRT_bonus scenes/bonus/checker_board.rt`
+
+## Useful Links
 These were our main resources throughout the project and they are also useful if you are
 unfamiliar with raytracing and just found our repository.<br/>
 General Guides:
@@ -51,6 +101,5 @@ General Guides:
 ## Limitations
 * still reachable memory due to MLX42, suppression file available (mlx42.supp)
 * with the keys W and S only 180 degrees of rotation are possible
-* slow movement or rendering if the scene contains many objects
-* since we refer to the identical memory address for all intersections with the same object,
+* slow movement or rendering if the scene contains many objects, but since we refer to the identical memory address for all intersections with the same object,
 the implementation of multithreading would require changes in several files or structures
