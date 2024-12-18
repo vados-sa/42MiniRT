@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 12:54:40 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/18 13:47:06 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ values are out of bounds."
 # define CHECKP 1
 # define CHECKS 0
 # define SPECULAR 1
+# define ANTIALIAS 1
 
 #endif
