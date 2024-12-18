@@ -77,6 +77,9 @@ or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 	- W, A, S, D for rotation
 	- up, down, left, right for translation
 	- '+' and '-' for zooming
+	 <p float="right">
+	  <img src="readme/screencast.gif" height="200" />
+	</p>
 
 6. remove the object files and the executable<br/>
 	```c
