@@ -10,8 +10,8 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
   <img src="/readme/white_sphere.png" height="300" />
   <img src="readme/blue_light_specular.png" height="300" />
   <img src="readme/multi_light.png" height="300" />
-  <img src="readme/checker_sphere.png" height="323" />
-  <img src="readme/solar.png" height="330" />
+  <img src="readme/checker_spheres.png" height="300" />
+  <img src="readme/solar.png" height="300" />
 
 </p>
 
