@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macros.h                                           :+:      :+:    :+:   */
+/*   macros_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 12:45:07 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/18 12:54:40 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACROS_H
-# define MACROS_H
+#ifndef MACROS_BONUS_H
+# define MACROS_BONUS_H
 
 //error messages
 # define ALLOC_ERR "Error\nAllocation error."
@@ -43,6 +43,9 @@ values are out of bounds."
 //if t_float is float
 //# define EPSILON 0.0005
 
-# define MAX_LIGHT 1
+# define MAX_LIGHT 100
+# define CHECKP 1
+# define CHECKS 0
+# define SPECULAR 1
 
 #endif

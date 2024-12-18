@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   minirt_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 12:48:12 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/18 12:57:16 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINIRT_BONUS_H
+# define MINIRT_BONUS_H
 
 # include <fcntl.h>      // open, O_* constants
 # include <unistd.h>     // close, read, write
@@ -20,8 +20,9 @@
 # include <string.h>     // strerror
 # include <math.h>       // math functions (link with -lm)
 # include "../lib/libft/libft.h"
-# include "structs.h"
-# include "macros.h"
+# include "structs_bonus.h"
+# include "macros_bonus.h"
+# include "minirt_bonus.h"
 
 /*init*/
 t_data		*init(void);
@@ -61,6 +62,7 @@ int			parse_pl(t_data *data, char *line);
 int			parse_sp(t_data *data, char *line);
 int			check_color(char *info, t_data *data, char type);
 int			check_identifier(char *info, t_data *data, char *type);
+//int			check_ratio(char *info, t_data *data, char type);
 int			check_coordinates(char *info, t_data *data, char type);
 int			check_normal(char *info, t_data *data, char type);
 int			check_dimension(char *line, t_dimension type, t_data *data);
@@ -109,5 +111,10 @@ void		my_keyhook(mlx_key_data_t keydata, t_data *data);
 void		move(mlx_key_data_t keydata, t_data *data, t_c camera);
 void		zoom(mlx_key_data_t keydata, t_data *data, t_c camera);
 void		rotate(mlx_key_data_t keydata, t_data *data, t_c camera);
+
+/*bonus features*/
+t_color		checkerboard(t_intersec *object);
+t_color		specular_light(t_l *light, t_intersec *hit_rec, t_data *data);
+t_coord		vec_reflect(t_coord incident, t_coord normal);
 
 #endif
