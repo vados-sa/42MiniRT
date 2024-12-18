@@ -30,22 +30,22 @@ To get familiar with the .rt file, we recommend you to play around with it,
 change the values and see what image you get when executing miniRT with the new scene. Have fun!
 ```python
 # Ambient lighting: Ratio (0.0 - 1.0), Color (rgb values 0 - 255)
-A   0.5       255,255,255
+A       0.5       255,255,255
 
 # Camera: Coordinates, Direction (unit or normalized vector), Horizontal field of view (0 - 180 degrees)
-C              0,0,-3    0,0,1    90
+C       0,0,-3    0,0,1    90
 
 # Light: Coordinates, Intensity (0 - 1.0), Color
-L              -1.5,3,0    0.4   122,0,0
+L       1.5,3,0   0.4      122,0,0
 
 # Sphere: Coordinates, Diameter, Color
-sp             0,0,0      2   255,255,255
+sp      0,0,0     2        255,255,255
 
 # Plane: Coordinates, Normal (perpendicular vector to the surface), Color
-pl        0,-1,0   0,1,0   255,255,255
+pl      0,-1,0    0,1,0    255,255,255
 
 # Cylinder: Coordinates, Axis (normalized), Diameter, Height, Color
-cy              0,0,1         0,-1,0          1        2   0,0,255
+cy      0,0,1     0,-1,0   1      2      0,0,255
 ```
 
 ## Usage
@@ -57,31 +57,31 @@ cy              0,0,1         0,-1,0          1        2   0,0,255
 `./miniRT scenes/*.rt`
 4. play around and change the color, the position, the axis
 or the dimensions of the objects in the .rt files; execute miniRT again<br/>
-```c
-//white plane perpendicular to the y-axis
-pl    0,-1,0       0,1,0                    255,255,255
-//red plane perpendicular to the z-axis
-pl    0,-1,0       0,0,1                    255,0,0
-```
+	```c
+	//white plane perpendicular to the y-axis
+	pl    0,-1,0       0,1,0                    255,255,255
+	//red plane perpendicular to the z-axis
+	pl    0,-1,0       0,0,1                    255,0,0
+	```
 5. move around in the scene or resize the window:
 - W, A, S, D for rotation
 - up, down, left, right for translation
-- '+' and '-' for zooming
+- + and - for zooming
 
 6. remove the object files and the executable<br/>
-`make fclean`
-7. see the bonus features: now you can  have several light parameters with different colors in the .rt file; play around with that
-`make bonus`
-`./miniRT_bonus scenes/bonus/multi_light.rt`
+`make fclean`<br/>
+7. see the bonus features: now you can  have several light parameters with different colors in the .rt file; play around with that <br/>
+`make bonus`<br/>
+`./miniRT_bonus scenes/bonus/multi_light.rt`<br/>
 8. see more bonus features: set the flags to 1 in the `incl/minirt_bonus.h` header file to have checkerboard patterns or sepcular light<br/>
-```c
-# define CHECKP 1 //checkerboard for plane
-# define CHECKS 1 //checkerboard for sphere
-# define SPECULAR 1 //specular light
-```
+	```c
+	# define CHECKP 1 //checkerboard for plane
+	# define CHECKS 1 //checkerboard for sphere
+	# define SPECULAR 1 //specular light
+	```
 9. recompile and execute the bonus<br/>
-`make re_bonus`
-`./miniRT_bonus scenes/bonus/checker_board.rt`
+`make re_bonus`<br/>
+`./miniRT_bonus scenes/bonus/checker_board.rt`<br/>
 
 ## Useful Links
 These were our main resources throughout the project and they are also useful if you are
