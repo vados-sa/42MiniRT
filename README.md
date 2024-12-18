@@ -4,7 +4,7 @@ This project is an introduction to Raytracing: a simulation of light and its int
 
 Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.com/vados-sa).
 
-## Examples
+## Examples 🎬
 ![purple room](readme/purple_room_specular.png)
 ![blue light](readme/blue_light_specular.png)
 ![checkerboard for the plane](readme/white_sphere.png)
@@ -12,7 +12,7 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 ![solar system](readme/solar.png)
 ![multi light](readme/multi_light.png)
 
-## Features
+## Features 🪩
 * smooth window management (minimizing, resizing, ESC, cross etc.)
 * rendering of 3 colored geometric objects: plane, sphere, cylinder
 * handling of all possible intersections and the inside of the object
@@ -23,7 +23,7 @@ Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.co
 * parsing of a .rt file with specific error messages
 * bonus: checkerboard for planes and spheres, multi- and colored light
 
-## The .rt File
+## The .rt File 📃
 The .rt file will be executed with our miniRT and it contains information on the scene: on the light, the camera and the objects.<br/>
 Below you can find an example and comments about the content of the elements.<br/>
 To get familiar with the .rt file, we recommend you to play around with it,
@@ -48,7 +48,7 @@ pl      0,-1,0    0,1,0    255,255,255
 cy      0,0,1     0,-1,0   1      2      0,0,255
 ```
 
-## Usage
+## Usage 🛠
 1. clone the repository and go to the directory<br/>
 `git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
 2. run make<br/>
@@ -66,7 +66,7 @@ or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 5. move around in the scene or resize the window:
 - W, A, S, D for rotation
 - up, down, left, right for translation
-- + and - for zooming
+- '+' and '-' for zooming
 
 6. remove the object files and the executable<br/>
 `make fclean`<br/>
@@ -83,7 +83,7 @@ or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 `make re_bonus`<br/>
 `./miniRT_bonus scenes/bonus/checker_board.rt`<br/>
 
-## Useful Links
+## Useful Links 📎
 These were our main resources throughout the project and they are also useful if you are
 unfamiliar with raytracing and just found our repository.<br/>
 General Guides:
@@ -98,7 +98,7 @@ General Guides:
 * [geometry, coordinate systems, vector operations](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry/points-vectors-and-normals.html)
 * [MLX42 docs, how and what mlx functions to use](https://github.com/codam-coding-college/MLX42/tree/master/docs)
 
-## Limitations
+## Limitations 💭
 * still reachable memory due to MLX42, suppression file available (mlx42.supp)
 * with the keys W and S only 180 degrees of rotation are possible
 * slow movement or rendering if the scene contains many objects, but since we refer to the identical memory address for all intersections with the same object,
