@@ -6,12 +6,12 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 12:57:22 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/18 13:31:29 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_BONUS_H
-# define STRUCTS__BONUS_H
+# define STRUCTS_BONUS_H
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "macros_bonus.h"
