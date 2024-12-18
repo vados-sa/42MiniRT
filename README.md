@@ -5,12 +5,16 @@ This project is an introduction to Raytracing: a simulation of light and its int
 Made by [pebencze](https://github.com/pebencze) and [vados-sa](https://github.com/vados-sa).
 
 ## Examples 🎬
-![purple room](readme/purple_room_specular.png)
-![blue light](readme/blue_light_specular.png)
-![checkerboard for the plane](readme/white_sphere.png)
-![checkerboard for the sphere](readme/checker_sphere.png)
-![solar system](readme/solar.png)
-![multi light](readme/multi_light.png)
+<p float="left">
+  <img src="/readme/purple_room_specular.png" height="300" />
+  <img src="/readme/white_sphere.png" height="300" />
+  <img src="readme/blue_light_specular.png" height="300" />
+  <img src="readme/multi_light.png" height="300" />
+  <img src="readme/checker_sphere.png" height="323" />
+  <img src="readme/solar.png" height="330" />
+
+</p>
+
 
 ## Features 🪩
 * smooth window management (minimizing, resizing, ESC, cross etc.)
@@ -50,11 +54,17 @@ cy      0,0,1     0,-1,0   1      2      0,0,255
 
 ## Usage 🛠
 1. clone the repository and go to the directory<br/>
-`git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT`
+	```c
+	git clone git@github.com:pebencze/42MiniRT.git && cd 42MiniRT
+	```
 2. run make<br/>
-`make`
+	```c
+	make
+	```
 3. execute the file with a scene of your choice<br/>
-`./miniRT scenes/*.rt`
+	```c
+	./miniRT scenes/*.rt
+	```
 4. play around and change the color, the position, the axis
 or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 	```c
@@ -64,15 +74,19 @@ or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 	pl    0,-1,0       0,0,1                    255,0,0
 	```
 5. move around in the scene or resize the window:
-- W, A, S, D for rotation
-- up, down, left, right for translation
-- '+' and '-' for zooming
+	- W, A, S, D for rotation
+	- up, down, left, right for translation
+	- '+' and '-' for zooming
 
 6. remove the object files and the executable<br/>
-`make fclean`<br/>
+	```c
+	make fclean
+	```
 7. see the bonus features: now you can  have several light parameters with different colors in the .rt file; play around with that <br/>
-`make bonus`<br/>
-`./miniRT_bonus scenes/bonus/multi_light.rt`<br/>
+	```c
+	make bonus
+	./miniRT_bonus scenes/bonus/multi_light.rt
+	```
 8. see more bonus features: set the flags to 1 in the `incl/minirt_bonus.h` header file to have checkerboard patterns or sepcular light<br/>
 	```c
 	# define CHECKP 1 //checkerboard for plane
@@ -80,9 +94,10 @@ or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 	# define SPECULAR 1 //specular light
 	```
 9. recompile and execute the bonus<br/>
-`make re_bonus`<br/>
-`./miniRT_bonus scenes/bonus/checker_board.rt`<br/>
-
+	```c
+	make re_bonus
+	./miniRT_bonus scenes/bonus/checker_board.rt
+	```
 ## Useful Links 📎
 These were our main resources throughout the project and they are also useful if you are
 unfamiliar with raytracing and just found our repository.<br/>
