@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:44:46 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/16 12:12:43 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/18 19:55:57 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	my_keyhook(mlx_key_data_t keydata, t_data *data)
 	rotate(keydata, data, camera);
 	if (keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_A
 		|| keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_W
-		|| keydata.key == MLX_KEY_MINUS || keydata.key == MLX_KEY_KP_EQUAL
+		|| keydata.key == MLX_KEY_MINUS || keydata.key == MLX_KEY_EQUAL
 		|| keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_DOWN
 		|| keydata.key == MLX_KEY_RIGHT || keydata.key == MLX_KEY_LEFT)
 		setup_viewport(data, data->scene->c);
