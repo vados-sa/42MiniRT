@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:45:14 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 12:59:37 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/19 18:27:57 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * directed towards the center of the windows's pixel at width x and height y,
  * translated into viewport dimensions. The calculation starts at pixel00.
  */
-t_ray	create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data)
+t_ray	create_ray(t_float x, t_float y, t_coord origin, t_data *data)
 {
 	t_ray	ray;
 	t_coord	x_scaled;

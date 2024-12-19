@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:35 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 13:47:06 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/19 19:22:52 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ values are out of bounds."
 # define MAX_LIGHT 100
 # define CHECKP 1
 # define CHECKS 0
-# define SPECULAR 1
+# define SPECULAR 0
 # define ANTIALIAS 1
+# define ANTIALIAS_FACTOR 5
 
 #endif

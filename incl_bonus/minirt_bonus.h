@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:36:43 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 12:57:16 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/19 18:50:12 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ t_color		col_add(t_color c1, t_color c2);
 /*rendering*/
 void		render(t_data *data);
 t_coord		ray_at(t_ray r, t_float t);
-t_ray		create_ray(uint32_t x, uint32_t y, t_coord origin, t_data *data);
+t_ray		create_ray(t_float x, t_float y, t_coord origin, t_data *data);
 t_color		gradient(t_ray r, t_coord camera_up, t_data *data);
-void		put_color(uint32_t x, uint32_t y, t_data *data, t_ray ray);
+t_color		calculate_color(t_data *data, t_ray ray);
 
 /*intersections*/
 t_intersec	*sphere_intersect(t_data *data, t_ray ray, t_object *obj);

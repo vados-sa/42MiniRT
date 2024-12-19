@@ -6,7 +6,7 @@
 /*   By: pbencze <pbencze@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:47:00 by vados-sa          #+#    #+#             */
-/*   Updated: 2024/12/18 13:48:04 by pbencze          ###   ########.fr       */
+/*   Updated: 2024/12/19 19:18:31 by pbencze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ t_color	gradient(t_ray r, t_coord camera_up, t_data *data)
 }
 
 
-uint32_t	calculate_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
+t_color	calculate_color(t_data *data, t_ray ray)
 {
-	uint32_t	col_int;
 	t_color		col_rgb;
 	t_intersec	*hit_rec;
 	t_color		obj_color;
@@ -48,30 +47,39 @@ uint32_t	calculate_color(uint32_t x, uint32_t y, t_data *data, t_ray ray)
 	}
 	else
 		col_rgb = gradient(ray, data->scene->c.up, data);
-	col_int = create_color(col_rgb.r, col_rgb.g, col_rgb.b, col_rgb.a);
-	return (col_int);
+	return (col_rgb);
 }
 
 void	antialias(uint32_t x, uint32_t y, t_data *data)
 {
-	uint32_t			color;
-	uint32_t			i;
-	uint32_t			j;
-	t_ray				ray;
+	t_color			color;
+	t_color			sub_color;
+	uint32_t		i;
+	uint32_t		j;
+	t_ray			ray;
 
-	i = -1;
-	color = 0;
-	while (++i < 8)
+	color = col(0, 0, 0, 0);
+	i = 0;
+	while (i < ANTIALIAS_FACTOR)
 	{
-		j = -1;
-		while (++j < 8)
+		j = 0;
+		while (j < ANTIALIAS_FACTOR)
 		{
-			ray = create_ray(x + (j / 8.0), y + (i / 8.0), data->scene->c.center, data);
-			color += calculate_color(x + (j / 8.0), y + (i / 8.0), data, ray);
+			ray = create_ray(x + ((t_float)j / 5.0), y + ((t_float)i / 5.0), data->scene->c.center, data);
+			sub_color = calculate_color(data, ray);
+			color.r += sub_color.r;
+			color.g += sub_color.g;
+			color.b += sub_color.b;
+			color.a += sub_color.a;
+			j++;
 		}
+		i++;
 	}
-	color = color / 64;
-	mlx_put_pixel(data->image, x, y, color);
+	color.r /= (ANTIALIAS_FACTOR * ANTIALIAS_FACTOR);
+	color.g /= (ANTIALIAS_FACTOR * ANTIALIAS_FACTOR);
+	color.b /= (ANTIALIAS_FACTOR * ANTIALIAS_FACTOR);
+	color.a /= (ANTIALIAS_FACTOR * ANTIALIAS_FACTOR);
+	mlx_put_pixel(data->image, x, y, create_color(color.r, color.g, color.b, color.a));
 }
 
 void	render(t_data *data)
@@ -79,6 +87,8 @@ void	render(t_data *data)
 	uint32_t	x;
 	uint32_t	y;
 	t_ray		ray;
+	uint32_t	col_int;
+	t_color		col_rgb;
 
 	y = -1;
 	while (++y < data->image_height)
@@ -91,8 +101,9 @@ void	render(t_data *data)
 			else
 			{
 				ray = create_ray(x, y, data->scene->c.center, data);
-				mlx_put_pixel(data->image, x, y, \
-				calculate_color(x, y, data, ray));
+				col_rgb = calculate_color(data, ray);
+				col_int = create_color(col_rgb.r, col_rgb.g, col_rgb.b, col_rgb.a);
+				mlx_put_pixel(data->image, x, y, col_int);
 			}
 		}
 	}
