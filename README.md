@@ -90,7 +90,7 @@ or the dimensions of the objects in the .rt files; execute miniRT again<br/>
 	make bonus
 	./miniRT_bonus scenes/bonus/multi_light.rt
 	```
-8. see more bonus features: set the flags to 1 in the `incl/minirt_bonus.h` header file to have checkerboard patterns or sepcular light<br/>
+8. see more bonus features: set the flags to 1 in the `incl/minirt_bonus.h` header file to have checkerboard patterns or specular light<br/>
 	```c
 	# define CHECKP 1 //checkerboard for plane
 	# define CHECKS 1 //checkerboard for sphere
